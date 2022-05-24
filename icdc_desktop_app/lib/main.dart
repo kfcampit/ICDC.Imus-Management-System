@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:icdc_desktop_app/patient-entry.dart';
 
 void main() {
   runApp(const ICDCDesktop());
@@ -13,117 +14,113 @@ class ICDCDesktop extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
-          // is not restarted.
           primaryColor: const Color(0xff4b39ef),
         ),
-        home: Scaffold(
-          body: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [sidebarWidget(), homePage],
-          ),
-        ));
+        home: Builder(
+            builder: (context) => Scaffold(
+                  body: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [sidebarWidget(context), homePageWidget(context)],
+                  ),
+                )));
   }
 }
 
-Widget homePage = Expanded(
-    child: Column(
-  mainAxisAlignment: MainAxisAlignment.center,
-  mainAxisSize: MainAxisSize.max,
-  children: [
-    Image.asset(
-      'assets/logo_large.png',
-      width: 320,
-      height: 320,
-    ),
-    const Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-      child: Text('Immaculate Concepcion Dental Clinic - Imus',
-          textAlign: TextAlign.center,
+Widget homePageWidget(BuildContext context) {
+  return Expanded(
+      child: Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    mainAxisSize: MainAxisSize.max,
+    children: [
+      Image.asset(
+        'assets/logo_large.png',
+        width: 320,
+        height: 320,
+      ),
+      const Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+        child: Text('Immaculate Concepcion Dental Clinic - Imus',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w700,
+                fontSize: 32,
+                color: Color(0xff4b39ef))),
+      ),
+      const Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+        child: Text(
+          'Patient Record and Inventory Management System',
           style: TextStyle(
               fontFamily: 'Poppins',
-              fontWeight: FontWeight.w700,
-              fontSize: 32,
-              color: Color(0xff4b39ef))),
-    ),
-    const Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
-      child: Text(
-        'Patient Record and Inventory Management System',
-        style: TextStyle(
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.w400,
-            fontSize: 16,
-            color: Color(0xff4b39ef)),
+              fontWeight: FontWeight.w400,
+              fontSize: 16,
+              color: Color(0xff4b39ef)),
+        ),
       ),
-    ),
-    const Divider(
-      thickness: 2,
-      indent: 200,
-      endIndent: 200,
-      color: Color(0xff4b39ef),
-    ),
-    Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          roundedButtons(
-              height: 48,
-              width: 200,
-              color: const Color(0xff4b39ef),
-              text: "Add Patient",
-              function: test,
-              start: 8,
-              top: 8,
-              end: 8,
-              bottom: 8),
-          roundedButtons(
-              height: 48,
-              width: 200,
-              color: const Color(0xff4b39ef),
-              text: "Search Records",
-              function: test,
-              start: 8,
-              top: 8,
-              end: 8,
-              bottom: 8),
-          roundedButtons(
-              height: 48,
-              width: 200,
-              color: const Color(0xff4b39ef),
-              text: "Recent Patients",
-              function: test,
-              start: 8,
-              top: 8,
-              end: 8,
-              bottom: 8),
-          roundedButtons(
-              height: 48,
-              width: 200,
-              color: const Color(0xff4b39ef),
-              text: "Check Inventory",
-              function: test,
-              start: 8,
-              top: 8,
-              end: 8,
-              bottom: 8),
-        ],
+      const Divider(
+        thickness: 2,
+        indent: 200,
+        endIndent: 200,
+        color: Color(0xff4b39ef),
       ),
-    )
-  ],
-));
+      Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            roundedButtons(
+                height: 48,
+                width: 200,
+                color: const Color(0xff4b39ef),
+                text: "Add Patient",
+                start: 8,
+                top: 8,
+                end: 8,
+                bottom: 8,
+                function: navigate,
+                context: context,
+                page: const PatientEntry()),
+            roundedButtons(
+                height: 48,
+                width: 200,
+                color: const Color(0xff4b39ef),
+                text: "Search Records",
+                function: test,
+                start: 8,
+                top: 8,
+                end: 8,
+                bottom: 8),
+            roundedButtons(
+                height: 48,
+                width: 200,
+                color: const Color(0xff4b39ef),
+                text: "Recent Patients",
+                function: test,
+                start: 8,
+                top: 8,
+                end: 8,
+                bottom: 8),
+            roundedButtons(
+                height: 48,
+                width: 200,
+                color: const Color(0xff4b39ef),
+                text: "Check Inventory",
+                function: test,
+                start: 8,
+                top: 8,
+                end: 8,
+                bottom: 8),
+          ],
+        ),
+      )
+    ],
+  ));
+}
 
-Widget sidebarWidget() {
+Widget sidebarWidget(BuildContext context) {
   return Container(
     width: 72,
     height: 100,
@@ -137,8 +134,16 @@ Widget sidebarWidget() {
           Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(8, 4, 8, 28),
               child: Image.asset('assets/logo_1.png')),
-          sideBarButtonIcon(iconName: Icons.home_filled, function: test),
-          sideBarButtonIcon(iconName: Icons.person_add, function: test),
+          sideBarButtonIcon(
+              iconName: Icons.home_filled,
+              function: navigate,
+              context: context,
+              page: const ICDCDesktop()),
+          sideBarButtonIcon(
+              iconName: Icons.person_add,
+              function: navigate,
+              context: context,
+              page: const PatientEntry()),
           sideBarButtonIcon(iconName: Icons.search_sharp, function: test),
           sideBarButtonIcon(iconName: Icons.access_time, function: test),
           sideBarButtonIcon(iconName: Icons.inbox_sharp, function: test),
@@ -161,6 +166,8 @@ ButtonTheme roundedButtons({
   required String text,
   TextStyle? textStyle,
   required Function function,
+  BuildContext? context,
+  Widget? page,
 }) {
   textStyle ??= const TextStyle(
       fontFamily: 'Poppins',
@@ -190,17 +197,20 @@ ButtonTheme roundedButtons({
                         side: BorderSide(color: color)))),
             child: Text(text, textAlign: TextAlign.center, style: textStyle),
             onPressed: () {
-              function();
+              function(context, page);
             },
           ),
         )),
   );
 }
 
-ButtonTheme sideBarButtonIcon(
-    {required IconData iconName,
-    String? hoverText,
-    required Function function}) {
+ButtonTheme sideBarButtonIcon({
+  required IconData iconName,
+  String? hoverText,
+  required Function function,
+  BuildContext? context,
+  Widget? page,
+}) {
   return ButtonTheme(
       child: Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
@@ -212,11 +222,15 @@ ButtonTheme sideBarButtonIcon(
             ),
             iconSize: 32,
             onPressed: () {
-              function();
+              function(context, page);
             },
           )));
 }
 
 void test() {
   print("Button is working...");
+}
+
+void navigate(BuildContext context, Widget object) {
+  Navigator.of(context).push(MaterialPageRoute(builder: (context) => object));
 }
