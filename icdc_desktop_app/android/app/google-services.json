@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "984989534583",
+    "project_id": "icdc-imus-cms",
+    "storage_bucket": "icdc-imus-cms.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984989534583:android:cddaff630da72eeb437972",
+        "android_client_info": {
+          "package_name": "com.example.icdc_desktop_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "984989534583-dgmbklh0qfpp51nf2jpve326bggb7g3i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNp41jgIjdPtqjYhhJIpqYbS-QxKa593M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "984989534583-dgmbklh0qfpp51nf2jpve326bggb7g3i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

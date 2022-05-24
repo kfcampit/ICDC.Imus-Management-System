@@ -6,7 +6,13 @@ import 'package:icdc_desktop_app/patient-entry.dart';
 import 'package:icdc_desktop_app/search-patients.dart';
 import 'package:icdc_desktop_app/settings.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+Future<void> main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const ICDCDesktop());
 }
 
