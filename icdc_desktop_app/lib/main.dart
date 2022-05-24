@@ -7,7 +7,7 @@ import 'package:icdc_desktop_app/search-patients.dart';
 import 'package:icdc_desktop_app/settings.dart';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'resources/firebase_options.dart';
 
 Future<void> main() async {
   await Firebase.initializeApp(
