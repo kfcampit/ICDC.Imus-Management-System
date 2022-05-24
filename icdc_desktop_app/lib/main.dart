@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:icdc_desktop_app/check-inventory.dart';
+import 'package:icdc_desktop_app/recent-patients.dart';
+import 'package:icdc_desktop_app/resources/custom-widgets.dart';
 import 'package:icdc_desktop_app/patient-entry.dart';
+import 'package:icdc_desktop_app/search-patients.dart';
+import 'package:icdc_desktop_app/settings.dart';
 
 void main() {
   runApp(const ICDCDesktop());
@@ -88,7 +93,9 @@ Widget homePageWidget(BuildContext context) {
                 width: 200,
                 color: const Color(0xff4b39ef),
                 text: "Search Records",
-                function: test,
+                function: navigate,
+                context: context,
+                page: const SearchPatients(),
                 start: 8,
                 top: 8,
                 end: 8,
@@ -98,7 +105,9 @@ Widget homePageWidget(BuildContext context) {
                 width: 200,
                 color: const Color(0xff4b39ef),
                 text: "Recent Patients",
-                function: test,
+                function: navigate,
+                context: context,
+                page: const RecentPatients(),
                 start: 8,
                 top: 8,
                 end: 8,
@@ -108,7 +117,9 @@ Widget homePageWidget(BuildContext context) {
                 width: 200,
                 color: const Color(0xff4b39ef),
                 text: "Check Inventory",
-                function: test,
+                function: navigate,
+                context: context,
+                page: const CheckInventory(),
                 start: 8,
                 top: 8,
                 end: 8,
@@ -144,87 +155,31 @@ Widget sidebarWidget(BuildContext context) {
               function: navigate,
               context: context,
               page: const PatientEntry()),
-          sideBarButtonIcon(iconName: Icons.search_sharp, function: test),
-          sideBarButtonIcon(iconName: Icons.access_time, function: test),
-          sideBarButtonIcon(iconName: Icons.inbox_sharp, function: test),
-          sideBarButtonIcon(iconName: Icons.settings, function: test),
+          sideBarButtonIcon(
+              iconName: Icons.search_sharp,
+              function: navigate,
+              context: context,
+              page: const SearchPatients()),
+          sideBarButtonIcon(
+              iconName: Icons.access_time,
+              function: navigate,
+              context: context,
+              page: const RecentPatients()),
+          sideBarButtonIcon(
+              iconName: Icons.inbox_sharp,
+              function: navigate,
+              context: context,
+              page: const CheckInventory()),
+          sideBarButtonIcon(
+              iconName: Icons.settings,
+              function: navigate,
+              context: context,
+              page: const Settings()),
         ],
       ),
     ),
     decoration: const BoxDecoration(color: Color(0xff4b39ef)),
   );
-}
-
-ButtonTheme roundedButtons({
-  double? start,
-  double? top,
-  double? end,
-  double? bottom,
-  required double height,
-  required double width,
-  required Color color,
-  required String text,
-  TextStyle? textStyle,
-  required Function function,
-  BuildContext? context,
-  Widget? page,
-}) {
-  textStyle ??= const TextStyle(
-      fontFamily: 'Poppins',
-      fontWeight: FontWeight.w500,
-      fontSize: 20,
-      color: Colors.white);
-
-  start ??= 0;
-  top ??= 0;
-  end ??= 0;
-  bottom ??= 0;
-
-  return ButtonTheme(
-    child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(start, top, end, bottom),
-        child: Container(
-          height: height,
-          width: width,
-          child: TextButton(
-            style: ButtonStyle(
-                padding: MaterialStateProperty.all<EdgeInsets>(
-                    const EdgeInsets.all(16)),
-                backgroundColor: MaterialStateProperty.all<Color>(color),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        side: BorderSide(color: color)))),
-            child: Text(text, textAlign: TextAlign.center, style: textStyle),
-            onPressed: () {
-              function(context, page);
-            },
-          ),
-        )),
-  );
-}
-
-ButtonTheme sideBarButtonIcon({
-  required IconData iconName,
-  String? hoverText,
-  required Function function,
-  BuildContext? context,
-  Widget? page,
-}) {
-  return ButtonTheme(
-      child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
-          child: IconButton(
-            icon: Icon(
-              iconName,
-              color: Colors.white,
-              size: 32,
-            ),
-            iconSize: 32,
-            onPressed: () {
-              function(context, page);
-            },
-          )));
 }
 
 void test() {

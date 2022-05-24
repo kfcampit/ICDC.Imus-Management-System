@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:icdc_desktop_app/main.dart';
 
-class PatientEntry extends StatelessWidget {
-  const PatientEntry({Key? key}) : super(key: key);
+class RecentPatients extends StatelessWidget {
+  const RecentPatients({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
