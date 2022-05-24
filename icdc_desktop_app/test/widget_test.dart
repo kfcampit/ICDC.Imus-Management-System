@@ -7,8 +7,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:icdc_desktop_app/main-ref.dart';
-
 import 'package:icdc_desktop_app/main.dart';
 
 void main() {
