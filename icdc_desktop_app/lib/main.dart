@@ -28,121 +28,11 @@ class ICDCDesktop extends StatelessWidget {
           body: Row(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
-            children: [sideBar, homePage],
+            children: [sidebarWidget(), homePage],
           ),
         ));
   }
 }
-
-Widget sideBar = Container(
-  width: 72,
-  height: 100,
-  child: Padding(
-    padding: const EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-            child: Image.asset('assets/logo_1.png')),
-        Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(4, 32, 4, 0),
-            child: IconButton(
-              icon: const Icon(
-                Icons.home_filled,
-                color: Colors.white,
-                size: 32,
-              ),
-              iconSize: 32,
-              onPressed: () {
-                print("Home icon pressed...");
-              },
-            )),
-        Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
-            child: IconButton(
-              icon: const Icon(
-                Icons.person_add,
-                color: Colors.white,
-                size: 32,
-              ),
-              iconSize: 32,
-              onPressed: () {
-                print("Add Patient icon pressed...");
-              },
-            )),
-        Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
-            child: IconButton(
-              icon: const Icon(
-                Icons.search_sharp,
-                color: Colors.white,
-                size: 32,
-              ),
-              iconSize: 32,
-              onPressed: () {
-                print("Search icon pressed...");
-              },
-            )),
-        Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
-            child: IconButton(
-              icon: const Icon(
-                Icons.access_time,
-                color: Colors.white,
-                size: 32,
-              ),
-              iconSize: 32,
-              onPressed: () {
-                print("Recent Patients icon pressed...");
-              },
-            )),
-        Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
-            child: IconButton(
-              icon: const Icon(
-                Icons.inbox_sharp,
-                color: Colors.white,
-                size: 32,
-              ),
-              iconSize: 32,
-              onPressed: () {
-                print("Inventory icon pressed...");
-              },
-            )),
-        Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
-            child: IconButton(
-              icon: const Icon(
-                Icons.access_time,
-                color: Colors.white,
-                size: 32,
-              ),
-              iconSize: 32,
-              onPressed: () {
-                print("Settings icon pressed...");
-              },
-            )),
-        Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
-            child: IconButton(
-              icon: const Icon(
-                Icons.settings,
-                color: Colors.white,
-                size: 32,
-              ),
-              iconSize: 32,
-              onPressed: () {
-                print("Home icon pressed...");
-              },
-            )),
-      ],
-    ),
-  ),
-  decoration: const BoxDecoration(color: Color(0xff4b39ef)),
-);
 
 Widget homePage = Expanded(
     child: Column(
@@ -187,88 +77,146 @@ Widget homePage = Expanded(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Container(
+          roundedButtons(
               height: 48,
               width: 200,
               color: const Color(0xff4b39ef),
-              child: TextButton(
-                child: const Text("Add Patient",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                        color: Colors.white)),
-                onPressed: () {
-                  print("Add Patient button pressed...");
-                },
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Container(
+              text: "Add Patient",
+              function: test,
+              start: 8,
+              top: 8,
+              end: 8,
+              bottom: 8),
+          roundedButtons(
               height: 48,
               width: 200,
               color: const Color(0xff4b39ef),
-              child: TextButton(
-                child: const Text("Search Records",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                        color: Colors.white)),
-                onPressed: () {
-                  print("Search Records button pressed...");
-                },
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Container(
+              text: "Search Records",
+              function: test,
+              start: 8,
+              top: 8,
+              end: 8,
+              bottom: 8),
+          roundedButtons(
               height: 48,
               width: 200,
               color: const Color(0xff4b39ef),
-              child: TextButton(
-                child: const Text("Recent Patients",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                        color: Colors.white)),
-                onPressed: () {
-                  print("Recent Patients button pressed...");
-                },
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Container(
+              text: "Recent Patients",
+              function: test,
+              start: 8,
+              top: 8,
+              end: 8,
+              bottom: 8),
+          roundedButtons(
               height: 48,
               width: 200,
               color: const Color(0xff4b39ef),
-              child: TextButton(
-                child: const Text("Check Inventory",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
-                        color: Colors.white)),
-                onPressed: () {
-                  print("Check Inventory button pressed...");
-                },
-              ),
-            ),
-          ),
+              text: "Check Inventory",
+              function: test,
+              start: 8,
+              top: 8,
+              end: 8,
+              bottom: 8),
         ],
       ),
     )
   ],
 ));
+
+Widget sidebarWidget() {
+  return Container(
+    width: 72,
+    height: 100,
+    child: Padding(
+      padding: const EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(8, 4, 8, 28),
+              child: Image.asset('assets/logo_1.png')),
+          sideBarButtonIcon(iconName: Icons.home_filled, function: test),
+          sideBarButtonIcon(iconName: Icons.person_add, function: test),
+          sideBarButtonIcon(iconName: Icons.search_sharp, function: test),
+          sideBarButtonIcon(iconName: Icons.access_time, function: test),
+          sideBarButtonIcon(iconName: Icons.inbox_sharp, function: test),
+          sideBarButtonIcon(iconName: Icons.settings, function: test),
+        ],
+      ),
+    ),
+    decoration: const BoxDecoration(color: Color(0xff4b39ef)),
+  );
+}
+
+ButtonTheme roundedButtons({
+  double? start,
+  double? top,
+  double? end,
+  double? bottom,
+  required double height,
+  required double width,
+  required Color color,
+  required String text,
+  TextStyle? textStyle,
+  required Function function,
+}) {
+  textStyle ??= const TextStyle(
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w500,
+      fontSize: 20,
+      color: Colors.white);
+
+  start ??= 0;
+  top ??= 0;
+  end ??= 0;
+  bottom ??= 0;
+
+  return ButtonTheme(
+    child: Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(start, top, end, bottom),
+        child: Container(
+          height: height,
+          width: width,
+          child: TextButton(
+            style: ButtonStyle(
+                padding: MaterialStateProperty.all<EdgeInsets>(
+                    const EdgeInsets.all(16)),
+                backgroundColor: MaterialStateProperty.all<Color>(color),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                        side: BorderSide(color: color)))),
+            child: Text(text, textAlign: TextAlign.center, style: textStyle),
+            onPressed: () {
+              function();
+            },
+          ),
+        )),
+  );
+}
+
+ButtonTheme sideBarButtonIcon(
+    {required IconData iconName,
+    String? hoverText,
+    required Function function}) {
+  return ButtonTheme(
+      child: Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(4, 4, 4, 4),
+          child: IconButton(
+            icon: Icon(
+              iconName,
+              color: Colors.white,
+              size: 32,
+            ),
+            iconSize: 32,
+            onPressed: () {
+              function();
+            },
+          )));
+}
+
+void test() {
+  print("Button is working...");
+}
