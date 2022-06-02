@@ -93,7 +93,7 @@ Widget homePageWidget(BuildContext context) {
                 bottom: 8,
                 function: navigate,
                 context: context,
-                page: const PatientEntry()),
+                page: const PatientEntryPage()),
             roundedButtons(
                 height: 48,
                 width: 200,
@@ -160,7 +160,7 @@ Widget sidebarWidget(BuildContext context) {
               iconName: Icons.person_add,
               function: navigate,
               context: context,
-              page: const PatientEntry()),
+              page: const PatientEntryPage()),
           sideBarButtonIcon(
               iconName: Icons.search_sharp,
               function: navigate,
