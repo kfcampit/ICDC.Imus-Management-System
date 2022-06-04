@@ -531,7 +531,7 @@ Widget individualTreatments(BuildContext context) {
   );
 }
 
-void test() {
+void test(var o1, var o2) {
   print("test button");
 }
 
@@ -546,16 +546,17 @@ void enterPatientInfo(String id, String name, String dob, String marital, String
   underPatientId["SEX"] = sex;
   underPatientId["ADDRESS"] = address;
   underPatientId["DATE_OF_BIRTH"] = dob;
+  underPatientId["CONTACT_NUMBER"] = cn;
   underPatientId["DENTAL_RECORDS"] = underDentalRecords;
 
-  underDentalRecords["TOOTH_NUM"] = underToothNum;
+  underDentalRecords[toothNum] = underToothNum;
 
   underToothNum["SURFACE"] = surface;
   underToothNum["DESC_SERVICES"] = service;
   underToothNum["DATE"] = date;
   underToothNum["FEE"] = fee;
 
-  underPatientInfo["ID"] = underPatientId;
-
+  underPatientInfo[id] = underPatientId;
+  
   // enter underPatientInfo HashMap to database after
 }
