@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:icdc_desktop_app/main.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
 import 'dart:collection';
+import 'global-variables.dart';
 
 class PatientEntryPage extends StatefulWidget {
   const PatientEntryPage({Key? key}) : super(key: key);
@@ -59,12 +60,6 @@ Widget patientEntryPageWidgets(BuildContext context) {
 }
 
 Widget textInputs(BuildContext context) {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController bdayController = TextEditingController();
-  TextEditingController maritalController = TextEditingController();
-  TextEditingController sexController = TextEditingController();
-  TextEditingController contactController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
 
   return Column(
     mainAxisSize: MainAxisSize.max,
@@ -432,7 +427,7 @@ Widget treatmentsWidget(BuildContext context) {
                         width: 160,
                         color: const Color(0xff4b39ef),
                         text: "Add Treatment",
-                        function: test),
+                        function: enterPatientInfo),
                   ),
                 ]))),
   );
@@ -535,28 +530,34 @@ void test(var o1, var o2) {
   print("test button");
 }
 
-void enterPatientInfo(String id, String name, String dob, String marital, String sex, String cn, String address, String toothNum, String surface, String service, String date, String fee){
+void enterPatientInfo(var o1, var o2){
   Map<String, Map> underPatientInfo = HashMap(); // key: id, value: underPatientId
   Map<String, Object> underPatientId = HashMap();
   Map<String, Map> underDentalRecords = HashMap(); // key: tooth num, value: underToothNum
   Map<String, String> underToothNum = HashMap();
 
-  underPatientId["NAME"] = name;
-  underPatientId["MARITAL_STATUS"] = marital;
-  underPatientId["SEX"] = sex;
-  underPatientId["ADDRESS"] = address;
-  underPatientId["DATE_OF_BIRTH"] = dob;
-  underPatientId["CONTACT_NUMBER"] = cn;
+  underPatientId["NAME"] = nameController.text;
+  underPatientId["MARITAL_STATUS"] = maritalController.text;
+  underPatientId["SEX"] = sexController.text;
+  underPatientId["ADDRESS"] = addressController.text;
+  underPatientId["DATE_OF_BIRTH"] = bdayController.text;
+  underPatientId["CONTACT_NUMBER"] = contactController.text;
   underPatientId["DENTAL_RECORDS"] = underDentalRecords;
 
-  underDentalRecords[toothNum] = underToothNum;
+  print("Name: " + underPatientId["NAME"].toString());
+  print("Birthday: " + underPatientId["DATE_OF_BIRTH"].toString());
+  print("Marital: " + underPatientId["MARITAL_STATUS"].toString());
+  print("Sex: " + underPatientId["SEX"].toString());
+  print("Contact Number: " + underPatientId["CONTACT_NUMBER"].toString());
+  print("Address: " + underPatientId["ADDRESS"].toString());
+  // underDentalRecords[toothNum] = underToothNum;
 
-  underToothNum["SURFACE"] = surface;
-  underToothNum["DESC_SERVICES"] = service;
-  underToothNum["DATE"] = date;
-  underToothNum["FEE"] = fee;
+  // underToothNum["SURFACE"] = surface;
+  // underToothNum["DESC_SERVICES"] = service;
+  // underToothNum["DATE"] = date;
+  // underToothNum["FEE"] = fee;
 
-  underPatientInfo[id] = underPatientId;
+  // underPatientInfo[id] = underPatientId;
   
   // enter underPatientInfo HashMap to database after
 }
