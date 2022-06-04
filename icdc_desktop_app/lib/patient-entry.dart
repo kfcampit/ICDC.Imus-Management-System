@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icdc_desktop_app/main.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
+import 'dart:collection';
 
 class PatientEntryPage extends StatefulWidget {
   const PatientEntryPage({Key? key}) : super(key: key);
@@ -532,4 +533,29 @@ Widget individualTreatments(BuildContext context) {
 
 void test() {
   print("test button");
+}
+
+void enterPatientInfo(String id, String name, String dob, String marital, String sex, String cn, String address, String toothNum, String surface, String service, String date, String fee){
+  Map<String, Map> underPatientInfo = HashMap(); // key: id, value: underPatientId
+  Map<String, Object> underPatientId = HashMap();
+  Map<String, Map> underDentalRecords = HashMap(); // key: tooth num, value: underToothNum
+  Map<String, String> underToothNum = HashMap();
+
+  underPatientId["NAME"] = name;
+  underPatientId["MARITAL_STATUS"] = marital;
+  underPatientId["SEX"] = sex;
+  underPatientId["ADDRESS"] = address;
+  underPatientId["DATE_OF_BIRTH"] = dob;
+  underPatientId["DENTAL_RECORDS"] = underDentalRecords;
+
+  underDentalRecords["TOOTH_NUM"] = underToothNum;
+
+  underToothNum["SURFACE"] = surface;
+  underToothNum["DESC_SERVICES"] = service;
+  underToothNum["DATE"] = date;
+  underToothNum["FEE"] = fee;
+
+  underPatientInfo["ID"] = underPatientId;
+
+  // enter underPatientInfo HashMap to database after
 }
