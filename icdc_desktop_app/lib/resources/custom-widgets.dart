@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-ButtonTheme roundedButtons({
-  double? start,
-  double? top,
-  double? end,
-  double? bottom,
-  required double height,
-  required double width,
-  required Color color,
-  required String text,
-  TextStyle? textStyle,
-  required Function function,
-  BuildContext? context,
-  Widget? page,
-}) {
+ButtonTheme roundedButtons(
+    {double? start,
+    double? top,
+    double? end,
+    double? bottom,
+    required double height,
+    required double width,
+    required Color color,
+    required String text,
+    TextStyle? textStyle,
+    Function? function,
+    BuildContext? context,
+    Widget? page,
+    Function? navFunction}) {
   textStyle ??= const TextStyle(
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w500,
@@ -42,7 +42,8 @@ ButtonTheme roundedButtons({
                         side: BorderSide(color: color)))),
             child: Text(text, textAlign: TextAlign.center, style: textStyle),
             onPressed: () {
-              function(context, page);
+              navFunction!(context, page);
+              function!();
             },
           ),
         )),
