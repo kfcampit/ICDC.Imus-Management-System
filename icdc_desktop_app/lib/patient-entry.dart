@@ -314,7 +314,10 @@ Widget textInputs(BuildContext context) {
                   width: 130,
                   color: const Color(0xff4b39ef),
                   text: "Cancel",
-                  function: test),
+                  function: navigate,
+                  context: context,
+                  page: const ICDCDesktop()
+                  ),
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
@@ -327,7 +330,7 @@ Widget textInputs(BuildContext context) {
                   height: 40,
                   width: 130,
                   color: const Color(0xff4b39ef),
-                  text: "Cancel",
+                  text: "Save",
                   function: test),
             ),
           ],
