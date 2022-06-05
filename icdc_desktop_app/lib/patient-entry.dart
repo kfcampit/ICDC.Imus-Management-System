@@ -430,7 +430,7 @@ Widget treatmentsWidget(BuildContext context) {
                         width: 160,
                         color: const Color(0xff4b39ef),
                         text: "Add Treatment",
-                        function: enterPatientInfo),
+                        function: addTreatmentButton),
                   ),
                 ]))),
   );
@@ -531,6 +531,10 @@ Widget individualTreatments(BuildContext context) {
 
 void test(var o1, var o2) {
   print("test button");
+}
+
+void addTreatmentButton(var o1, var o2){
+  print("add treatment");
 }
 
 void enterPatientInfo(var o1, var o2){
