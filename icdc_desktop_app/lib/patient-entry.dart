@@ -331,7 +331,7 @@ Widget textInputs(BuildContext context) {
                   width: 130,
                   color: const Color(0xff4b39ef),
                   text: "Save",
-                  function: test),
+                  function: enterPatientInfo),
             ),
           ],
         ),
