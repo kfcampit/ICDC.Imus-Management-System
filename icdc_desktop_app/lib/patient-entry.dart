@@ -541,34 +541,21 @@ void addTreatmentButton() {
 }
 
 void enterPatientInfo() {
-  // PatientObject patient = PatientObject();
-  // patient.name = nameController.text;
-  // patient.bday = bdayController.text;
-  // patient.contact = contactController.text;
-  // patient.sex = sexController.text;
-  // patient.marital = maritalController.text;
-  // patient.address = addressController.text;
+  PatientObject patient = PatientObject();
+  patient.name = nameController.text;
+  patient.bday = bdayController.text;
+  patient.contact = contactController.text;
+  patient.sex = sexController.text;
+  patient.marital = maritalController.text;
+  patient.address = addressController.text;
 
-  // Map<String, Map> underPatientInfo = HashMap(); // key: id, value: underPatientId
-  // Map<String, Object> underPatientId = HashMap();
-  // Map<String, Map> underDentalRecords = HashMap(); // key: tooth num, value: underToothNum
-  // Map<String, String> underToothNum = HashMap();
-
-  // underPatientId["NAME"] = nameController.text;
-  // underPatientId["MARITAL_STATUS"] = maritalController.text;
-  // underPatientId["SEX"] = sexController.text;
-  // underPatientId["ADDRESS"] = addressController.text;
-  // underPatientId["DATE_OF_BIRTH"] = bdayController.text;
-  // underPatientId["CONTACT_NUMBER"] = contactController.text;
-  // underPatientId["DENTAL_RECORDS"] = underDentalRecords;
-
-  print("SAVE BUTTON WORKING");
-  // print("Name: " + patient.name);
-  // print("Birthday: " + patient.bday);
-  // print("Marital: " + patient.marital);
-  // print("Sex: " + patient.sex);
-  // print("Contact Number: " + patient.contact);
-  // print("Address: " + patient.address);
+  // print("SAVE BUTTON WORKING");
+  print("Name: " + patient.name);
+  print("Birthday: " + patient.bday);
+  print("Marital: " + patient.marital);
+  print("Sex: " + patient.sex);
+  print("Contact Number: " + patient.contact);
+  print("Address: " + patient.address);
   // underDentalRecords[toothNum] = underToothNum;
 
   // underToothNum["SURFACE"] = surface;
