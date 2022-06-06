@@ -548,6 +548,7 @@ void addTreatmentButton() {
   print("add treatment");
   addTreatmentCount++;
   DentalRecord dental = DentalRecord(int.parse(toothNumController.text), surfaceController.text, serviceController.text, dateController.text, int.parse(feeController.text));
+  patient.dentalRecords.add(dental);
 
   print("Tooth Num: " + dental.toothNum.toString());
   print("Surface: " + dental.surface);
@@ -568,7 +569,6 @@ void removeTreatmentButton() {
 }
 
 void enterPatientInfo() {
-  PatientObject patient = PatientObject();
   patient.name = nameController.text;
   patient.bday = bdayController.text;
   patient.contact = contactController.text;

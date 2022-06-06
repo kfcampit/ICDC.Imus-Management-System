@@ -1,5 +1,7 @@
 library globals;
 import 'package:flutter/material.dart';
+import 'package:icdc_desktop_app/patient-entry.dart';
+import 'package:icdc_desktop_app/resources/patient_object.dart';
 
 TextEditingController nameController = TextEditingController();
 TextEditingController bdayController = TextEditingController();
@@ -16,3 +18,5 @@ TextEditingController feeController = TextEditingController();
 
 double yCoordsTreatment = 60;
 double addTreatmentCount = 0;
+
+PatientObject patient = PatientObject();
