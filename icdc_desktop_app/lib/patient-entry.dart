@@ -545,22 +545,26 @@ void test() {
 }
 
 void addTreatmentButton() {
+  int count = addTreatmentCount.toInt();
+  print("-------------------------------------------------------------");
   print("add treatment");
-  addTreatmentCount++;
   DentalRecord dental = DentalRecord(int.parse(toothNumController.text), surfaceController.text, serviceController.text, dateController.text, int.parse(feeController.text));
   patient.dentalRecords.add(dental);
-
-  print("Tooth Num: " + dental.toothNum.toString());
-  print("Surface: " + dental.surface);
-  print("Service or Treatment: " + dental.description);
-  print("Transaction Date: " + dental.transDate);
-  print("Fee: " + dental.fee.toString());
+  
+  print("Tooth Num: " + patient.dentalRecords[count].toothNum.toString());
+  print("Surface: " + patient.dentalRecords[count].surface);
+  print("Service or Treatment: " + patient.dentalRecords[count].description);
+  print("Transaction Date: " + patient.dentalRecords[count].transDate);
+  print("Fee: " + patient.dentalRecords[count].fee.toString());
+  print("-------------------------------------------------------------");
 
   toothNumController.clear();
   surfaceController.clear();
   serviceController.clear();
   dateController.clear();
   feeController.clear();
+  
+  addTreatmentCount++;
 }
 
 void removeTreatmentButton() {
