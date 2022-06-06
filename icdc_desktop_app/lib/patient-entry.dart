@@ -454,17 +454,18 @@ Widget individualTreatments(BuildContext context) {
     padding: EdgeInsetsDirectional.fromSTEB(0, 0+yCoordsTreatment*addTreatmentCount, 0, 8),
     child: Row(
       mainAxisSize: MainAxisSize.max,
-      children: const [
+      children: [
         Expanded(
             flex: 1,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(8, 0, 4, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 4, 0),
               child: TextField(
+                controller: toothNumController,
                 cursorHeight: 24,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: UnderlineInputBorder(),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
                 ),
@@ -473,13 +474,14 @@ Widget individualTreatments(BuildContext context) {
         Expanded(
             flex: 1,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: TextField(
+                controller: surfaceController,
                 cursorHeight: 24,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: UnderlineInputBorder(),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
                 ),
@@ -488,13 +490,14 @@ Widget individualTreatments(BuildContext context) {
         Expanded(
             flex: 3,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: TextField(
+                controller: serviceController,
                 cursorHeight: 24,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: UnderlineInputBorder(),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
                 ),
@@ -503,13 +506,14 @@ Widget individualTreatments(BuildContext context) {
         Expanded(
             flex: 1,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: TextField(
+                controller: dateController,
                 cursorHeight: 24,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: UnderlineInputBorder(),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
                 ),
@@ -518,13 +522,14 @@ Widget individualTreatments(BuildContext context) {
         Expanded(
             flex: 1,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(4, 0, 8, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 8, 0),
               child: TextField(
+                controller: feeController,
                 cursorHeight: 24,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: UnderlineInputBorder(),
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
                 ),
@@ -542,6 +547,19 @@ void test() {
 void addTreatmentButton() {
   print("add treatment");
   addTreatmentCount++;
+  DentalRecord dental = DentalRecord(int.parse(toothNumController.text), surfaceController.text, serviceController.text, dateController.text, int.parse(feeController.text));
+
+  print("Tooth Num: " + dental.toothNum.toString());
+  print("Surface: " + dental.surface);
+  print("Service or Treatment: " + dental.description);
+  print("Transaction Date: " + dental.transDate);
+  print("Fee: " + dental.fee.toString());
+
+  toothNumController.clear();
+  surfaceController.clear();
+  serviceController.clear();
+  dateController.clear();
+  feeController.clear();
 }
 
 void removeTreatmentButton() {

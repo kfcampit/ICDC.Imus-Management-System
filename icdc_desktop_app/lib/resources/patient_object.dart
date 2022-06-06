@@ -12,9 +12,10 @@ class PatientObject {
 
 class DentalRecord {
   int toothNum = 0;
+  String surface = "";
   String description = "";
-  int transDate = 0;
+  String transDate = "";
   int fee = 0;
 
-  DentalRecord(this.toothNum, this.description, this.transDate, this.fee);
+  DentalRecord(this.toothNum, this.surface, this.description, this.transDate, this.fee);
 }
