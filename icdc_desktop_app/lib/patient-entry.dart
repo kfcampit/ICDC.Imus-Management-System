@@ -61,7 +61,6 @@ Widget patientEntryPageWidgets(BuildContext context) {
 }
 
 Widget textInputs(BuildContext context) {
-
   return Column(
     mainAxisSize: MainAxisSize.max,
     children: [
@@ -306,19 +305,20 @@ Widget textInputs(BuildContext context) {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
               child: roundedButtons(
-                  textStyle: const TextStyle(
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                      color: Colors.white),
-                  height: 40,
-                  width: 130,
-                  color: const Color(0xff4b39ef),
-                  text: "Cancel",
-                  navFunction: navigate,
-                  context: context,
-                  page: const ICDCDesktop()
-                  ),
+                textStyle: const TextStyle(
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                    color: Colors.white),
+                height: 40,
+                width: 130,
+                color: const Color(0xff4b39ef),
+                text: "Cancel",
+                navFunction: navigate,
+                context: context,
+                page: const ICDCDesktop(),
+                function: placeholder,
+              ),
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
@@ -332,7 +332,8 @@ Widget textInputs(BuildContext context) {
                   width: 130,
                   color: const Color(0xff4b39ef),
                   text: "Save",
-                  function: enterPatientInfo),
+                  function: enterPatientInfo,
+                  navFunction: navPlaceholder),
             ),
           ],
         ),
@@ -431,7 +432,8 @@ Widget treatmentsWidget(BuildContext context) {
                         width: 160,
                         color: const Color(0xff4b39ef),
                         text: "Add Treatment",
-                        function: addTreatmentButton),
+                        function: addTreatmentButton,
+                        navFunction: navPlaceholder),
                   ),
                 ]))),
   );
@@ -530,15 +532,15 @@ Widget individualTreatments(BuildContext context) {
   );
 }
 
-void test(var o1, var o2) {
+void test() {
   print("test button");
 }
 
-void addTreatmentButton(var o1, var o2){
+void addTreatmentButton() {
   print("add treatment");
 }
 
-void enterPatientInfo(){
+void enterPatientInfo() {
   // PatientObject patient = PatientObject();
   // patient.name = nameController.text;
   // patient.bday = bdayController.text;
@@ -546,7 +548,6 @@ void enterPatientInfo(){
   // patient.sex = sexController.text;
   // patient.marital = maritalController.text;
   // patient.address = addressController.text;
-
 
   // Map<String, Map> underPatientInfo = HashMap(); // key: id, value: underPatientId
   // Map<String, Object> underPatientId = HashMap();
@@ -576,6 +577,6 @@ void enterPatientInfo(){
   // underToothNum["FEE"] = fee;
 
   // underPatientInfo[id] = underPatientId;
-  
+
   // enter underPatientInfo HashMap to database after
 }

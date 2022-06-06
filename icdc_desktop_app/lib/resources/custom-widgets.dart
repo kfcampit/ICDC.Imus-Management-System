@@ -10,10 +10,10 @@ ButtonTheme roundedButtons(
     required Color color,
     required String text,
     TextStyle? textStyle,
-    Function? function,
+    required Function function,
     BuildContext? context,
     Widget? page,
-    Function? navFunction}) {
+    required Function navFunction}) {
   textStyle ??= const TextStyle(
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w500,
@@ -42,8 +42,10 @@ ButtonTheme roundedButtons(
                         side: BorderSide(color: color)))),
             child: Text(text, textAlign: TextAlign.center, style: textStyle),
             onPressed: () {
-              navFunction!(context, page);
-              function!();
+              if (context != null) {
+                navFunction(context, page);
+              }
+              function();
             },
           ),
         )),
@@ -71,4 +73,12 @@ ButtonTheme sideBarButtonIcon({
               function(context, page);
             },
           )));
+}
+
+void navPlaceholder(Object context, Object page) {
+  print("no navigation function");
+}
+
+void placeholder() {
+  print("no non-navigation function");
 }
