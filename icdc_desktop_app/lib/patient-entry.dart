@@ -433,7 +433,10 @@ Widget treatmentsWidget(BuildContext context) {
                         color: const Color(0xff4b39ef),
                         text: "Add Treatment",
                         function: addTreatmentButton,
-                        navFunction: navPlaceholder),
+                        navFunction: navigate,
+                        context: context,
+                        page: const PatientEntryPage(),
+                        ),
                   ),
                 ]))),
   );
@@ -448,7 +451,7 @@ Widget treatmentRows(BuildContext context) {
 
 Widget individualTreatments(BuildContext context) {
   return Padding(
-    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+    padding: EdgeInsetsDirectional.fromSTEB(0, 0+yCoordsTreatment*addTreatmentCount, 0, 8),
     child: Row(
       mainAxisSize: MainAxisSize.max,
       children: const [
@@ -538,6 +541,12 @@ void test() {
 
 void addTreatmentButton() {
   print("add treatment");
+  addTreatmentCount++;
+}
+
+void removeTreatmentButton() {
+  print("REMOVE TREATMENT");
+  addTreatmentCount--;
 }
 
 void enterPatientInfo() {
