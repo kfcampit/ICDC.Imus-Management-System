@@ -4,6 +4,8 @@ class PatientObject {
   String sex = "";
   String bday = "";
   String contact = "";
+  String marital = "";
+  String address = "";
 
   var dentalRecords = [];
 }

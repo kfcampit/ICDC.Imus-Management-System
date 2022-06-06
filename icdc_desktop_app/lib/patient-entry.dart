@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icdc_desktop_app/main.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
+import 'package:icdc_desktop_app/resources/patient_object.dart';
 import 'dart:collection';
 import 'global-variables.dart';
 
@@ -314,7 +315,7 @@ Widget textInputs(BuildContext context) {
                   width: 130,
                   color: const Color(0xff4b39ef),
                   text: "Cancel",
-                  function: navigate,
+                  navFunction: navigate,
                   context: context,
                   page: const ICDCDesktop()
                   ),
@@ -537,26 +538,36 @@ void addTreatmentButton(var o1, var o2){
   print("add treatment");
 }
 
-void enterPatientInfo(var o1, var o2){
-  Map<String, Map> underPatientInfo = HashMap(); // key: id, value: underPatientId
-  Map<String, Object> underPatientId = HashMap();
-  Map<String, Map> underDentalRecords = HashMap(); // key: tooth num, value: underToothNum
-  Map<String, String> underToothNum = HashMap();
+void enterPatientInfo(){
+  // PatientObject patient = PatientObject();
+  // patient.name = nameController.text;
+  // patient.bday = bdayController.text;
+  // patient.contact = contactController.text;
+  // patient.sex = sexController.text;
+  // patient.marital = maritalController.text;
+  // patient.address = addressController.text;
 
-  underPatientId["NAME"] = nameController.text;
-  underPatientId["MARITAL_STATUS"] = maritalController.text;
-  underPatientId["SEX"] = sexController.text;
-  underPatientId["ADDRESS"] = addressController.text;
-  underPatientId["DATE_OF_BIRTH"] = bdayController.text;
-  underPatientId["CONTACT_NUMBER"] = contactController.text;
-  underPatientId["DENTAL_RECORDS"] = underDentalRecords;
 
-  print("Name: " + underPatientId["NAME"].toString());
-  print("Birthday: " + underPatientId["DATE_OF_BIRTH"].toString());
-  print("Marital: " + underPatientId["MARITAL_STATUS"].toString());
-  print("Sex: " + underPatientId["SEX"].toString());
-  print("Contact Number: " + underPatientId["CONTACT_NUMBER"].toString());
-  print("Address: " + underPatientId["ADDRESS"].toString());
+  // Map<String, Map> underPatientInfo = HashMap(); // key: id, value: underPatientId
+  // Map<String, Object> underPatientId = HashMap();
+  // Map<String, Map> underDentalRecords = HashMap(); // key: tooth num, value: underToothNum
+  // Map<String, String> underToothNum = HashMap();
+
+  // underPatientId["NAME"] = nameController.text;
+  // underPatientId["MARITAL_STATUS"] = maritalController.text;
+  // underPatientId["SEX"] = sexController.text;
+  // underPatientId["ADDRESS"] = addressController.text;
+  // underPatientId["DATE_OF_BIRTH"] = bdayController.text;
+  // underPatientId["CONTACT_NUMBER"] = contactController.text;
+  // underPatientId["DENTAL_RECORDS"] = underDentalRecords;
+
+  print("SAVE BUTTON WORKING");
+  // print("Name: " + patient.name);
+  // print("Birthday: " + patient.bday);
+  // print("Marital: " + patient.marital);
+  // print("Sex: " + patient.sex);
+  // print("Contact Number: " + patient.contact);
+  // print("Address: " + patient.address);
   // underDentalRecords[toothNum] = underToothNum;
 
   // underToothNum["SURFACE"] = surface;
