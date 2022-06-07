@@ -7,7 +7,7 @@ class PatientObject {
   String marital = "";
   String address = "";
 
-  var dentalRecords = [];
+  List dentalRecords = [];
 }
 
 class DentalRecord {
@@ -17,5 +17,6 @@ class DentalRecord {
   String transDate = "";
   int fee = 0;
 
-  DentalRecord(this.toothNum, this.surface, this.description, this.transDate, this.fee);
+  DentalRecord(
+      this.toothNum, this.surface, this.description, this.transDate, this.fee);
 }

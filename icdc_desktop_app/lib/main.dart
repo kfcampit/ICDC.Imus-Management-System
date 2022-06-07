@@ -103,7 +103,7 @@ Widget homePageWidget(BuildContext context) {
                 navFunction: navigate,
                 function: placeholder,
                 context: context,
-                page: const SearchPatients(),
+                page: const SearchPatientPage(),
                 start: 8,
                 top: 8,
                 end: 8,
@@ -169,7 +169,7 @@ Widget sidebarWidget(BuildContext context) {
               iconName: Icons.search_sharp,
               function: navigate,
               context: context,
-              page: const SearchPatients()),
+              page: const SearchPatientPage()),
           sideBarButtonIcon(
               iconName: Icons.access_time,
               function: navigate,

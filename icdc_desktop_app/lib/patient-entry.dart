@@ -346,83 +346,85 @@ Widget treatmentsWidget(BuildContext context) {
   return Padding(
     padding: const EdgeInsetsDirectional.fromSTEB(16, 32, 16, 0),
     child: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          color: const Color(0xFFEEEEEE),
-        ),
-        child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
-            child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: const [
-                        Expanded(
-                          flex: 1,
-                          child: Text('Tooth Number',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16,
-                                  color: Color(0xff4b39ef))),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text('Surface',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16,
-                                  color: Color(0xff4b39ef))),
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: Text('Description of Services',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16,
-                                  color: Color(0xff4b39ef))),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text('Date',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16,
-                                  color: Color(0xff4b39ef))),
-                        ),
-                        Expanded(
-                          flex: 1,
-                          child: Text('Fee',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16,
-                                  color: Color(0xff4b39ef))),
-                        ),
-                      ],
+      width: double.infinity,
+      height: MediaQuery.of(context).size.height * 0.5,
+      decoration: const BoxDecoration(
+        color: const Color(0xFFEEEEEE),
+      ),
+      child: SingleChildScrollView(
+          child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
+              child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: const [
+                          Expanded(
+                            flex: 1,
+                            child: Text('Tooth Number',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                    color: Color(0xff4b39ef))),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text('Surface',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                    color: Color(0xff4b39ef))),
+                          ),
+                          Expanded(
+                            flex: 3,
+                            child: Text('Description of Services',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                    color: Color(0xff4b39ef))),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text('Date',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                    color: Color(0xff4b39ef))),
+                          ),
+                          Expanded(
+                            flex: 1,
+                            child: Text('Fee',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                    color: Color(0xff4b39ef))),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  const Divider(
-                      thickness: 1,
-                      indent: 8,
-                      endIndent: 8,
-                      color: Color(0xff4b39ef)),
-                  treatmentRows(context),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                    child: roundedButtons(
+                    const Divider(
+                        thickness: 1,
+                        indent: 8,
+                        endIndent: 8,
+                        color: Color(0xff4b39ef)),
+                    treatmentRows(context),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                      child: roundedButtons(
                         textStyle: const TextStyle(
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
@@ -436,22 +438,108 @@ Widget treatmentsWidget(BuildContext context) {
                         navFunction: navigate,
                         context: context,
                         page: const PatientEntryPage(),
-                        ),
-                  ),
-                ]))),
+                      ),
+                    ),
+                  ]))),
+    ),
   );
 }
 
 Widget treatmentRows(BuildContext context) {
+  List<Widget> widgetList = [];
+  int n = patient.dentalRecords.length;
+
+  for (int i = 0; i < n; i++) {
+    widgetList.add(listTreatments(i));
+  }
+
+  widgetList.add(inputTreatment(context));
+
   return Column(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.start,
-      children: [individualTreatments(context)]);
+      children: widgetList);
 }
 
-Widget individualTreatments(BuildContext context) {
+Widget listTreatments(int i) {
   return Padding(
-    padding: EdgeInsetsDirectional.fromSTEB(0, 0+yCoordsTreatment*addTreatmentCount, 0, 8),
+    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+    child: Row(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 4, 0),
+              child: Text(
+                patient.dentalRecords[i].toothNum.toString(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+              ),
+            )),
+        Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+              child: Text(
+                patient.dentalRecords[i].surface.toString(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+              ),
+            )),
+        Expanded(
+            flex: 3,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+              child: Text(
+                patient.dentalRecords[i].description.toString(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+              ),
+            )),
+        Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+              child: Text(
+                patient.dentalRecords[i].transDate.toString(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+              ),
+            )),
+        Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 8, 0),
+              child: Text(
+                patient.dentalRecords[i].fee.toString(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+              ),
+            )),
+      ],
+    ),
+  );
+}
+
+Widget inputTreatment(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
     child: Row(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -460,6 +548,7 @@ Widget individualTreatments(BuildContext context) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 4, 0),
               child: TextField(
+                textAlign: TextAlign.center,
                 controller: toothNumController,
                 cursorHeight: 24,
                 decoration: const InputDecoration(
@@ -476,6 +565,7 @@ Widget individualTreatments(BuildContext context) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: TextField(
+                textAlign: TextAlign.center,
                 controller: surfaceController,
                 cursorHeight: 24,
                 decoration: const InputDecoration(
@@ -492,6 +582,7 @@ Widget individualTreatments(BuildContext context) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: TextField(
+                textAlign: TextAlign.center,
                 controller: serviceController,
                 cursorHeight: 24,
                 decoration: const InputDecoration(
@@ -508,6 +599,7 @@ Widget individualTreatments(BuildContext context) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: TextField(
+                textAlign: TextAlign.center,
                 controller: dateController,
                 cursorHeight: 24,
                 decoration: const InputDecoration(
@@ -524,6 +616,7 @@ Widget individualTreatments(BuildContext context) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 8, 0),
               child: TextField(
+                textAlign: TextAlign.center,
                 controller: feeController,
                 cursorHeight: 24,
                 decoration: const InputDecoration(
@@ -548,9 +641,14 @@ void addTreatmentButton() {
   int count = addTreatmentCount.toInt();
   print("-------------------------------------------------------------");
   print("add treatment");
-  DentalRecord dental = DentalRecord(int.parse(toothNumController.text), surfaceController.text, serviceController.text, dateController.text, int.parse(feeController.text));
+  DentalRecord dental = DentalRecord(
+      int.parse(toothNumController.text),
+      surfaceController.text,
+      serviceController.text,
+      dateController.text,
+      int.parse(feeController.text));
   patient.dentalRecords.add(dental);
-  
+
   print("Tooth Num: " + patient.dentalRecords[count].toothNum.toString());
   print("Surface: " + patient.dentalRecords[count].surface);
   print("Service or Treatment: " + patient.dentalRecords[count].description);
@@ -563,7 +661,7 @@ void addTreatmentButton() {
   serviceController.clear();
   dateController.clear();
   feeController.clear();
-  
+
   addTreatmentCount++;
 }
 
