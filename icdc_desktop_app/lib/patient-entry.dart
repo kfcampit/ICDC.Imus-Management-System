@@ -114,6 +114,7 @@ Widget textInputs(BuildContext context) {
                       obscureText: false,
                       decoration: const InputDecoration(
                         labelText: 'Date of Birth',
+                        hintText: "12-31-2022",
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color(0xff4b39ef),
@@ -190,6 +191,7 @@ Widget textInputs(BuildContext context) {
                     obscureText: false,
                     decoration: const InputDecoration(
                       labelText: 'Sex',
+                      hintText: "M/F",
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Color(0xff4b39ef),
@@ -228,6 +230,7 @@ Widget textInputs(BuildContext context) {
                     obscureText: false,
                     decoration: const InputDecoration(
                       labelText: 'Contact Number',
+                      hintText: "09#########",
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Color(0xff4b39ef),
