@@ -80,7 +80,7 @@ Widget textInputs(BuildContext context) {
                           obscureText: false,
                           decoration: const InputDecoration(
                             labelText: 'Name',
-                            hintText: 'Juan Dela Cruz',
+                            hintText: 'Dela Cruz, Juan',
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Color(0xff4b39ef),
@@ -554,6 +554,7 @@ Widget inputTreatment(BuildContext context) {
                 controller: toothNumController,
                 cursorHeight: 24,
                 decoration: const InputDecoration(
+                  hintText: "Tooth Number",
                   border: UnderlineInputBorder(),
                 ),
                 style: const TextStyle(
@@ -571,6 +572,7 @@ Widget inputTreatment(BuildContext context) {
                 controller: surfaceController,
                 cursorHeight: 24,
                 decoration: const InputDecoration(
+                  hintText: "Surface",
                   border: UnderlineInputBorder(),
                 ),
                 style: const TextStyle(
@@ -588,6 +590,7 @@ Widget inputTreatment(BuildContext context) {
                 controller: serviceController,
                 cursorHeight: 24,
                 decoration: const InputDecoration(
+                  hintText: "Description of Services",
                   border: UnderlineInputBorder(),
                 ),
                 style: const TextStyle(
@@ -605,6 +608,7 @@ Widget inputTreatment(BuildContext context) {
                 controller: dateController,
                 cursorHeight: 24,
                 decoration: const InputDecoration(
+                  hintText: "Date",
                   border: UnderlineInputBorder(),
                 ),
                 style: const TextStyle(
@@ -622,6 +626,7 @@ Widget inputTreatment(BuildContext context) {
                 controller: feeController,
                 cursorHeight: 24,
                 decoration: const InputDecoration(
+                  hintText: "Fee",
                   border: UnderlineInputBorder(),
                 ),
                 style: const TextStyle(
@@ -641,7 +646,7 @@ void test() {
 
 void addTreatmentButton() {
   DentalRecord dental = DentalRecord(
-      int.parse(toothNumController.text),
+      toothNumController.text,
       surfaceController.text,
       serviceController.text,
       dateController.text,

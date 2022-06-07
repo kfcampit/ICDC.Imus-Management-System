@@ -11,7 +11,7 @@ class PatientObject {
 }
 
 class DentalRecord {
-  int toothNum = 0;
+  String toothNum = "";
   String surface = "";
   String description = "";
   String transDate = "";
