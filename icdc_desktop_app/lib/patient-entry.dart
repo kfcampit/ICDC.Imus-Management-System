@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:icdc_desktop_app/main.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
 import 'package:icdc_desktop_app/resources/patient_object.dart';
-import 'dart:collection';
+import 'dart:core';
 import 'global-variables.dart';
 
 class PatientEntryPage extends StatefulWidget {
@@ -16,7 +16,6 @@ class PatientEntry extends State<PatientEntryPage> {
   @override
   void initState() {
     super.initState();
-    print("test");
   }
 
   @override
@@ -333,7 +332,9 @@ Widget textInputs(BuildContext context) {
                   color: const Color(0xff4b39ef),
                   text: "Save",
                   function: enterPatientInfo,
-                  navFunction: navPlaceholder),
+                  context: context,
+                  page: const ICDCDesktop(),
+                  navFunction: navigate),
             ),
           ],
         ),
@@ -452,6 +453,7 @@ Widget treatmentRows(BuildContext context) {
   for (int i = 0; i < n; i++) {
     widgetList.add(listTreatments(i));
   }
+  
 
   widgetList.add(inputTreatment(context));
 
@@ -638,9 +640,6 @@ void test() {
 }
 
 void addTreatmentButton() {
-  int count = addTreatmentCount.toInt();
-  print("-------------------------------------------------------------");
-  print("add treatment");
   DentalRecord dental = DentalRecord(
       int.parse(toothNumController.text),
       surfaceController.text,
@@ -649,25 +648,15 @@ void addTreatmentButton() {
       int.parse(feeController.text));
   patient.dentalRecords.add(dental);
 
-  print("Tooth Num: " + patient.dentalRecords[count].toothNum.toString());
-  print("Surface: " + patient.dentalRecords[count].surface);
-  print("Service or Treatment: " + patient.dentalRecords[count].description);
-  print("Transaction Date: " + patient.dentalRecords[count].transDate);
-  print("Fee: " + patient.dentalRecords[count].fee.toString());
-  print("-------------------------------------------------------------");
-
   toothNumController.clear();
   surfaceController.clear();
   serviceController.clear();
   dateController.clear();
   feeController.clear();
-
-  addTreatmentCount++;
 }
 
 void removeTreatmentButton() {
   print("REMOVE TREATMENT");
-  addTreatmentCount--;
 }
 
 void enterPatientInfo() {
@@ -678,21 +667,35 @@ void enterPatientInfo() {
   patient.marital = maritalController.text;
   patient.address = addressController.text;
 
-  // print("SAVE BUTTON WORKING");
+  addTreatmentButton();
+
+  // enter patient information to database after from here
   print("Name: " + patient.name);
   print("Birthday: " + patient.bday);
   print("Marital: " + patient.marital);
   print("Sex: " + patient.sex);
   print("Contact Number: " + patient.contact);
   print("Address: " + patient.address);
-  // underDentalRecords[toothNum] = underToothNum;
 
-  // underToothNum["SURFACE"] = surface;
-  // underToothNum["DESC_SERVICES"] = service;
-  // underToothNum["DATE"] = date;
-  // underToothNum["FEE"] = fee;
 
-  // underPatientInfo[id] = underPatientId;
+  for (int i=1; i<=patient.dentalRecords.length; ++i){
+    print("-------------------------------------------------------------");
+    print("Dental Record #$i:");
+    print("Tooth Num: " + patient.dentalRecords[i-1].toothNum.toString());
+    print("Surface: " + patient.dentalRecords[i-1].surface);
+    print("Service or Treatment: " + patient.dentalRecords[i-1].description);
+    print("Transaction Date: " + patient.dentalRecords[i-1].transDate);
+    print("Fee: " + patient.dentalRecords[i-1].fee.toString());
+    print("-------------------------------------------------------------");
+  }  
+  // to here
+  
+  nameController.clear();
+  bdayController.clear();
+  contactController.clear();
+  sexController.clear();
+  maritalController.clear();
+  addressController.clear();
 
-  // enter underPatientInfo HashMap to database after
+  patient = PatientObject();
 }

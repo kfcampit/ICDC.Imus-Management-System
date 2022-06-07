@@ -16,7 +16,4 @@ TextEditingController serviceController = TextEditingController();
 TextEditingController dateController = TextEditingController();
 TextEditingController feeController = TextEditingController();
 
-double yCoordsTreatment = 60;
-double addTreatmentCount = 0;
-
 PatientObject patient = PatientObject();
