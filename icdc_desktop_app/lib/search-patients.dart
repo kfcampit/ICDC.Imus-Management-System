@@ -99,15 +99,6 @@ Widget searchBar() {
                         ),
                         style: const TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 14)))),
-            DropdownButton<String>(
-              width
-              items: <String>['A', 'B', 'C', 'D'].map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              onChanged: setState() {},
-            )
+            
           ]));
 }
