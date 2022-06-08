@@ -145,12 +145,19 @@ Widget categories(BuildContext context) {
 Widget itemRows(BuildContext context) {
   List<Widget> widgetList = [];
   int n = inventoryItems.length;
-
-  for (int i = 0; i < n; i++) {
-    widgetList.add(listItems(i, context));
-  }
   
-  widgetList.add(inputItems(context));
+  if(editPressed){
+    for (int i = 0; i < n; i++) {
+      if(i==editNumber) widgetList.add(inputItems(context));
+      else widgetList.add(listItems(i, context));
+    }
+  }
+  else{
+    for (int i = 0; i < n; i++) {
+      widgetList.add(listItems(i, context));
+    }
+    widgetList.add(inputItems(context));
+  }
 
   return Column(
       mainAxisSize: MainAxisSize.max,
@@ -202,7 +209,9 @@ Widget listItems(int i, BuildContext context) {
             width: 110,
             color: const Color(0xff4b39ef),
             text: "Edit",
-            function: placeholder,
+            function: () {
+              editItem(i);
+            },
             navFunction: navigate,
             context: context,
             page: const CheckInventory(),
@@ -218,11 +227,29 @@ Widget inputItems(BuildContext context) {
     padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
     child: Row(
       mainAxisSize: MainAxisSize.max,
-      children: [        
+      children: [ 
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(30, 0, 0, 0),
+          child: CircleAvatar(
+            radius: 20,
+            backgroundColor: Color.fromARGB(255, 252, 0, 0),
+            child: IconButton(
+              icon: const Icon(
+                Icons.remove,
+                color: Colors.white,
+                size: 20,
+              ),
+              iconSize: 20,
+              onPressed: () {
+                removeItem();
+              },            
+            ),
+          ),
+        ),
         Expanded(
             flex: 6,
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(114, 0, 0, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(34, 0, 0, 0),
               child: TextField(
                 textAlign: TextAlign.center,
                 controller: itemController,
@@ -251,7 +278,6 @@ Widget inputItems(BuildContext context) {
               iconSize: 15,
               onPressed: () {
                 decreaseQuantity();
-                navigate(context, const CheckInventory());
               },            
             ),
           ),          
@@ -288,7 +314,6 @@ Widget inputItems(BuildContext context) {
               iconSize: 15,
               onPressed: () {
                 increaseQuantity();
-                navigate(context, const CheckInventory());
               },            
             ),
           ),
@@ -328,10 +353,36 @@ void increaseQuantity(){
   quantityController.text = qty.toString();
 }
 
-void addItem(){
-  ItemObject item = ItemObject(itemController.text, int.parse(quantityController.text));
-  inventoryItems.add(item);
+void removeItem(){
+  itemController.clear();
+  quantityController.clear();
+}
 
+void editItem(int itemNumber){
+  editPressed = true;
+  editNumber = itemNumber;
+
+  itemController.text = inventoryItems[itemNumber].name;
+  quantityController.text = inventoryItems[itemNumber].quantity.toString();
+
+  print("Name: " + inventoryItems[itemNumber].name);
+  print("Quantity: " + inventoryItems[itemNumber].quantity.toString());
+}
+
+void addItem(){
+  if(editPressed){
+    inventoryItems[editNumber].name = itemController.text;
+    inventoryItems[editNumber].quantity = int.parse(quantityController.text);
+  }
+  else{
+    editNumber = inventoryItems.length;
+  
+    ItemObject item = ItemObject(itemController.text, int.parse(quantityController.text));
+    inventoryItems.add(item);
+  }
+
+  editPressed = false;
+  
   // Dito ipapasok yung list of item objects sa database
   for(var object in inventoryItems){
     print("---------------------------------------------");
@@ -341,4 +392,5 @@ void addItem(){
 
   itemController.clear();
   quantityController.clear();
+  
 }

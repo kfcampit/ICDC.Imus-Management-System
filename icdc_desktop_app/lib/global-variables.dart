@@ -26,4 +26,7 @@ List<ItemObject> inventoryItems = [];
 
 TextEditingController itemController = TextEditingController();
 TextEditingController quantityController = TextEditingController();
+
+int editNumber = inventoryItems.length;
+bool editPressed = false;
 //check inventory
