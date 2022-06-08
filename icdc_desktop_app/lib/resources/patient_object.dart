@@ -16,7 +16,4 @@ class DentalRecord {
   String description = "";
   String transDate = "";
   int fee = 0;
-
-  DentalRecord(
-      this.toothNum, this.surface, this.description, this.transDate, this.fee);
 }

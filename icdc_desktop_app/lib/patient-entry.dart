@@ -3,7 +3,7 @@ import 'package:icdc_desktop_app/main.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
 import 'package:icdc_desktop_app/resources/patient_object.dart';
 import 'dart:core';
-import 'global-variables.dart';
+import 'resources/global_variables.dart';
 
 class PatientEntryPage extends StatefulWidget {
   const PatientEntryPage({Key? key}) : super(key: key);
@@ -456,7 +456,6 @@ Widget treatmentRows(BuildContext context) {
   for (int i = 0; i < n; i++) {
     widgetList.add(listTreatments(i));
   }
-  
 
   widgetList.add(inputTreatment(context));
 
@@ -648,12 +647,13 @@ void test() {
 }
 
 void addTreatmentButton() {
-  DentalRecord dental = DentalRecord(
-      toothNumController.text,
-      surfaceController.text,
-      serviceController.text,
-      dateController.text,
-      int.parse(feeController.text));
+  DentalRecord dental = DentalRecord();
+
+  dental.toothNum = toothNumController.text;
+  dental.surface = surfaceController.text;
+  dental.description = serviceController.text;
+  dental.transDate = dateController.text;
+  dental.fee = int.parse(feeController.text);
   patient.dentalRecords.add(dental);
 
   toothNumController.clear();
@@ -685,19 +685,18 @@ void enterPatientInfo() {
   print("Contact Number: " + patient.contact);
   print("Address: " + patient.address);
 
-
-  for (int i=1; i<=patient.dentalRecords.length; ++i){
+  for (int i = 1; i <= patient.dentalRecords.length; ++i) {
     print("-------------------------------------------------------------");
     print("Dental Record #$i:");
-    print("Tooth Num: " + patient.dentalRecords[i-1].toothNum.toString());
-    print("Surface: " + patient.dentalRecords[i-1].surface);
-    print("Service or Treatment: " + patient.dentalRecords[i-1].description);
-    print("Transaction Date: " + patient.dentalRecords[i-1].transDate);
-    print("Fee: " + patient.dentalRecords[i-1].fee.toString());
+    print("Tooth Num: " + patient.dentalRecords[i - 1].toothNum.toString());
+    print("Surface: " + patient.dentalRecords[i - 1].surface);
+    print("Service or Treatment: " + patient.dentalRecords[i - 1].description);
+    print("Transaction Date: " + patient.dentalRecords[i - 1].transDate);
+    print("Fee: " + patient.dentalRecords[i - 1].fee.toString());
     print("-------------------------------------------------------------");
-  }  
+  }
   // to here
-  
+
   nameController.clear();
   bdayController.clear();
   contactController.clear();

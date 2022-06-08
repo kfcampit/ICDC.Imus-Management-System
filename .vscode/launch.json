@@ -1,0 +1,48 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "icdc_android_app",
+            "cwd": "icdc_android_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "icdc_android_app (profile mode)",
+            "cwd": "icdc_android_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "icdc_android_app (release mode)",
+            "cwd": "icdc_android_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "icdc_desktop_app",
+            "cwd": "icdc_desktop_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "icdc_desktop_app (profile mode)",
+            "cwd": "icdc_desktop_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "icdc_desktop_app (release mode)",
+            "cwd": "icdc_desktop_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

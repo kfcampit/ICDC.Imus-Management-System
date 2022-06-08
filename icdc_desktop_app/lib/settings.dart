@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:icdc_desktop_app/main.dart';
 
-class Settings extends StatelessWidget {
-  const Settings({Key? key}) : super(key: key);
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,18 +1,22 @@
+import 'package:firedart/firedart.dart';
 import 'package:flutter/material.dart';
 import 'package:icdc_desktop_app/check-inventory.dart';
 import 'package:icdc_desktop_app/recent-patients.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
 import 'package:icdc_desktop_app/patient-entry.dart';
+import 'package:icdc_desktop_app/resources/firebase_controller.dart';
+import 'package:icdc_desktop_app/resources/global_variables.dart';
 import 'package:icdc_desktop_app/search-patients.dart';
 import 'package:icdc_desktop_app/settings.dart';
 
-import 'package:firebase_core/firebase_core.dart';
-import 'resources/firebase_options.dart';
+const apiKey = "AIzaSyBHcnxX4cPlcl1vgivb8G7p4jvXn0U9fYc";
+const projectId = 'icdc-imus-cms';
 
 Future<void> main() async {
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  Firestore.initialize(projectId);
+
+  listPatients = [];
+
   runApp(const ICDCDesktop());
 }
 
@@ -22,6 +26,7 @@ class ICDCDesktop extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    test();
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -184,7 +189,7 @@ Widget sidebarWidget(BuildContext context) {
               iconName: Icons.settings,
               function: navigate,
               context: context,
-              page: const Settings()),
+              page: const SettingsPage()),
         ],
       ),
     ),
@@ -192,8 +197,10 @@ Widget sidebarWidget(BuildContext context) {
   );
 }
 
-void test() {
-  print("Button is working...");
+Future<void> test() async {
+  CollectionReference currDoc = Firestore.instance.collection('patients');
+  var fromDatabase = await currDoc.get();
+  print(fromDatabase);
 }
 
 void navigate(BuildContext context, Widget object) {

@@ -75,6 +75,39 @@ ButtonTheme sideBarButtonIcon({
           )));
 }
 
+ButtonTheme iconButton({
+  required IconData iconName,
+  String? hoverText,
+  required Function function,
+  required Function navFunction,
+  double? size,
+  required double iconSize,
+  Color? color,
+  BuildContext? context,
+  Widget? page,
+}) {
+  size ??= iconSize;
+  color ??= const Color(0xff4b39ef);
+  return ButtonTheme(
+      child: Ink(
+          decoration:
+              ShapeDecoration(shape: const CircleBorder(), color: color),
+          child: IconButton(
+            icon: Icon(
+              iconName,
+              color: Colors.white,
+              size: size,
+            ),
+            iconSize: iconSize,
+            onPressed: () {
+              if (context != null) {
+                navFunction(context, page);
+              }
+              function();
+            },
+          )));
+}
+
 void navPlaceholder(Object context, Object page) {
   print("no navigation function");
 }
