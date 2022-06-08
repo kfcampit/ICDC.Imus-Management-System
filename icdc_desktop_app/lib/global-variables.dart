@@ -30,4 +30,5 @@ TextEditingController quantityController = TextEditingController();
 
 int editNumber = inventoryItems.length;
 bool editPressed = false;
+String addSaveButton = "Add Item";
 //check inventory

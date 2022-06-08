@@ -119,24 +119,6 @@ Widget categories(BuildContext context) {
                         endIndent: 8,
                         color: Color(0xff4b39ef)),
                     itemRows(context),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                      child: roundedButtons(
-                        textStyle: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Colors.white),
-                        height: 36,
-                        width: 90,
-                        color: const Color(0xff4b39ef),
-                        text: "Add Item",
-                        function: addItem,
-                        navFunction: navigate,
-                        context: context,
-                        page: const CheckInventory(),
-                      ),
-                    ),
                   ]))),
     ),
   );
@@ -147,12 +129,14 @@ Widget itemRows(BuildContext context) {
   int n = inventoryItems.length;
   
   if(editPressed){
+    addSaveButton = "Save Item";
     for (int i = 0; i < n; i++) {
-      if(i==editNumber) widgetList.add(inputItems(context));
+      if(i==editNumber) widgetList.add(editItems(context));
       else widgetList.add(listItems(i, context));
     }
   }
   else{
+    addSaveButton = "Add Item";
     for (int i = 0; i < n; i++) {
       widgetList.add(listItems(i, context));
     }
@@ -222,7 +206,7 @@ Widget listItems(int i, BuildContext context) {
   );
 }
 
-Widget inputItems(BuildContext context) {
+Widget editItems(BuildContext context) {
   return Padding(
     padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
     child: Row(
@@ -242,6 +226,7 @@ Widget inputItems(BuildContext context) {
               iconSize: 20,
               onPressed: () {
                 removeItem();
+                navigate(context, const CheckInventory());
               },            
             ),
           ),
@@ -329,8 +314,109 @@ Widget inputItems(BuildContext context) {
             height: 36,
             width: 110,
             color: const Color(0xff4b39ef),
-            text: "Edit",
-            function: placeholder,
+            text: addSaveButton,
+            function: addItem,
+            navFunction: navigate,
+            context: context,
+            page: const CheckInventory(),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget inputItems(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+    child: Row(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Expanded(
+            flex: 6,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(90, 0, 0, 0),
+              child: TextField(
+                textAlign: TextAlign.center,
+                controller: itemController,
+                cursorHeight: 24,
+                decoration: const InputDecoration(
+                  hintText: "Item Name",
+                  border: UnderlineInputBorder(),
+                ),
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+              ),
+            )),
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(180, 0, 0, 0),
+          child: CircleAvatar(
+            radius: 15,
+            backgroundColor: const Color(0xff4b39ef),
+            child: IconButton(
+              icon: const Icon(
+                Icons.remove,
+                color: Colors.white,
+                size: 15,
+              ),
+              iconSize: 15,
+              onPressed: () {
+                decreaseQuantity();
+              },            
+            ),
+          ),          
+        ),
+        Expanded(
+          flex: 1,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+              child: TextField(
+                textAlign: TextAlign.center,
+                controller: quantityController,
+                cursorHeight: 24,
+                decoration: const InputDecoration(
+                  hintText: "Quantity",
+                  border: UnderlineInputBorder(),
+                ),
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+              ),
+            )),
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 135, 0),
+          child: CircleAvatar(
+            radius: 15,
+            backgroundColor: const Color(0xff4b39ef),
+            child: IconButton(
+              icon: const Icon(
+                Icons.add,
+                color: Colors.white,
+                size: 15,
+              ),
+              iconSize: 15,
+              onPressed: () {
+                increaseQuantity();
+              },            
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 50, 0),
+          child: roundedButtons(
+            textStyle: const TextStyle(
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w500,
+                fontSize: 14,
+                color: Colors.white),
+            height: 36,
+            width: 110,
+            color: const Color(0xff4b39ef),
+            text: addSaveButton,
+            function: addItem,
             navFunction: navigate,
             context: context,
             page: const CheckInventory(),
@@ -356,6 +442,11 @@ void increaseQuantity(){
 void removeItem(){
   itemController.clear();
   quantityController.clear();
+
+  inventoryItems.removeAt(editNumber);
+  editNumber = inventoryItems.length;
+
+  editPressed = false;
 }
 
 void editItem(int itemNumber){
@@ -370,6 +461,7 @@ void editItem(int itemNumber){
 }
 
 void addItem(){
+  addSaveButton = "Add Item";
   if(editPressed){
     inventoryItems[editNumber].name = itemController.text;
     inventoryItems[editNumber].quantity = int.parse(quantityController.text);
