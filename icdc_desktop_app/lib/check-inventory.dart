@@ -219,7 +219,7 @@ Widget editItems(BuildContext context) {
             backgroundColor: Color.fromARGB(255, 252, 0, 0),
             child: IconButton(
               icon: const Icon(
-                Icons.remove,
+                Icons.delete,
                 color: Colors.white,
                 size: 20,
               ),
