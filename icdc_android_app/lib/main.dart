@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:icdc_android_app/open-appointments.dart';
+import 'package:icdc_android_app/resources/global_variables.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ICDCAndroid());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class ICDCAndroid extends StatelessWidget {
+  const ICDCAndroid({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -22,7 +24,8 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
+        // primaryColor: const Color(0xff4b39ef)
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -106,7 +109,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: (){
+          _incrementCounter();
+          Navigator.push(context, MaterialPageRoute(builder: ((context) => OpenAppointments())));
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.

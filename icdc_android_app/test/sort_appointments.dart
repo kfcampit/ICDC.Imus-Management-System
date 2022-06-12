@@ -2,14 +2,14 @@ import 'package:icdc_android_app/resources/appointment_object.dart';
 
 void main(){
   List appointmentList = [
-    new AppointmentObject("Kobi Rasing", "7-26-2022", "3:00 PM"),
-    new AppointmentObject("Kyle Campit", "1-24-2022", "9:00 AM"),
-    new AppointmentObject("Jian Mendoza", "7-14-2022", "9:00 PM"),
-    new AppointmentObject("Toni Illahi", "9-12-2022", "4:00 PM"),
-    new AppointmentObject("Jian Mendoza", "7-26-2022", "12:30 PM"),
-    new AppointmentObject("Steven Obico", "1-24-2022", "1:00 PM"),
-    new AppointmentObject("Melvin Cabatuan", "6-24-2022", "9:00 AM"),
-    new AppointmentObject("Edwin Concepcion", "6-24-2022", "6:00 AM")
+    new AppointmentObject("Kobi Rasing", "7-26-2022", "3:00 PM", "Cleaning"),
+    new AppointmentObject("Kyle Campit", "1-24-2022", "9:00 AM", "Cleaning"),
+    new AppointmentObject("Jian Mendoza", "7-14-2022", "9:00 PM", "Cleaning"),
+    new AppointmentObject("Toni Illahi", "9-12-2022", "4:00 PM", "Cleaning"),
+    new AppointmentObject("Jian Mendoza", "7-26-2022", "12:30 PM", "Cleaning"),
+    new AppointmentObject("Steven Obico", "1-24-2022", "1:00 PM", "Cleaning"),
+    new AppointmentObject("Melvin Cabatuan", "6-24-2022", "9:00 AM", "Cleaning"),
+    new AppointmentObject("Edwin Concepcion", "6-24-2022", "6:00 AM", "Cleaning")
     ];
 
   print("Before:");
@@ -40,7 +40,7 @@ void merge(arr, int l, int m, int r) {
   var n2 = r - m;
   
   /* Create temp arrays */
-  AppointmentObject filler = AppointmentObject("John Doe", "01-01-2022", "00:00");
+  AppointmentObject filler = AppointmentObject("John Doe", "01-01-2022", "00:00", "Cleaning");
   List<AppointmentObject> leftList = List.filled(n1.toInt(), filler);
   List<AppointmentObject> rightList = List.filled(n2.toInt(), filler);
 

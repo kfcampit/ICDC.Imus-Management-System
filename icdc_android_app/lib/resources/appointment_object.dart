@@ -3,8 +3,9 @@ class AppointmentObject{
   String date = "";
   int dateInUnix = 0;
   String time = "";
+  String service = "";
 
-  AppointmentObject(this.name, this.date, this.time){
+  AppointmentObject(this.name, this.date, this.time, this.service){
     // Convert date format MM-DD-YYYY to YYYY-MM-DD
     convertDate(date);
     // Convert date to unix
@@ -77,7 +78,7 @@ class AppointmentObject{
 }
 
 void main(){
-  AppointmentObject obj = AppointmentObject("Kobi Rasing", "07-05-2002", "8:00 AM");
+  AppointmentObject obj = AppointmentObject("Kobi Rasing", "07-05-2002", "8:00 AM", "Cleaning");
 
   print("New Date: " + obj.date);
   print("Unix Date: " + obj.dateInUnix.toString());
