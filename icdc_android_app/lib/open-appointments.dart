@@ -13,6 +13,7 @@ class OpenAppointmentsPage extends State<OpenAppointments>{
   @override
   void initState(){
     /* Sample lang for appointmentList */
+    if(firstTimeRun){
     List sampleList = [
       new AppointmentObject("Kobi Rasing", "7-26-2022", "3:00 PM", "Cleaning"),
       new AppointmentObject("Kyle Campit", "1-24-2022", "9:00 AM", "Pasta"),
@@ -24,6 +25,7 @@ class OpenAppointmentsPage extends State<OpenAppointments>{
       new AppointmentObject("Edwin Concepcion", "6-24-2022", "6:00 AM", "Cleaning")
     ];
     collectAppointments(sampleList);
+    }
     
     super.initState();
   }
@@ -137,7 +139,7 @@ Widget eachAppointment(BuildContext context) {
     widgetList.add(displayAppointment(i, context));
   }
 
-  appointmentsChanged = false;
+  firstTimeRun = false;
 
   return Column(
       mainAxisSize: MainAxisSize.max,
@@ -146,14 +148,13 @@ Widget eachAppointment(BuildContext context) {
 }
 
 Widget displayAppointment(int i, BuildContext context){
-  if(appointmentsChanged){
+  if(firstTimeRun){
     appointmentList[i].convertToOriginalDate(appointmentList[i].date);
   }
-
   return Padding(
     padding: const EdgeInsetsDirectional.fromSTEB(10, 8, 10, 8),
     child: Container(
-      padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
       decoration: const BoxDecoration(
           color: Colors.black,
           borderRadius: BorderRadius.all(
@@ -164,19 +165,47 @@ Widget displayAppointment(int i, BuildContext context){
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(10, 3, 0, 23),
-              child: Text(appointmentList[i].service,
-              textAlign: TextAlign.left,
-              style: const TextStyle(
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w500,
-                fontSize: 25,
-                color: Colors.white)
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(10, 11, 0, 23),
+                  child: Text(appointmentList[i].service,
+                  textAlign: TextAlign.left,
+                  style: const TextStyle(
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 25,
+                    color: Colors.white)
+                  ),
+                ),
               ),
-            ),
+              Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+                child: CircleAvatar(
+                  radius: 20,
+                  backgroundColor: Color.fromARGB(255, 252, 0, 0),
+                  child: IconButton(
+                    icon: const Icon(
+                      Icons.delete,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                    iconSize: 20,
+                    onPressed: () {
+                      removeItem(i);
+                      Navigator.push(context, MaterialPageRoute(builder: ((context) => OpenAppointments())));
+                    },            
+                  ),
+                ),
+              ),
+              ),
+            ],
           ),
           Row(
             mainAxisSize: MainAxisSize.max,
@@ -240,6 +269,10 @@ Widget displayAppointment(int i, BuildContext context){
       ),
     )
   );
+}
+
+void removeItem(int index){
+  appointmentList.removeAt(index);
 }
 
 void merge(arr, int l, int m, int r) {
