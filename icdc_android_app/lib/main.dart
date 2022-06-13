@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icdc_android_app/open-appointments.dart';
+import 'package:icdc_android_app/search-patients.dart';
 import 'package:icdc_android_app/resources/global_variables.dart';
 
 void main() {
@@ -111,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           _incrementCounter();
-          Navigator.push(context, MaterialPageRoute(builder: ((context) => OpenAppointments())));
+          Navigator.push(context, MaterialPageRoute(builder: ((context) => SearchPatients())));
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
