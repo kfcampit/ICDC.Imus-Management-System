@@ -6,3 +6,7 @@ import 'package:icdc_android_app/resources/appointment_object.dart';
 // open appointments
 List appointmentList = [];
 bool firstTimeRun = true;
+// open appointments
+
+// serach patients
+TextEditingController nameController = TextEditingController();
