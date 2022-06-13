@@ -111,7 +111,7 @@ Widget myAppointments(BuildContext context) {
                                 style: TextStyle(
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 16,
+                                    fontSize: 24,
                                     color: Color(0xff4b39ef))),
                           ),
                         ],
@@ -137,6 +137,8 @@ Widget eachAppointment(BuildContext context) {
     widgetList.add(displayAppointment(i, context));
   }
 
+  appointmentsChanged = false;
+
   return Column(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -144,13 +146,19 @@ Widget eachAppointment(BuildContext context) {
 }
 
 Widget displayAppointment(int i, BuildContext context){
-  appointmentList[i].convertToOriginalDate(appointmentList[i].date);
+  if(appointmentsChanged){
+    appointmentList[i].convertToOriginalDate(appointmentList[i].date);
+  }
+
   return Padding(
     padding: const EdgeInsetsDirectional.fromSTEB(10, 8, 10, 8),
     child: Container(
       padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
       decoration: const BoxDecoration(
           color: Colors.black,
+          borderRadius: BorderRadius.all(
+            Radius.circular(15.0),
+          ),
         ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
