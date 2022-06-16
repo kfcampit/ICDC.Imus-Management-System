@@ -3,23 +3,25 @@ import 'package:icdc_desktop_app/main.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
 import 'package:icdc_desktop_app/resources/firebase_controller.dart';
 import 'package:icdc_desktop_app/resources/patient_object.dart';
+import 'package:icdc_desktop_app/search-patients.dart';
 import 'dart:core';
 import '/global_variables.dart';
 
-String patientID = "";
-bool isEditPatient = false;
+var viewPatientNum = 0;
+var viewPatient = PatientObject();
 
-class PatientEntryPage extends StatefulWidget {
-  const PatientEntryPage({Key? key}) : super(key: key);
+class PatientViewPage extends StatefulWidget {
+  const PatientViewPage({Key? key}) : super(key: key);
 
   @override
-  PatientEntry createState() => PatientEntry();
+  PatientView createState() => PatientView();
 }
 
-class PatientEntry extends State<PatientEntryPage> {
+class PatientView extends State<PatientViewPage> {
   @override
   void initState() {
     super.initState();
+    viewPatient = sortedPatients[viewPatientNum];
   }
 
   @override
@@ -50,7 +52,7 @@ Widget patientEntryPageWidgets(BuildContext context) {
         children: [
           const Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 16),
-            child: Text('Patient Information Entry',
+            child: Text('View Patient Information',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: 'Poppins',
@@ -58,12 +60,12 @@ Widget patientEntryPageWidgets(BuildContext context) {
                     fontSize: 32,
                     color: Color(0xff4b39ef))),
           ),
-          textInputs(context),
+          patientInfo(context, viewPatientNum),
         ]),
   );
 }
 
-Widget textInputs(BuildContext context) {
+Widget patientInfo(BuildContext context, int i) {
   return Column(
     mainAxisSize: MainAxisSize.max,
     children: [
@@ -76,228 +78,90 @@ Widget textInputs(BuildContext context) {
               Expanded(
                   flex: 6,
                   child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
-                      child: TextFormField(
-                          controller: nameController,
-                          autofocus: true,
-                          obscureText: false,
-                          decoration: const InputDecoration(
-                            labelText: 'Name',
-                            hintText: 'Dela Cruz, Juan',
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xff4b39ef),
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xff4b39ef),
-                                width: 1,
-                              ),
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                          ),
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 14)))),
+                    padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 16, 0),
+                    child: Text(viewPatient.name.toString(),
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        )),
+                  )),
               Expanded(
                 flex: 2,
                 child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
-                    child: TextFormField(
-                      controller: bdayController,
-                      autofocus: true,
-                      obscureText: false,
-                      decoration: const InputDecoration(
-                        labelText: 'Date of Birth',
-                        hintText: "12-31-2022",
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0xff4b39ef),
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(4.0),
-                            topRight: Radius.circular(4.0),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0xff4b39ef),
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(4.0),
-                            topRight: Radius.circular(4.0),
-                          ),
-                        ),
-                      ),
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                      ),
-                      keyboardType: TextInputType.datetime,
+                    padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 16, 0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(8, 0, 16, 0),
+                      child: Text(viewPatient.bday.toString(),
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          )),
                     )),
               ),
               Expanded(
                 flex: 2,
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
-                  child: TextFormField(
-                    controller: maritalController,
-                    autofocus: true,
-                    obscureText: false,
-                    decoration: const InputDecoration(
-                      labelText: 'Marital Status',
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xff4b39ef),
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(4.0),
-                          topRight: Radius.circular(4.0),
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xff4b39ef),
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(4.0),
-                          topRight: Radius.circular(4.0),
-                        ),
-                      ),
-                    ),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(8, 0, 16, 0),
+                      child: Text(viewPatient.marital.toString(),
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          )),
+                    )),
               ),
               Expanded(
                 flex: 1,
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
-                  child: TextFormField(
-                    controller: sexController,
-                    autofocus: true,
-                    obscureText: false,
-                    decoration: const InputDecoration(
-                      labelText: 'Sex',
-                      hintText: "M/F",
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xff4b39ef),
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(4.0),
-                          topRight: Radius.circular(4.0),
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xff4b39ef),
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(4.0),
-                          topRight: Radius.circular(4.0),
-                        ),
-                      ),
-                    ),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                    ),
-                  ),
+                  child: Text(viewPatient.sex.toString(),
+                      textAlign: TextAlign.left,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
+                      )),
                 ),
               ),
               Expanded(
                 flex: 2,
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                  child: TextFormField(
-                    controller: contactController,
-                    autofocus: true,
-                    obscureText: false,
-                    decoration: const InputDecoration(
-                      labelText: 'Contact Number',
-                      hintText: "09#########",
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xff4b39ef),
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(4.0),
-                          topRight: Radius.circular(4.0),
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xff4b39ef),
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(4.0),
-                          topRight: Radius.circular(4.0),
-                        ),
-                      ),
-                    ),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                    ),
-                  ),
+                  child: Text(viewPatient.contact.toString(),
+                      textAlign: TextAlign.left,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
+                      )),
                 ),
               ),
             ]),
       ),
       Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-        child: TextFormField(
-          controller: addressController,
-          autofocus: true,
-          obscureText: false,
-          decoration: const InputDecoration(
-            labelText: 'Address',
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Color(0xff4b39ef),
-                width: 1,
-              ),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(4.0),
-                topRight: Radius.circular(4.0),
-              ),
+        padding: const EdgeInsetsDirectional.fromSTEB(
+          24,
+          8,
+          16,
+          0,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Text(viewPatient.address.toString(),
+                  textAlign: TextAlign.left,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                  )),
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Color(0xff4b39ef),
-                width: 1,
-              ),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(4.0),
-                topRight: Radius.circular(4.0),
-              ),
-            ),
-          ),
-          style: const TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 14,
-          ),
+          ],
         ),
       ),
       treatmentsWidget(context),
@@ -319,7 +183,7 @@ Widget textInputs(BuildContext context) {
                 height: 40,
                 width: 130,
                 color: const Color(0xff4b39ef),
-                text: "Cancel",
+                text: "Back",
                 navFunction: navigate,
                 context: context,
                 page: const ICDCDesktop(),
@@ -337,7 +201,7 @@ Widget textInputs(BuildContext context) {
                   height: 40,
                   width: 130,
                   color: const Color(0xff4b39ef),
-                  text: "Save",
+                  text: "Edit",
                   function: enterPatientInfo,
                   context: context,
                   page: const ICDCDesktop(),
@@ -445,7 +309,7 @@ Widget treatmentsWidget(BuildContext context) {
                         function: addTreatmentButton,
                         navFunction: navigate,
                         context: context,
-                        page: const PatientEntryPage(),
+                        page: const PatientViewPage(),
                       ),
                     ),
                   ]))),
@@ -455,7 +319,7 @@ Widget treatmentsWidget(BuildContext context) {
 
 Widget treatmentRows(BuildContext context) {
   List<Widget> widgetList = [];
-  int n = patient.dentalRecords.length;
+  int n = viewPatient.dentalRecords.length;
 
   for (int i = 0; i < n; i++) {
     widgetList.add(listTreatments(i));
@@ -469,7 +333,8 @@ Widget treatmentRows(BuildContext context) {
       children: widgetList);
 }
 
-Widget listTreatments(int i) {
+Widget listTreatments(int n) {
+  int i = (pageNum * 5) + n;
   return Padding(
     padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
     child: Row(
@@ -480,7 +345,7 @@ Widget listTreatments(int i) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 4, 0),
               child: Text(
-                patient.dentalRecords[i].toothNum.toString(),
+                viewPatient.dentalRecords[i].toothNum.toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -493,7 +358,7 @@ Widget listTreatments(int i) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                patient.dentalRecords[i].surface.toString(),
+                viewPatient.dentalRecords[i].surface.toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -506,7 +371,7 @@ Widget listTreatments(int i) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                patient.dentalRecords[i].description.toString(),
+                viewPatient.dentalRecords[i].description.toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -519,7 +384,7 @@ Widget listTreatments(int i) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                patient.dentalRecords[i].transDate.toString(),
+                viewPatient.dentalRecords[i].transDate.toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -532,7 +397,7 @@ Widget listTreatments(int i) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 8, 0),
               child: Text(
-                patient.dentalRecords[i].fee.toString(),
+                viewPatient.dentalRecords[i].fee.toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -672,6 +537,7 @@ void removeTreatmentButton() {
 }
 
 void enterPatientInfo() {
+  /*
   patient.name = nameController.text;
   patient.bday = bdayController.text;
   patient.contact = contactController.text;
@@ -685,8 +551,10 @@ void enterPatientInfo() {
   } catch (Exception) {}
 
   addPatient(patient);
+  listPatients.add(patient);
 
-  /*
+  // enter patient information to database after from here
+
   print("Name: " + patient.name);
   print("Birthday: " + patient.bday);
   print("Marital: " + patient.marital);
@@ -705,7 +573,7 @@ void enterPatientInfo() {
     print("Fee: " + patient.dentalRecords[i - 1].fee.toString());
     print("-------------------------------------------------------------");
   }
-  */
+  // to here
 
   nameController.clear();
   bdayController.clear();
@@ -720,4 +588,5 @@ void enterPatientInfo() {
   feeController.clear();
 
   patient = PatientObject();
+  */
 }

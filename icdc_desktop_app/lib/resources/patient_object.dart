@@ -7,13 +7,13 @@ class PatientObject {
   String marital = "";
   String address = "";
 
-  List dentalRecords = [];
+  List<DentalRecord> dentalRecords = [];
 }
 
 class DentalRecord {
   String toothNum = "";
   String surface = "";
   String description = "";
-  String transDate = "";
+  int transDate = 0;
   int fee = 0;
 }

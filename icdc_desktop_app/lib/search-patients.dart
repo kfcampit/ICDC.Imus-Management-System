@@ -1,11 +1,17 @@
+// ignore_for_file: unnecessary_const
+
 import 'package:flutter/material.dart';
 import 'package:icdc_desktop_app/main.dart';
+import 'package:icdc_desktop_app/patient-view.dart';
+import 'package:icdc_desktop_app/resources/algorithms.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
+import 'package:icdc_desktop_app/resources/firebase_controller.dart';
 import 'package:icdc_desktop_app/resources/patient_object.dart';
 import 'dart:collection';
-import 'resources/global_variables.dart';
+import '/global_variables.dart';
 
 var dropdownValue;
+int pageNum = 0;
 
 class SearchPatientPage extends StatefulWidget {
   const SearchPatientPage({Key? key}) : super(key: key);
@@ -19,7 +25,6 @@ class SearchPatient extends State<SearchPatientPage> {
   void initState() {
     super.initState();
     dropdownValue = "  Name";
-    print("test");
   }
 
   @override
@@ -43,7 +48,7 @@ class SearchPatient extends State<SearchPatientPage> {
 
   Widget searchBar() {
     return Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
         child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -148,71 +153,230 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
                     color: Color(0xff4b39ef))),
           ),
           function(),
-          searchContents()
+          Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+              child: Container(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 0.6,
+                  decoration: const BoxDecoration(
+                    color: const Color(0xFFEEEEEE),
+                  ),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        searchContents(context),
+                        const Divider(
+                            thickness: 1,
+                            indent: 8,
+                            endIndent: 8,
+                            color: Color(0xff4b39ef)),
+                        patientRows(context),
+                      ]))),
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                  child: roundedButtons(
+                    textStyle: const TextStyle(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                        color: Colors.white),
+                    height: 40,
+                    width: 130,
+                    color: const Color(0xff4b39ef),
+                    text: "Back",
+                    navFunction: navigate,
+                    context: context,
+                    page: const SearchPatientPage(),
+                    function: prevPage,
+                  ),
+                ),
+                Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 8, 16),
+                    child: Text(
+                      "Page " +
+                          (pageNum + 1).toString() +
+                          " / " +
+                          (listPatients.length / 9).ceil().toString(),
+                    )),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                  child: roundedButtons(
+                      textStyle: const TextStyle(
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: Colors.white),
+                      height: 40,
+                      width: 130,
+                      color: const Color(0xff4b39ef),
+                      text: "Next",
+                      function: nextPage,
+                      context: context,
+                      page: const SearchPatientPage(),
+                      navFunction: navigate),
+                ),
+              ],
+            ),
+          ),
         ]),
   );
 }
 
-Widget searchContents() {
+Widget searchContents(BuildContext context) {
   return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
-      child: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          color: const Color(0xFFEEEEEE),
+    padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 8),
+    child: Row(
+      mainAxisSize: MainAxisSize.max,
+      children: const [
+        Expanded(
+          flex: 2,
+          child: Text('Patient Name',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  color: Color(0xff4b39ef))),
         ),
-        child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: const [
-              Expanded(
-                flex: 2,
-                child: Text('Patient Name',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                        color: Color(0xff4b39ef))),
-              ),
-              Expanded(
-                flex: 3,
-                child: Text('Most Recent Treatment',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                        color: Color(0xff4b39ef))),
-              ),
-              Expanded(
-                flex: 1,
-                child: Text('Date',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                        color: Color(0xff4b39ef))),
-              ),
-              Expanded(
-                flex: 1,
-                child: Text('View',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                        color: Color(0xff4b39ef))),
-              ),
-              Divider(
-                  thickness: 1,
-                  indent: 8,
-                  endIndent: 8,
-                  color: Color(0xff4b39ef)),
-            ],
-          ),
+        Expanded(
+          flex: 3,
+          child: Text('Most Recent Treatment',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  color: Color(0xff4b39ef))),
         ),
-      ));
+        Expanded(
+          flex: 1,
+          child: Text('Date',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  color: Color(0xff4b39ef))),
+        ),
+        Expanded(
+          flex: 1,
+          child: Text('View',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  color: Color(0xff4b39ef))),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget patientRows(BuildContext context) {
+  List<Widget> widgetList = [];
+  int n = getNumPatients();
+  sortedPatients = sortPatients();
+
+  for (int i = (pageNum * 9); i < pageNum * 9 + 9; i++) {
+    if (i < n) {
+      widgetList.add(listPatientsSearch(i, context));
+    }
+  }
+
+  return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: widgetList);
+}
+
+Widget listPatientsSearch(int i, BuildContext context) {
+  return Padding(
+    padding: const EdgeInsetsDirectional.fromSTEB(0, 6, 0, 6),
+    child: Row(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Expanded(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 4, 0),
+              child: Text(
+                sortedPatients[i].name.toString(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+              ),
+            )),
+        Expanded(
+            flex: 3,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+              child: Text(
+                sortedPatients[i].dentalRecords[0].description.toString(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+              ),
+            )),
+        Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+              child: Text(
+                sortedPatients[i].dentalRecords.last.transDate.toString(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+              ),
+            )),
+        Expanded(
+            flex: 1,
+            child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                child: roundedButtons(
+                  textStyle: const TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 12,
+                      color: Colors.white),
+                  height: 30,
+                  width: 110,
+                  color: const Color(0xff4b39ef),
+                  text: "View",
+                  function: () {
+                    viewPatient(i);
+                  },
+                  navFunction: navigate,
+                  context: context,
+                  page: const PatientViewPage(),
+                ))),
+      ],
+    ),
+  );
+}
+
+void nextPage() {
+  if ((pageNum * 9) < listPatients.length / 9) pageNum++;
+}
+
+void prevPage() {
+  if (pageNum != 0) pageNum--;
+}
+
+void viewPatient(int i) {
+  viewPatientNum = i;
 }

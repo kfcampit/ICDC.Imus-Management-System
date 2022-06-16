@@ -5,7 +5,7 @@ import 'package:icdc_desktop_app/recent-patients.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
 import 'package:icdc_desktop_app/patient-entry.dart';
 import 'package:icdc_desktop_app/resources/firebase_controller.dart';
-import 'package:icdc_desktop_app/resources/global_variables.dart';
+import 'package:icdc_desktop_app/global_variables.dart';
 import 'package:icdc_desktop_app/search-patients.dart';
 import 'package:icdc_desktop_app/settings.dart';
 
@@ -14,9 +14,8 @@ const projectId = 'icdc-imus-cms';
 
 Future<void> main() async {
   Firestore.initialize(projectId);
-
-  listPatients = [];
-
+  await loadPatients();
+  checkListPatients();
   runApp(const ICDCDesktop());
 }
 
@@ -26,7 +25,6 @@ class ICDCDesktop extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    test();
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -198,7 +196,10 @@ Widget sidebarWidget(BuildContext context) {
 }
 
 Future<void> test() async {
-  CollectionReference currDoc = Firestore.instance.collection('patients');
+  CollectionReference currDoc = Firestore.instance
+      .collection('patients')
+      .document('P-000001')
+      .collection('dentalRecords');
   var fromDatabase = await currDoc.get();
   print(fromDatabase);
 }

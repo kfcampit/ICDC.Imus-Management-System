@@ -3,7 +3,7 @@ import 'package:icdc_desktop_app/main.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
 import 'package:icdc_desktop_app/resources/item_object.dart';
 import 'dart:core';
-import 'global-variables.dart';
+import 'global_variables.dart';
 
 class CheckInventory extends StatefulWidget {
   const CheckInventory({Key? key}) : super(key: key);
@@ -12,9 +12,9 @@ class CheckInventory extends StatefulWidget {
   CheckInventoryPage createState() => CheckInventoryPage();
 }
 
-class CheckInventoryPage extends State<CheckInventory>{
+class CheckInventoryPage extends State<CheckInventory> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
   }
 
@@ -32,7 +32,7 @@ class CheckInventoryPage extends State<CheckInventory>{
             children: [
               sidebarWidget(context),
               checkInventoryPageWidgets(context),
-              ],
+            ],
           ),
         ));
   }
@@ -127,15 +127,16 @@ Widget categories(BuildContext context) {
 Widget itemRows(BuildContext context) {
   List<Widget> widgetList = [];
   int n = inventoryItems.length;
-  
-  if(editPressed){
+
+  if (editPressed) {
     addSaveButton = "Save Item";
     for (int i = 0; i < n; i++) {
-      if(i==editNumber) widgetList.add(editItems(context));
-      else widgetList.add(listItems(i, context));
+      if (i == editNumber)
+        widgetList.add(editItems(context));
+      else
+        widgetList.add(listItems(i, context));
     }
-  }
-  else{
+  } else {
     addSaveButton = "Add Item";
     for (int i = 0; i < n; i++) {
       widgetList.add(listItems(i, context));
@@ -200,7 +201,7 @@ Widget listItems(int i, BuildContext context) {
             context: context,
             page: const CheckInventory(),
           ),
-        ),    
+        ),
       ],
     ),
   );
@@ -211,7 +212,7 @@ Widget editItems(BuildContext context) {
     padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
     child: Row(
       mainAxisSize: MainAxisSize.max,
-      children: [ 
+      children: [
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(30, 0, 0, 0),
           child: CircleAvatar(
@@ -227,7 +228,7 @@ Widget editItems(BuildContext context) {
               onPressed: () {
                 removeItem();
                 navigate(context, const CheckInventory());
-              },            
+              },
             ),
           ),
         ),
@@ -263,12 +264,12 @@ Widget editItems(BuildContext context) {
               iconSize: 15,
               onPressed: () {
                 decreaseQuantity();
-              },            
+              },
             ),
-          ),          
+          ),
         ),
         Expanded(
-          flex: 1,
+            flex: 1,
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: TextField(
@@ -299,7 +300,7 @@ Widget editItems(BuildContext context) {
               iconSize: 15,
               onPressed: () {
                 increaseQuantity();
-              },            
+              },
             ),
           ),
         ),
@@ -364,12 +365,12 @@ Widget inputItems(BuildContext context) {
               iconSize: 15,
               onPressed: () {
                 decreaseQuantity();
-              },            
+              },
             ),
-          ),          
+          ),
         ),
         Expanded(
-          flex: 1,
+            flex: 1,
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: TextField(
@@ -400,7 +401,7 @@ Widget inputItems(BuildContext context) {
               iconSize: 15,
               onPressed: () {
                 increaseQuantity();
-              },            
+              },
             ),
           ),
         ),
@@ -427,19 +428,19 @@ Widget inputItems(BuildContext context) {
   );
 }
 
-void decreaseQuantity(){
+void decreaseQuantity() {
   int qty = int.parse(quantityController.text);
   qty--;
   quantityController.text = qty.toString();
 }
 
-void increaseQuantity(){
+void increaseQuantity() {
   int qty = int.parse(quantityController.text);
   qty++;
   quantityController.text = qty.toString();
 }
 
-void removeItem(){
+void removeItem() {
   itemController.clear();
   quantityController.clear();
 
@@ -449,7 +450,7 @@ void removeItem(){
   editPressed = false;
 }
 
-void editItem(int itemNumber){
+void editItem(int itemNumber) {
   editPressed = true;
   editNumber = itemNumber;
 
@@ -460,23 +461,23 @@ void editItem(int itemNumber){
   print("Quantity: " + inventoryItems[itemNumber].quantity.toString());
 }
 
-void addItem(){
+void addItem() {
   addSaveButton = "Add Item";
-  if(editPressed){
+  if (editPressed) {
     inventoryItems[editNumber].name = itemController.text;
     inventoryItems[editNumber].quantity = int.parse(quantityController.text);
-  }
-  else{
+  } else {
     editNumber = inventoryItems.length;
-  
-    ItemObject item = ItemObject(itemController.text, int.parse(quantityController.text));
+
+    ItemObject item =
+        ItemObject(itemController.text, int.parse(quantityController.text));
     inventoryItems.add(item);
   }
 
   editPressed = false;
-  
+
   // Dito ipapasok yung list of item objects sa database
-  for(var object in inventoryItems){
+  for (var object in inventoryItems) {
     print("---------------------------------------------");
     print("Item: " + object.name);
     print("Quantity: " + object.quantity.toString());
@@ -484,5 +485,4 @@ void addItem(){
 
   itemController.clear();
   quantityController.clear();
-  
 }
