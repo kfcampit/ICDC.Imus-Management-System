@@ -32,7 +32,7 @@ class SearchPatientsPage extends State<SearchPatients> {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("Search Patients",
+                const Text("Search Records",
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w600,
