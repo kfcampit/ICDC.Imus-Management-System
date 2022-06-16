@@ -155,16 +155,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-
-
 void navigate(BuildContext context, Widget object) {
   Navigator.of(context).push(MaterialPageRoute(builder: (context) => object));
 }
-// floatingActionButton: FloatingActionButton(
-//         onPressed: (){
-//           Navigator.push(context, MaterialPageRoute(builder: ((context) => SearchPatients())));
-//         },
-//         tooltip: 'Increment',
-//         child: const Icon(Icons.add),
-//       ),
-
