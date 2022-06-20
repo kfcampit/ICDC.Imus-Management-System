@@ -1,3 +1,4 @@
+import 'package:firedart/firestore/firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:icdc_android_app/open-appointments.dart';
 import 'package:icdc_android_app/resources/firebase_controller.dart';
@@ -7,7 +8,7 @@ import 'resources/custom-widgets.dart';
 const apiKey = "AIzaSyBHcnxX4cPlcl1vgivb8G7p4jvXn0U9fYc";
 const projectId = 'icdc-imus-cms';
 Future<void> main() async {
-  // Firestore.initialize(projectId);
+  Firestore.initialize(projectId);
   await loadPatients();
   checkListPatients();
   runApp(const ICDCAndroid());

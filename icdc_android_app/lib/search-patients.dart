@@ -174,7 +174,82 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
     child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
-        children: [function(), searchContents()]),
+        children: [
+          function(),
+          Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+              child: Container(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 0.6,
+                  decoration: const BoxDecoration(
+                    color: const Color(0xFFEEEEEE),
+                  ),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        searchContents(context),
+                        const Divider(
+                            thickness: 1,
+                            indent: 8,
+                            endIndent: 8,
+                            color: Color(0xff4b39ef)),
+                        patientRows(context),
+                      ]))),
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                  child: roundedButtons(
+                    textStyle: const TextStyle(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                        color: Colors.white),
+                    height: 50,
+                    width: 80,
+                    color: const Color(0xff4b39ef),
+                    text: "Back",
+                    navFunction: navigate,
+                    context: context,
+                    page: const SearchPatients(),
+                    function: prevPage,
+                  ),
+                ),
+                Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 8, 16),
+                    child: Text(
+                      "Page " +
+                          (pageNum + 1).toString() +
+                          " / " +
+                          (listPatients.length / 8).ceil().toString(),
+                    )),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                  child: roundedButtons(
+                      textStyle: const TextStyle(
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: Colors.white),
+                      height: 50,
+                      width: 80,
+                      color: const Color(0xff4b39ef),
+                      text: "Next",
+                      function: nextPage,
+                      context: context,
+                      page: const SearchPatients(),
+                      navFunction: navigate),
+                ),
+              ],
+            ),
+          ),
+        ]),
   );
 }
 
@@ -183,7 +258,7 @@ Widget patientRows(BuildContext context) {
   int n = getNumPatients();
   sortedPatients = sortPatients();
 
-  for (int i = (pageNum * 9); i < pageNum * 9 + 9; i++) {
+  for (int i = (pageNum * 8); i < pageNum * 8 + 8; i++) {
     if (i < n) {
       widgetList.add(listPatientsSearch(i, context));
     }
@@ -196,7 +271,7 @@ Widget patientRows(BuildContext context) {
 }
 
 void nextPage() {
-  if ((pageNum * 9) < listPatients.length / 9) pageNum++;
+  if ((pageNum * 8) < listPatients.length / 8) pageNum++;
 }
 
 void prevPage() {
@@ -278,66 +353,84 @@ Widget listPatientsSearch(int i, BuildContext context) {
   );
 }
 
-Widget searchContents() {
+Widget searchContents(BuildContext context) {
   return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
-      child: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          color: const Color(0xFFEEEEEE),
+    padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 8),
+    child: Row(
+      mainAxisSize: MainAxisSize.max,
+      children: const [
+        Expanded(
+          flex: 2,
+          child: Text('Patient Name',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  color: Color(0xff4b39ef))),
         ),
-        child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            children: const [
-              Expanded(
-                flex: 2,
-                child: Text('Patient Name',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                        color: Color(0xff4b39ef))),
-              ),
-              Expanded(
-                flex: 3,
-                child: Text('Treatment',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                        color: Color(0xff4b39ef))),
-              ),
-              Expanded(
-                flex: 1,
-                child: Text('Date',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                        color: Color(0xff4b39ef))),
-              ),
-              Expanded(
-                flex: 1,
-                child: Text('View',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16,
-                        color: Color(0xff4b39ef))),
-              ),
-              Divider(
-                  thickness: 1,
-                  indent: 8,
-                  endIndent: 8,
-                  color: Color(0xff4b39ef)),
-            ],
-          ),
+        Expanded(
+          flex: 3,
+          child: Text('Most Recent Treatment',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  color: Color(0xff4b39ef))),
         ),
-      ));
+        Expanded(
+          flex: 1,
+          child: Text('Date',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  color: Color(0xff4b39ef))),
+        ),
+        Expanded(
+          flex: 1,
+          child: Text('View',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  color: Color(0xff4b39ef))),
+        ),
+      ],
+    ),
+  );
+}
+
+Widget searchContents2(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 8),
+    child: Row(
+      mainAxisSize: MainAxisSize.max,
+      children: const [
+        Expanded(
+          flex: 1,
+          child: Text('Date',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  color: Color(0xff4b39ef))),
+        ),
+        Expanded(
+          flex: 1,
+          child: Text('View',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16,
+                  color: Color(0xff4b39ef))),
+        ),
+      ],
+    ),
+  );
 }
