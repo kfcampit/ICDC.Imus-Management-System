@@ -171,7 +171,8 @@ class SearchPatientsPage extends State<SearchPatients> {
 
 Widget searchPatientPageWidgets(BuildContext context, Function function) {
   return Expanded(
-    child: Column(
+    child: SingleChildScrollView(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -184,9 +185,7 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
                   decoration: const BoxDecoration(
                     color: const Color(0xFFEEEEEE),
                   ),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Column(
+                  child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -197,9 +196,7 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
                             endIndent: 8,
                             color: Color(0xff4b39ef)),
                         patientRows(context),
-                      ])
-                  ),
-                  )),
+                      ]))),
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
             child: Row(
@@ -254,6 +251,8 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
             ),
           ),
         ]),
+    ), 
+    
   );
 }
 
