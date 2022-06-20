@@ -84,7 +84,7 @@ ButtonTheme iconButton({
   required double iconSize,
   Color? color,
   BuildContext? context,
-  Widget? page,
+  required Widget page,
 }) {
   size ??= iconSize;
   color ??= const Color(0xff4b39ef);

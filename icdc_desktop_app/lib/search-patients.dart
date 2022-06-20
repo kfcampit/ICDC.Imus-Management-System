@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:icdc_desktop_app/main.dart';
+import 'package:icdc_desktop_app/patient-entry.dart';
 import 'package:icdc_desktop_app/patient-view.dart';
 import 'package:icdc_desktop_app/resources/algorithms.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
@@ -12,6 +13,7 @@ import '/global_variables.dart';
 
 var dropdownValue;
 int pageNum = 0;
+bool isSearching = false;
 
 class SearchPatientPage extends StatefulWidget {
   const SearchPatientPage({Key? key}) : super(key: key);
@@ -25,6 +27,10 @@ class SearchPatient extends State<SearchPatientPage> {
   void initState() {
     super.initState();
     dropdownValue = "  Name";
+
+    if (!isSearching) {
+      searchedPatients = sortPatients();
+    }
   }
 
   @override
@@ -58,7 +64,7 @@ class SearchPatient extends State<SearchPatientPage> {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(16, 0, 8, 0),
                       child: TextFormField(
-                          controller: nameController,
+                          controller: searchController,
                           autofocus: true,
                           obscureText: false,
                           decoration: const InputDecoration(
@@ -125,13 +131,23 @@ class SearchPatient extends State<SearchPatientPage> {
                     )),
               ),
               Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 16, 0),
-                  child: iconButton(
-                      iconName: Icons.search_sharp,
-                      function: placeholder,
-                      size: 40,
-                      iconSize: 48,
-                      navFunction: navPlaceholder))
+                padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 16, 0),
+                child: roundedButtons(
+                  textStyle: const TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                      color: Colors.white),
+                  height: 50,
+                  width: 130,
+                  color: const Color(0xff4b39ef),
+                  text: "Search",
+                  navFunction: navigate,
+                  context: context,
+                  page: const SearchPatientPage(),
+                  function: searchPatientsButton,
+                ),
+              )
             ]));
   }
 }
@@ -204,7 +220,7 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
                       "Page " +
                           (pageNum + 1).toString() +
                           " / " +
-                          (listPatients.length / 9).ceil().toString(),
+                          (searchedPatients.length / 9).ceil().toString(),
                     )),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
@@ -281,10 +297,21 @@ Widget searchContents(BuildContext context) {
   );
 }
 
+void searchPatientsButton() {
+  print("test");
+  if (dropdownValue == '  Name') {
+    searchedPatients = searchPatientsName(searchController.text);
+  } else if (dropdownValue == '  Treatment') {
+    searchedPatients = searchPatientsTreatment(searchController.text);
+  } else if (dropdownValue == '  Date') {
+    searchedPatients = searchPatientsDate(int.parse(searchController.text));
+  }
+  isSearching = true;
+}
+
 Widget patientRows(BuildContext context) {
   List<Widget> widgetList = [];
-  int n = getNumPatients();
-  sortedPatients = sortPatients();
+  int n = searchedPatients.length;
 
   for (int i = (pageNum * 9); i < pageNum * 9 + 9; i++) {
     if (i < n) {
@@ -299,6 +326,12 @@ Widget patientRows(BuildContext context) {
 }
 
 Widget listPatientsSearch(int i, BuildContext context) {
+  if (searchedPatients[i].dentalRecords.isEmpty) {
+    DentalRecord ph = DentalRecord();
+    ph.transDate = 0;
+    searchedPatients[i].dentalRecords.add(ph);
+  }
+
   return Padding(
     padding: const EdgeInsetsDirectional.fromSTEB(0, 6, 0, 6),
     child: Row(
@@ -309,7 +342,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 4, 0),
               child: Text(
-                sortedPatients[i].name.toString(),
+                searchedPatients[i].name.toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -322,7 +355,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                sortedPatients[i].dentalRecords[0].description.toString(),
+                searchedPatients[i].dentalRecords[0].description.toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -335,7 +368,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                sortedPatients[i].dentalRecords.last.transDate.toString(),
+                searchedPatients[i].dentalRecords.last.transDate.toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -370,7 +403,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
 }
 
 void nextPage() {
-  if ((pageNum * 9) < listPatients.length / 9) pageNum++;
+  if ((pageNum * 9) + 1 < searchedPatients.length / 9) pageNum++;
 }
 
 void prevPage() {

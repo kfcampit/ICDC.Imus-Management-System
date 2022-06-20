@@ -85,6 +85,53 @@ void addPatient(PatientObject patientObject) {
   listPatients.add(patientObject);
 }
 
+Future<void> editPatient(String patientId, PatientObject patientObject) async {
+  HashMap<String, Object> hashPatients = HashMap();
+  HashMap<String, Object> dentRecs = HashMap();
+
+  hashPatients['address'] = patientObject.address;
+  hashPatients['bday'] = patientObject.bday;
+  hashPatients['contact'] = patientObject.contact;
+  hashPatients['marital'] = patientObject.marital;
+  hashPatients['name'] = patientObject.name;
+  hashPatients['sex'] = patientObject.sex;
+
+  db.collection('patients').document(patientId).set(hashPatients);
+
+  var dentRec = await db
+      .collection('patients')
+      .document(patientId)
+      .collection('dentalRecords')
+      .get();
+
+  for (int i = 0; i < dentRec.length; i++) {
+    await db
+        .document('patients/' + patientId + '/dentalRecords/' + dentRec[i].id)
+        .delete();
+  }
+
+  for (int i = 0; i < patientObject.dentalRecords.length; i++) {
+    String dentId = 'D-' + (i + 1).toString().padLeft(6, '0');
+
+    dentRecs['description'] = patientObject.dentalRecords[i].description;
+    dentRecs['fee'] = patientObject.dentalRecords[i].fee;
+    dentRecs['surface'] = patientObject.dentalRecords[i].surface;
+    dentRecs['toothNum'] = patientObject.dentalRecords[i].toothNum;
+    dentRecs['transDate'] = patientObject.dentalRecords[i].transDate;
+    dentRecs['isVisible'] = true;
+
+    db
+        .collection('patients')
+        .document(patientId)
+        .collection('dentalRecords')
+        .document(dentId)
+        .set(dentRecs);
+  }
+
+  listPatients.removeWhere((element) => element.patientID == patientId);
+  listPatients.add(patientObject);
+}
+
 void checkListPatients() {
   print(listPatients.length);
   for (var patient in listPatients) {

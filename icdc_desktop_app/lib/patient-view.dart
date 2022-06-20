@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icdc_desktop_app/main.dart';
+import 'package:icdc_desktop_app/patient-entry.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
 import 'package:icdc_desktop_app/resources/firebase_controller.dart';
 import 'package:icdc_desktop_app/resources/patient_object.dart';
@@ -8,7 +9,7 @@ import 'dart:core';
 import '/global_variables.dart';
 
 var viewPatientNum = 0;
-var viewPatient = PatientObject();
+PatientObject viewPatient = PatientObject();
 
 class PatientViewPage extends StatefulWidget {
   const PatientViewPage({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class PatientView extends State<PatientViewPage> {
   @override
   void initState() {
     super.initState();
-    viewPatient = sortedPatients[viewPatientNum];
+    viewPatient = searchedPatients[viewPatientNum];
   }
 
   @override
@@ -186,7 +187,7 @@ Widget patientInfo(BuildContext context, int i) {
                 text: "Back",
                 navFunction: navigate,
                 context: context,
-                page: const ICDCDesktop(),
+                page: const SearchPatientPage(),
                 function: placeholder,
               ),
             ),
@@ -204,7 +205,7 @@ Widget patientInfo(BuildContext context, int i) {
                   text: "Edit",
                   function: enterPatientInfo,
                   context: context,
-                  page: const ICDCDesktop(),
+                  page: const PatientEntryPage(),
                   navFunction: navigate),
             ),
           ],
@@ -294,24 +295,6 @@ Widget treatmentsWidget(BuildContext context) {
                         endIndent: 8,
                         color: Color(0xff4b39ef)),
                     treatmentRows(context),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-                      child: roundedButtons(
-                        textStyle: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Colors.white),
-                        height: 40,
-                        width: 160,
-                        color: const Color(0xff4b39ef),
-                        text: "Add Treatment",
-                        function: addTreatmentButton,
-                        navFunction: navigate,
-                        context: context,
-                        page: const PatientViewPage(),
-                      ),
-                    ),
                   ]))),
     ),
   );
@@ -324,8 +307,6 @@ Widget treatmentRows(BuildContext context) {
   for (int i = 0; i < n; i++) {
     widgetList.add(listTreatments(i));
   }
-
-  widgetList.add(inputTreatment(context));
 
   return Column(
       mainAxisSize: MainAxisSize.max,
@@ -410,107 +391,6 @@ Widget listTreatments(int n) {
   );
 }
 
-Widget inputTreatment(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
-    child: Row(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Expanded(
-            flex: 1,
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 4, 0),
-              child: TextField(
-                textAlign: TextAlign.center,
-                controller: toothNumController,
-                cursorHeight: 24,
-                decoration: const InputDecoration(
-                  hintText: "Tooth Number",
-                  border: UnderlineInputBorder(),
-                ),
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-              ),
-            )),
-        Expanded(
-            flex: 1,
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
-              child: TextField(
-                textAlign: TextAlign.center,
-                controller: surfaceController,
-                cursorHeight: 24,
-                decoration: const InputDecoration(
-                  hintText: "Surface",
-                  border: UnderlineInputBorder(),
-                ),
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-              ),
-            )),
-        Expanded(
-            flex: 3,
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
-              child: TextField(
-                textAlign: TextAlign.center,
-                controller: serviceController,
-                cursorHeight: 24,
-                decoration: const InputDecoration(
-                  hintText: "Description of Services",
-                  border: UnderlineInputBorder(),
-                ),
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-              ),
-            )),
-        Expanded(
-            flex: 1,
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
-              child: TextField(
-                textAlign: TextAlign.center,
-                controller: dateController,
-                cursorHeight: 24,
-                decoration: const InputDecoration(
-                  hintText: "Date",
-                  border: UnderlineInputBorder(),
-                ),
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-              ),
-            )),
-        Expanded(
-            flex: 1,
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 8, 0),
-              child: TextField(
-                textAlign: TextAlign.center,
-                controller: feeController,
-                cursorHeight: 24,
-                decoration: const InputDecoration(
-                  hintText: "Fee",
-                  border: UnderlineInputBorder(),
-                ),
-                style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                ),
-              ),
-            )),
-      ],
-    ),
-  );
-}
-
 void test() {
   print("test button");
 }
@@ -537,6 +417,9 @@ void removeTreatmentButton() {
 }
 
 void enterPatientInfo() {
+  isEditPatient = true;
+  viewPatient = searchedPatients[viewPatientNum];
+
   /*
   patient.name = nameController.text;
   patient.bday = bdayController.text;

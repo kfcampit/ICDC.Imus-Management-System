@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:icdc_desktop_app/main.dart';
+import 'package:icdc_desktop_app/patient-view.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
 import 'package:icdc_desktop_app/resources/firebase_controller.dart';
 import 'package:icdc_desktop_app/resources/patient_object.dart';
 import 'dart:core';
 import '/global_variables.dart';
 
-String patientID = "";
 bool isEditPatient = false;
 
 class PatientEntryPage extends StatefulWidget {
@@ -20,6 +20,16 @@ class PatientEntry extends State<PatientEntryPage> {
   @override
   void initState() {
     super.initState();
+    if (isEditPatient) {
+      nameController.text = viewPatient.name;
+      bdayController.text = viewPatient.bday;
+      contactController.text = viewPatient.contact;
+      sexController.text = viewPatient.sex;
+      maritalController.text = viewPatient.marital;
+      addressController.text = viewPatient.address;
+
+      patient = viewPatient;
+    }
   }
 
   @override
@@ -367,7 +377,8 @@ Widget treatmentsWidget(BuildContext context) {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(60, 0, 0, 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: const [
@@ -458,7 +469,7 @@ Widget treatmentRows(BuildContext context) {
   int n = patient.dentalRecords.length;
 
   for (int i = 0; i < n; i++) {
-    widgetList.add(listTreatments(i));
+    widgetList.add(listTreatments(i, context));
   }
 
   widgetList.add(inputTreatment(context));
@@ -469,12 +480,31 @@ Widget treatmentRows(BuildContext context) {
       children: widgetList);
 }
 
-Widget listTreatments(int i) {
+Widget listTreatments(int i, BuildContext context) {
   return Padding(
-    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+    padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 4),
     child: Row(
       mainAxisSize: MainAxisSize.max,
       children: [
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+          child: CircleAvatar(
+            radius: 20,
+            backgroundColor: Color.fromARGB(255, 252, 0, 0),
+            child: IconButton(
+              icon: const Icon(
+                Icons.delete,
+                color: Colors.white,
+                size: 20,
+              ),
+              iconSize: 20,
+              onPressed: () {
+                removeTreatmentButton(i);
+                navigate(context, const PatientEntryPage());
+              },
+            ),
+          ),
+        ),
         Expanded(
             flex: 1,
             child: Padding(
@@ -547,7 +577,7 @@ Widget listTreatments(int i) {
 
 Widget inputTreatment(BuildContext context) {
   return Padding(
-    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+    padding: const EdgeInsetsDirectional.fromSTEB(60, 8, 0, 8),
     child: Row(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -667,8 +697,8 @@ void addTreatmentButton() {
   feeController.clear();
 }
 
-void removeTreatmentButton() {
-  print("REMOVE TREATMENT");
+void removeTreatmentButton(int i) {
+  patient.dentalRecords.removeAt(i);
 }
 
 void enterPatientInfo() {
@@ -684,7 +714,12 @@ void enterPatientInfo() {
     // ignore: empty_catches
   } catch (Exception) {}
 
-  addPatient(patient);
+  if (!isEditPatient) {
+    addPatient(patient);
+  } else {
+    print(patient.dentalRecords);
+    editPatient(patient.patientID, patient);
+  }
 
   /*
   print("Name: " + patient.name);
@@ -720,4 +755,5 @@ void enterPatientInfo() {
   feeController.clear();
 
   patient = PatientObject();
+  isEditPatient = false;
 }

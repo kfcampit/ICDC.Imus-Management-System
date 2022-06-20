@@ -19,7 +19,7 @@ TextEditingController serviceController = TextEditingController();
 TextEditingController dateController = TextEditingController();
 TextEditingController feeController = TextEditingController();
 
-//patient entry
+TextEditingController searchController = TextEditingController();
 
 // check inventory
 List<ItemObject> inventoryItems = [];

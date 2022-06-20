@@ -195,15 +195,9 @@ Widget sidebarWidget(BuildContext context) {
   );
 }
 
-Future<void> test() async {
-  CollectionReference currDoc = Firestore.instance
-      .collection('patients')
-      .document('P-000001')
-      .collection('dentalRecords');
-  var fromDatabase = await currDoc.get();
-  print(fromDatabase);
-}
-
 void navigate(BuildContext context, Widget object) {
+  if (object == const PatientEntryPage()) {
+    isEditPatient = false;
+  }
   Navigator.of(context).push(MaterialPageRoute(builder: (context) => object));
 }
