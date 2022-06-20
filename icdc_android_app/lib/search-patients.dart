@@ -184,7 +184,9 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
                   decoration: const BoxDecoration(
                     color: const Color(0xFFEEEEEE),
                   ),
-                  child: Column(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -195,7 +197,9 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
                             endIndent: 8,
                             color: Color(0xff4b39ef)),
                         patientRows(context),
-                      ]))),
+                      ])
+                  ),
+                  )),
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
             child: Row(
@@ -379,37 +383,6 @@ Widget searchContents(BuildContext context) {
                   fontSize: 16,
                   color: Color(0xff4b39ef))),
         ),
-        Expanded(
-          flex: 1,
-          child: Text('Date',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                  color: Color(0xff4b39ef))),
-        ),
-        Expanded(
-          flex: 1,
-          child: Text('View',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                  color: Color(0xff4b39ef))),
-        ),
-      ],
-    ),
-  );
-}
-
-Widget searchContents2(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 8),
-    child: Row(
-      mainAxisSize: MainAxisSize.max,
-      children: const [
         Expanded(
           flex: 1,
           child: Text('Date',
