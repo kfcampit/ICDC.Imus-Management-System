@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:icdc_android_app/open-appointments.dart';
+import 'package:icdc_android_app/resources/firebase_controller.dart';
 import 'package:icdc_android_app/search-patients.dart';
 import 'package:icdc_android_app/resources/global_variables.dart';
 import 'resources/custom-widgets.dart';
-
-void main() {
-  firstTimeRun = true;
+const apiKey = "AIzaSyBHcnxX4cPlcl1vgivb8G7p4jvXn0U9fYc";
+const projectId = 'icdc-imus-cms';
+Future<void> main() async {
+  // Firestore.initialize(projectId);
+  await loadPatients();
+  checkListPatients();
   runApp(const ICDCAndroid());
 }
+// void main() {
+//   firstTimeRun = true;
+//   runApp(const ICDCAndroid());
+// }
 
 class ICDCAndroid extends StatelessWidget {
   const ICDCAndroid({Key? key}) : super(key: key);
@@ -107,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: TextStyle(
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w400,
-                          fontSize: 16,
+                          fontSize: 14,
                           color: Color(0xff4b39ef)),
                     ),
                   ),

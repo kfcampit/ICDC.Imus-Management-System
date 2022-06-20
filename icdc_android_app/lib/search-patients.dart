@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:icdc_android_app/search-patients.dart';
+import 'package:icdc_android_app/patient-view.dart';
+import 'package:icdc_android_app/resources/firebase_controller.dart';
 import 'package:icdc_android_app/resources/global_variables.dart';
 import 'package:icdc_android_app/resources/custom-widgets.dart';
+import 'package:icdc_android_app/resources/algorithms.dart';
+
+import 'main.dart';
 
 var dropdownValue;
+int pageNum = 0;
 
 class SearchPatients extends StatefulWidget {
   const SearchPatients({Key? key}) : super(key: key);
@@ -30,35 +35,38 @@ class SearchPatientsPage extends State<SearchPatients> {
         home: Scaffold(
           appBar: AppBar(
             title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text("Search Records",
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 26,
-                  ),),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                  child: 
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Image.asset('assets/logo_1.png',
-                        width: 40,
-                        height: 40,
-                        ),
-                      const Text("ICDC - IMUS",
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 20,
-                        ),),
-                    ],
-                  ))
-                ]
-            ),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Search Records",
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 26,
+                    ),
+                  ),
+                  Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Image.asset(
+                            'assets/logo_1.png',
+                            width: 40,
+                            height: 40,
+                          ),
+                          const Text(
+                            "ICDC - IMUS",
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      ))
+                ]),
             foregroundColor: Colors.white,
             backgroundColor: const Color(0xff4b39ef),
             toolbarHeight: 80.0,
@@ -66,9 +74,7 @@ class SearchPatientsPage extends State<SearchPatients> {
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              searchPatientPageWidgets(context, searchBar)
-            ],
+            children: [searchPatientPageWidgets(context, searchBar)],
           ),
         ));
   }
@@ -168,10 +174,107 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
     child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
-        children: [
-          function(),
-          searchContents()
-        ]),
+        children: [function(), searchContents()]),
+  );
+}
+
+Widget patientRows(BuildContext context) {
+  List<Widget> widgetList = [];
+  int n = getNumPatients();
+  sortedPatients = sortPatients();
+
+  for (int i = (pageNum * 9); i < pageNum * 9 + 9; i++) {
+    if (i < n) {
+      widgetList.add(listPatientsSearch(i, context));
+    }
+  }
+
+  return Column(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: widgetList);
+}
+
+void nextPage() {
+  if ((pageNum * 9) < listPatients.length / 9) pageNum++;
+}
+
+void prevPage() {
+  if (pageNum != 0) pageNum--;
+}
+
+void viewPatient(int i) {
+  viewPatientNum = i;
+}
+
+Widget listPatientsSearch(int i, BuildContext context) {
+  return Padding(
+    padding: const EdgeInsetsDirectional.fromSTEB(0, 6, 0, 6),
+    child: Row(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Expanded(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 4, 0),
+              child: Text(
+                sortedPatients[i].name.toString(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+              ),
+            )),
+        Expanded(
+            flex: 3,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+              child: Text(
+                sortedPatients[i].dentalRecords[0].description.toString(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+              ),
+            )),
+        Expanded(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+              child: Text(
+                sortedPatients[i].dentalRecords.last.transDate.toString(),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                ),
+              ),
+            )),
+        Expanded(
+            flex: 1,
+            child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                child: roundedButtons(
+                  textStyle: const TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 12,
+                      color: Colors.white),
+                  height: 30,
+                  width: 110,
+                  color: const Color(0xff4b39ef),
+                  text: "View",
+                  function: () {
+                    viewPatient(i);
+                  },
+                  navFunction: navigate,
+                  context: context,
+                  page: const PatientViewPage(),
+                ))),
+      ],
+    ),
   );
 }
 

@@ -212,7 +212,7 @@ Widget displayAppointment(int i, BuildContext context){
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(30, 0, 0, 10),
+                padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
                 child: 
                   Row(
                     mainAxisSize: MainAxisSize.max,
@@ -248,7 +248,7 @@ Widget displayAppointment(int i, BuildContext context){
                         style: TextStyle(
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w500,
-                          fontSize: 16,
+                          fontSize: 14,
                           color: Colors.white
                         )
                       ),
@@ -256,7 +256,7 @@ Widget displayAppointment(int i, BuildContext context){
                         style: const TextStyle(
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w500,
-                          fontSize: 16,
+                          fontSize: 14,
                           color: Color.fromARGB(255, 239, 196, 57)
                         )
                       ),
