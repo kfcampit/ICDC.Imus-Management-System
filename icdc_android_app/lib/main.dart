@@ -13,10 +13,6 @@ Future<void> main() async {
   checkListPatients();
   runApp(const ICDCAndroid());
 }
-// void main() {
-//   firstTimeRun = true;
-//   runApp(const ICDCAndroid());
-// }
 
 class ICDCAndroid extends StatelessWidget {
   const ICDCAndroid({Key? key}) : super(key: key);

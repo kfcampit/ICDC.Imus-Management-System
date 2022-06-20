@@ -1,31 +1,8 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:icdc_android_app/resources/global_variables.dart';
 import 'package:icdc_android_app/main.dart';
-// import 'package:icdc_android_app/patient-entry.dart';
 import 'patient_object.dart';
-
-//SORT TREATMENTS
-PatientObject sortTreatment(PatientObject patientObject) {
-  List<int> mainList = [];
-  List<DentalRecord> records = patientObject.dentalRecords;
-  List<DentalRecord> sortedRecords = [];
-
-  for (DentalRecord dentalRecord in records) {
-    mainList.add(dentalRecord.transDate);
-  }
-
-  print("Before: $mainList");
-  sort(mainList, 0, mainList.length - 1);
-  print("After: $mainList");
-
-  for (int time in mainList) {
-    sortedRecords
-        .add(records.firstWhere((element) => element.transDate == time));
-  }
-
-  patientObject.dentalRecords = sortedRecords;
-
-  return patientObject;
-}
 
 void swap(List<int> l, int i, int j) {
   int temp = l[i];
@@ -62,29 +39,6 @@ void sort(List<int> lst, int left, int right) {
   sort(lst, left, mid);
   sort(lst, mid + 1, right);
   merge(lst, left, mid, right);
-}
-
-//SORT PATIENTS BY NAME
-List<PatientObject> sortPatients() {
-  List<String> mainList = [];
-  List<PatientObject> records = listPatients;
-  List<PatientObject> sortedRecords = [];
-
-  for (PatientObject patient in records) {
-    mainList.add(patient.name);
-  }
-
-  print("Before: $mainList");
-  sortString(mainList, 0, mainList.length - 1);
-  print("After: $mainList");
-
-  for (String name in mainList) {
-    sortedRecords.add(records.firstWhere((element) => element.name == name));
-  }
-
-  print(sortedRecords[0].name);
-
-  return sortedRecords;
 }
 
 void mergeString(arr, int l, int m, int r) {
@@ -138,7 +92,6 @@ void mergeString(arr, int l, int m, int r) {
   }
 }
 
-// Main function that sorts arr[l..r] using
 void sortString(arr, int l, int r) {
   if (l < r) {
     // Find the middle point
@@ -152,4 +105,181 @@ void sortString(arr, int l, int r) {
     // Merge the sorted halves
     mergeString(arr, l, m.toInt(), r);
   }
+}
+
+//SORT TREATMENTS
+PatientObject sortTreatment(PatientObject patientObject) {
+  List<int> mainList = [];
+  List<DentalRecord> records = patientObject.dentalRecords;
+  List<DentalRecord> sortedRecords = [];
+
+  for (DentalRecord dentalRecord in records) {
+    mainList.add(dentalRecord.transDate);
+  }
+
+  print("Before: $mainList");
+  sort(mainList, 0, mainList.length - 1);
+  print("After: $mainList");
+
+  for (int time in mainList) {
+    sortedRecords
+        .add(records.firstWhere((element) => element.transDate == time));
+  }
+
+  patientObject.dentalRecords = sortedRecords;
+
+  return patientObject;
+}
+
+//SORT PATIENTS BY NAME
+List<PatientObject> sortPatients() {
+  List<String> mainList = [];
+  List<PatientObject> records = listPatients;
+  List<PatientObject> sortedRecords = [];
+
+  for (PatientObject patient in records) {
+    mainList.add(patient.name);
+  }
+
+  print("Before: $mainList");
+  sortString(mainList, 0, mainList.length - 1);
+  print("After: $mainList");
+
+  for (String name in mainList) {
+    sortedRecords.add(records.firstWhere((element) => element.name == name));
+  }
+
+  print(sortedRecords[0].name);
+
+  return sortedRecords;
+}
+
+//SORT PATIENTS BY DATE
+List<PatientObject> sortPatientsDate() {
+  List<int> mainList = [];
+  List<PatientObject> records = listPatients;
+  List<PatientObject> sortedPatients = [];
+  List<String> patientIdsList = [];
+
+  for (PatientObject patient in records) {
+    mainList.add(patient.dentalRecords[0].transDate);
+    patientIdsList.add(patient.patientID);
+  }
+
+  print("Before: $mainList");
+  sort(mainList, 0, mainList.length - 1);
+  print("After: $mainList");
+
+  for (int time in mainList) {
+    sortedPatients.add(records.firstWhere((element) =>
+        element.dentalRecords[0].transDate == time &&
+        !patientIdsList.contains(element.patientID)));
+  }
+
+  return sortedPatients;
+}
+
+//SORT PATIENTS BY TREATMENT
+List<PatientObject> sortPatientsTreatment() {
+  List<String> mainList = [];
+  List<PatientObject> records = listPatients;
+  List<PatientObject> sortedPatients = [];
+  List<String> patientIdsList = [];
+
+  for (PatientObject patient in records) {
+    mainList.add(patient.dentalRecords[0].description);
+    patientIdsList.add(patient.patientID);
+  }
+
+  print("Before: $mainList");
+  sortString(mainList, 0, mainList.length - 1);
+  print("After: $mainList");
+
+  for (String time in mainList) {
+    sortedPatients.add(records.firstWhere((element) =>
+        element.dentalRecords[0].transDate == time &&
+        !patientIdsList.contains(element.patientID)));
+  }
+
+  return sortedPatients;
+}
+
+List<PatientObject> searchPatientsName(String searchTerm) {
+  List<PatientObject> records = sortPatients();
+
+  int startIndex =
+      records.indexWhere((element) => element.name.contains(searchTerm));
+
+  if (startIndex == -1) {
+    return records;
+  }
+
+  int endIndex =
+      records.lastIndexWhere((element) => element.name.contains(searchTerm));
+
+  print(startIndex);
+  print(endIndex);
+
+  if (startIndex == endIndex) {
+    List<PatientObject> searched = [];
+    searched.add(records[startIndex]);
+    return searched;
+  }
+  return records.getRange(startIndex, endIndex + 1).toList();
+}
+
+List<PatientObject> searchPatientsDate(int searchTerm) {
+  List<PatientObject> records = sortPatients();
+
+  int startIndex = records.indexWhere((element) =>
+      element.dentalRecords
+          .indexWhere((element) => element.transDate == searchTerm) !=
+      -1);
+
+  if (startIndex == -1) {
+    return records;
+  }
+
+  int endIndex = records.lastIndexWhere((element) =>
+      element.dentalRecords
+          .indexWhere((element) => element.transDate == searchTerm) !=
+      -1);
+
+  print(startIndex);
+  print(endIndex);
+
+  if (startIndex == endIndex) {
+    List<PatientObject> searched = [];
+    searched.add(records[startIndex]);
+    return searched;
+  }
+  return records.getRange(startIndex, endIndex + 1).toList();
+}
+
+List<PatientObject> searchPatientsTreatment(String searchTerm) {
+  List<PatientObject> records = sortPatients();
+
+  int startIndex = records.indexWhere((element) =>
+      element.dentalRecords
+          .indexWhere((element) => element.description.contains(searchTerm)) !=
+      -1);
+
+  if (startIndex == -1) {
+    return records;
+  }
+
+  int endIndex = records.lastIndexWhere((element) =>
+      element.dentalRecords
+          .indexWhere((element) => element.description.contains(searchTerm)) !=
+      -1);
+
+  print(startIndex);
+  print(endIndex);
+
+  if (startIndex == endIndex) {
+    List<PatientObject> searched = [];
+    searched.add(records[startIndex]);
+    return searched;
+  }
+  return records.getRange(startIndex, endIndex + 1).toList();
 }

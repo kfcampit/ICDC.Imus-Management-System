@@ -9,6 +9,7 @@ import 'main.dart';
 
 var dropdownValue;
 int pageNum = 0;
+bool isSearching = false;
 
 class SearchPatients extends StatefulWidget {
   const SearchPatients({Key? key}) : super(key: key);
@@ -22,7 +23,10 @@ class SearchPatientsPage extends State<SearchPatients> {
   void initState() {
     super.initState();
     dropdownValue = "  Name";
-    print("test");
+
+    if (!isSearching) {
+      searchedPatients = sortPatients();
+    }
   }
 
   @override
@@ -91,7 +95,7 @@ class SearchPatientsPage extends State<SearchPatients> {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(16, 0, 8, 0),
                       child: TextFormField(
-                          controller: nameController,
+                          controller: searchController,
                           autofocus: true,
                           obscureText: false,
                           decoration: const InputDecoration(
@@ -160,11 +164,15 @@ class SearchPatientsPage extends State<SearchPatients> {
               Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 16, 0),
                   child: iconButton(
-                      iconName: Icons.search_sharp,
-                      function: placeholder,
-                      size: 20,
-                      iconSize: 28,
-                      navFunction: navPlaceholder))
+                    iconName: Icons.search_sharp,
+                    size: 20,
+                    iconSize: 28,
+                    navFunction: navigate,
+                    context: context,
+                    page: const SearchPatients(),
+                    function: searchPatientsButton,
+                  )
+                )
             ]));
   }
 }
@@ -258,6 +266,18 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
   );
 }
 
+void searchPatientsButton() {
+  print("test");
+  if (dropdownValue == '  Name') {
+    searchedPatients = searchPatientsName(searchController.text);
+  } else if (dropdownValue == '  Treatment') {
+    searchedPatients = searchPatientsTreatment(searchController.text);
+  } else if (dropdownValue == '  Date') {
+    searchedPatients = searchPatientsDate(int.parse(searchController.text));
+  }
+  isSearching = true;
+}
+
 Widget patientRows(BuildContext context) {
   List<Widget> widgetList = [];
   int n = getNumPatients();
@@ -302,12 +322,12 @@ Widget listPatientsSearch(int i, BuildContext context) {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
-                  fontSize: 16,
+                  fontSize: 12,
                 ),
               ),
             )),
         Expanded(
-            flex: 3,
+            flex: 2,
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
@@ -315,7 +335,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
-                  fontSize: 16,
+                  fontSize: 12,
                 ),
               ),
             )),
@@ -328,31 +348,32 @@ Widget listPatientsSearch(int i, BuildContext context) {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
-                  fontSize: 16,
+                  fontSize: 12,
                 ),
               ),
             )),
         Expanded(
             flex: 1,
             child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                child: roundedButtons(
-                  textStyle: const TextStyle(
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12,
-                      color: Colors.white),
-                  height: 30,
-                  width: 110,
-                  color: const Color(0xff4b39ef),
-                  text: "View",
-                  function: () {
+              padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+              child: CircleAvatar(
+                radius: 18,
+                backgroundColor: const Color(0xff4b39ef),
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.open_in_new,
+                    color: Colors.white,
+                    size: 18,
+                  ),
+                  iconSize: 18,
+                  onPressed: () {
                     viewPatient(i);
-                  },
-                  navFunction: navigate,
-                  context: context,
-                  page: const PatientViewPage(),
-                ))),
+                    Navigator.push(context, MaterialPageRoute(builder: ((context) => PatientViewPage())));
+                  },            
+                ),
+              ),
+            )
+          ),
       ],
     ),
   );
@@ -375,7 +396,7 @@ Widget searchContents(BuildContext context) {
                   color: Color(0xff4b39ef))),
         ),
         Expanded(
-          flex: 3,
+          flex: 2,
           child: Text('Most Recent Treatment',
               textAlign: TextAlign.center,
               style: TextStyle(

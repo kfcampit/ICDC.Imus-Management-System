@@ -11,6 +11,7 @@ bool firstTimeRun = true;
 
 // serach patients
 TextEditingController nameController = TextEditingController();
+TextEditingController searchController = TextEditingController();
 //patient entry
 TextEditingController bdayController = TextEditingController();
 TextEditingController maritalController = TextEditingController();
