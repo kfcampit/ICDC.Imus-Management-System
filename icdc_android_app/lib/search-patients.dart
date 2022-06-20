@@ -186,17 +186,19 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
                     color: const Color(0xFFEEEEEE),
                   ),
                   child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        searchContents(context),
-                        const Divider(
-                            thickness: 1,
-                            indent: 8,
-                            endIndent: 8,
-                            color: Color(0xff4b39ef)),
-                        patientRows(context),
-                      ]))),
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    searchContents(context),
+                    const Divider(
+                      thickness: 1,
+                      indent: 8,
+                      endIndent: 8,
+                      color: Color(0xff4b39ef)),
+                    patientRows(context),
+                  ])
+              )
+            ),
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
             child: Row(
@@ -394,7 +396,7 @@ Widget searchContents(BuildContext context) {
         ),
         Expanded(
           flex: 1,
-          child: Text('View',
+          child:Text('View',
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontFamily: 'Poppins',
