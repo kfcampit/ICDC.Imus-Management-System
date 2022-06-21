@@ -208,15 +208,15 @@ List<PatientObject> sortPatientsTreatment() {
 List<PatientObject> searchPatientsName(String searchTerm) {
   List<PatientObject> records = sortPatients();
 
-  int startIndex =
-      records.indexWhere((element) => element.name.contains(searchTerm));
+  int startIndex = records.indexWhere((element) =>
+      element.name.toLowerCase().contains(searchTerm.toLowerCase()));
 
   if (startIndex == -1) {
     return records;
   }
 
-  int endIndex =
-      records.lastIndexWhere((element) => element.name.contains(searchTerm));
+  int endIndex = records.lastIndexWhere((element) =>
+      element.name.toLowerCase().contains(searchTerm.toLowerCase()));
 
   print(startIndex);
   print(endIndex);
@@ -261,8 +261,9 @@ List<PatientObject> searchPatientsTreatment(String searchTerm) {
   List<PatientObject> records = sortPatients();
 
   int startIndex = records.indexWhere((element) =>
-      element.dentalRecords
-          .indexWhere((element) => element.description.contains(searchTerm)) !=
+      element.dentalRecords.indexWhere((element) => element.description
+          .toLowerCase()
+          .contains(searchTerm.toLowerCase())) !=
       -1);
 
   if (startIndex == -1) {
@@ -270,8 +271,9 @@ List<PatientObject> searchPatientsTreatment(String searchTerm) {
   }
 
   int endIndex = records.lastIndexWhere((element) =>
-      element.dentalRecords
-          .indexWhere((element) => element.description.contains(searchTerm)) !=
+      element.dentalRecords.indexWhere((element) => element.description
+          .toLowerCase()
+          .contains(searchTerm.toLowerCase())) !=
       -1);
 
   print(startIndex);
