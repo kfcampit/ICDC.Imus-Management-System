@@ -307,6 +307,7 @@ void searchPatientsButton() {
     searchedPatients = searchPatientsDate(int.parse(searchController.text));
   }
   isSearching = true;
+  pageNum = 0;
 }
 
 Widget patientRows(BuildContext context) {
