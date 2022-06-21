@@ -117,9 +117,9 @@ PatientObject sortTreatment(PatientObject patientObject) {
     mainList.add(dentalRecord.transDate);
   }
 
-  print("Before: $mainList");
+  // print("Before: $mainList");
   sort(mainList, 0, mainList.length - 1);
-  print("After: $mainList");
+  // print("After: $mainList");
 
   for (int time in mainList) {
     sortedRecords
@@ -141,15 +141,15 @@ List<PatientObject> sortPatients() {
     mainList.add(patient.name);
   }
 
-  print("Before: $mainList");
+  // print("Before: $mainList");
   sortString(mainList, 0, mainList.length - 1);
-  print("After: $mainList");
+  // print("After: $mainList");
 
   for (String name in mainList) {
     sortedRecords.add(records.firstWhere((element) => element.name == name));
   }
 
-  print(sortedRecords[0].name);
+  // print(sortedRecords[0].name);
 
   return sortedRecords;
 }
@@ -166,9 +166,9 @@ List<PatientObject> sortPatientsDate() {
     patientIdsList.add(patient.patientID);
   }
 
-  print("Before: $mainList");
+  // print("Before: $mainList");
   sort(mainList, 0, mainList.length - 1);
-  print("After: $mainList");
+  // print("After: $mainList");
 
   for (int time in mainList) {
     sortedPatients.add(records.firstWhere((element) =>
@@ -191,9 +191,9 @@ List<PatientObject> sortPatientsTreatment() {
     patientIdsList.add(patient.patientID);
   }
 
-  print("Before: $mainList");
+  // print("Before: $mainList");
   sortString(mainList, 0, mainList.length - 1);
-  print("After: $mainList");
+  // print("After: $mainList");
 
   for (String time in mainList) {
     sortedPatients.add(records.firstWhere((element) =>
@@ -217,8 +217,8 @@ List<PatientObject> searchPatientsName(String searchTerm) {
   int endIndex =
       records.lastIndexWhere((element) => element.name.contains(searchTerm));
 
-  print(startIndex);
-  print(endIndex);
+  // print(startIndex);
+  // print(endIndex);
 
   if (startIndex == endIndex) {
     List<PatientObject> searched = [];
@@ -245,8 +245,8 @@ List<PatientObject> searchPatientsDate(int searchTerm) {
           .indexWhere((element) => element.transDate == searchTerm) !=
       -1);
 
-  print(startIndex);
-  print(endIndex);
+  // print(startIndex);
+  // print(endIndex);
 
   if (startIndex == endIndex) {
     List<PatientObject> searched = [];
@@ -273,8 +273,8 @@ List<PatientObject> searchPatientsTreatment(String searchTerm) {
           .indexWhere((element) => element.description.contains(searchTerm)) !=
       -1);
 
-  print(startIndex);
-  print(endIndex);
+  // print(startIndex);
+  // print(endIndex);
 
   if (startIndex == endIndex) {
     List<PatientObject> searched = [];

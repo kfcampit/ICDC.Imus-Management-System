@@ -38,6 +38,16 @@ class SearchPatientsPage extends State<SearchPatients> {
         ),
         home: Scaffold(
           appBar: AppBar(
+            leading: GestureDetector(
+              onTap: () {
+                searchController.clear();
+                isSearching = false;
+                navigate(context, const MyHomePage(title: 'Flutter Demo Home Page'));
+              },
+              child: const Icon(
+                Icons.arrow_back
+              ),
+            ),
             title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -59,14 +69,6 @@ class SearchPatientsPage extends State<SearchPatients> {
                             'assets/logo_1.png',
                             width: 40,
                             height: 40,
-                          ),
-                          const Text(
-                            "ICDC - IMUS",
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 20,
-                            ),
                           ),
                         ],
                       ))
@@ -238,7 +240,7 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
                       "Page " +
                           (pageNum + 1).toString() +
                           " / " +
-                          (listPatients.length / 8).ceil().toString(),
+                          (listPatients.length / 7).ceil().toString(),
                     )),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
@@ -267,9 +269,10 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
 }
 
 void searchPatientsButton() {
-  print("test");
   if (dropdownValue == '  Name') {
+    print("Before: " + searchedPatients.length.toString());
     searchedPatients = searchPatientsName(searchController.text);
+    print("After: " + searchedPatients.length.toString());
   } else if (dropdownValue == '  Treatment') {
     searchedPatients = searchPatientsTreatment(searchController.text);
   } else if (dropdownValue == '  Date') {
@@ -280,10 +283,9 @@ void searchPatientsButton() {
 
 Widget patientRows(BuildContext context) {
   List<Widget> widgetList = [];
-  int n = getNumPatients();
-  sortedPatients = sortPatients();
+  int n = searchedPatients.length;
 
-  for (int i = (pageNum * 8); i < pageNum * 8 + 8; i++) {
+  for (int i = (pageNum * 7); i < pageNum * 7 + 7; i++) {
     if (i < n) {
       widgetList.add(listPatientsSearch(i, context));
     }
@@ -296,7 +298,7 @@ Widget patientRows(BuildContext context) {
 }
 
 void nextPage() {
-  if ((pageNum * 8) < listPatients.length / 8) pageNum++;
+  if ((pageNum * 7) < listPatients.length / 7) pageNum++;
 }
 
 void prevPage() {
@@ -318,7 +320,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 4, 0),
               child: Text(
-                sortedPatients[i].name.toString(),
+                searchedPatients[i].name.toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -331,7 +333,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                sortedPatients[i].dentalRecords[0].description.toString(),
+                searchedPatients[i].dentalRecords[0].description.toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -344,7 +346,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                sortedPatients[i].dentalRecords.last.transDate.toString(),
+                searchedPatients[i].dentalRecords.last.transDate.toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
