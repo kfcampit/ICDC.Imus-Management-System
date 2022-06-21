@@ -82,7 +82,7 @@ void addPatient(PatientObject patientObject) {
         .set(dentRecs);
   }
 
-  listPatients.add(patientObject);
+  listPatients.add(sortTreatment(patientObject));
 }
 
 Future<void> editPatient(String patientId, PatientObject patientObject) async {

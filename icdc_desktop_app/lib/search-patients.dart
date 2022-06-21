@@ -28,8 +28,9 @@ class SearchPatient extends State<SearchPatientPage> {
     super.initState();
     dropdownValue = "  Name";
 
-    if (!isSearching) {
+    if (!isSearching && pageNum == 0) {
       searchedPatients = sortPatients();
+      print(searchedPatients.length);
     }
   }
 
@@ -220,7 +221,9 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
                       "Page " +
                           (pageNum + 1).toString() +
                           " / " +
-                          (searchedPatients.length / 9).ceil().toString(),
+                          (searchedPatients.length / patientsPerPage)
+                              .ceil()
+                              .toString(),
                     )),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
@@ -314,7 +317,9 @@ Widget patientRows(BuildContext context) {
   List<Widget> widgetList = [];
   int n = searchedPatients.length;
 
-  for (int i = (pageNum * 9); i < pageNum * 9 + 9; i++) {
+  for (int i = (pageNum * patientsPerPage);
+      i < pageNum * patientsPerPage + patientsPerPage;
+      i++) {
     if (i < n) {
       widgetList.add(listPatientsSearch(i, context));
     }
@@ -392,7 +397,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
                   color: const Color(0xff4b39ef),
                   text: "View",
                   function: () {
-                    viewPatient(i);
+                    viewPatientNum = i;
                   },
                   navFunction: navigate,
                   context: context,
@@ -404,13 +409,10 @@ Widget listPatientsSearch(int i, BuildContext context) {
 }
 
 void nextPage() {
-  if ((pageNum * 9) + 1 < searchedPatients.length / 9) pageNum++;
+  if ((pageNum * patientsPerPage) <
+      searchedPatients.length - 1 / patientsPerPage) pageNum++;
 }
 
 void prevPage() {
   if (pageNum != 0) pageNum--;
-}
-
-void viewPatient(int i) {
-  viewPatientNum = i;
 }

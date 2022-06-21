@@ -10,6 +10,7 @@ import '/global_variables.dart';
 
 var viewPatientNum = 0;
 PatientObject viewPatient = PatientObject();
+bool fromSearch = true;
 
 class PatientViewPage extends StatefulWidget {
   const PatientViewPage({Key? key}) : super(key: key);
@@ -183,11 +184,11 @@ Widget patientInfo(BuildContext context, int i) {
                     color: Colors.white),
                 height: 40,
                 width: 130,
-                color: const Color(0xff4b39ef),
+                color: Color(0xFF4B39EF),
                 text: "Back",
                 navFunction: navigate,
                 context: context,
-                page: const SearchPatientPage(),
+                page: const ICDCDesktop(),
                 function: placeholder,
               ),
             ),
@@ -315,7 +316,6 @@ Widget treatmentRows(BuildContext context) {
 }
 
 Widget listTreatments(int n) {
-  int i = (pageNum * 5) + n;
   return Padding(
     padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
     child: Row(
@@ -326,7 +326,7 @@ Widget listTreatments(int n) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 4, 0),
               child: Text(
-                viewPatient.dentalRecords[i].toothNum.toString(),
+                viewPatient.dentalRecords[n].toothNum.toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -339,7 +339,7 @@ Widget listTreatments(int n) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                viewPatient.dentalRecords[i].surface.toString(),
+                viewPatient.dentalRecords[n].surface.toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -352,7 +352,7 @@ Widget listTreatments(int n) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                viewPatient.dentalRecords[i].description.toString(),
+                viewPatient.dentalRecords[n].description.toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -365,7 +365,7 @@ Widget listTreatments(int n) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                viewPatient.dentalRecords[i].transDate.toString(),
+                viewPatient.dentalRecords[n].transDate.toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -378,7 +378,7 @@ Widget listTreatments(int n) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 8, 0),
               child: Text(
-                viewPatient.dentalRecords[i].fee.toString(),
+                viewPatient.dentalRecords[n].fee.toString(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -389,10 +389,6 @@ Widget listTreatments(int n) {
       ],
     ),
   );
-}
-
-void test() {
-  print("test button");
 }
 
 void addTreatmentButton() {
@@ -419,57 +415,4 @@ void removeTreatmentButton() {
 void enterPatientInfo() {
   isEditPatient = true;
   viewPatient = searchedPatients[viewPatientNum];
-
-  /*
-  patient.name = nameController.text;
-  patient.bday = bdayController.text;
-  patient.contact = contactController.text;
-  patient.sex = sexController.text;
-  patient.marital = maritalController.text;
-  patient.address = addressController.text;
-
-  try {
-    addTreatmentButton();
-    // ignore: empty_catches
-  } catch (Exception) {}
-
-  addPatient(patient);
-  listPatients.add(patient);
-
-  // enter patient information to database after from here
-
-  print("Name: " + patient.name);
-  print("Birthday: " + patient.bday);
-  print("Marital: " + patient.marital);
-  print("Sex: " + patient.sex);
-  print("Contact Number: " + patient.contact);
-  print("Address: " + patient.address);
-
-  for (int i = 1; i <= patient.dentalRecords.length; ++i) {
-    print("-------------------------------------------------------------");
-    print("Dental Record #$i:");
-    print("Tooth Num: " + patient.dentalRecords[i - 1].toothNum.toString());
-    print("Surface: " + patient.dentalRecords[i - 1].surface);
-    print("Service or Treatment: " + patient.dentalRecords[i - 1].description);
-    print("Transaction Date: " +
-        patient.dentalRecords[i - 1].transDate.toString());
-    print("Fee: " + patient.dentalRecords[i - 1].fee.toString());
-    print("-------------------------------------------------------------");
-  }
-  // to here
-
-  nameController.clear();
-  bdayController.clear();
-  contactController.clear();
-  sexController.clear();
-  maritalController.clear();
-  addressController.clear();
-  toothNumController.clear();
-  surfaceController.clear();
-  serviceController.clear();
-  dateController.clear();
-  feeController.clear();
-
-  patient = PatientObject();
-  */
 }

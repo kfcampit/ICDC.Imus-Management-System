@@ -32,6 +32,8 @@ bool editPressed = false;
 String addSaveButton = "Add Item";
 //check inventory
 
+int patientsPerPage = 5;
+
 PatientObject patient = PatientObject();
 
 List<PatientObject> listPatients = [];

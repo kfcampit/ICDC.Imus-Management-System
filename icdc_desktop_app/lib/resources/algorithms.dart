@@ -127,7 +127,7 @@ PatientObject sortTreatment(PatientObject patientObject) {
         .add(records.firstWhere((element) => element.transDate == time));
   }
 
-  patientObject.dentalRecords = sortedRecords;
+  patientObject.dentalRecords = sortedRecords.reversed.toList();
 
   return patientObject;
 }
@@ -163,7 +163,7 @@ List<PatientObject> sortPatientsDate() {
   List<String> patientIdsList = [];
 
   for (PatientObject patient in records) {
-    mainList.add(patient.dentalRecords[0].transDate);
+    mainList.add(patient.dentalRecords.last.transDate);
     patientIdsList.add(patient.patientID);
   }
 
@@ -172,12 +172,15 @@ List<PatientObject> sortPatientsDate() {
   print("After: $mainList");
 
   for (int time in mainList) {
-    sortedPatients.add(records.firstWhere((element) =>
-        element.dentalRecords[0].transDate == time &&
-        !patientIdsList.contains(element.patientID)));
+    var temp = records
+        .where((element) => element.dentalRecords.last.transDate == time)
+        .toList();
+
+    sortedPatients.addAll(temp);
   }
 
-  return sortedPatients;
+  print(sortedPatients);
+  return sortedPatients.reversed.toList();
 }
 
 //SORT PATIENTS BY TREATMENT

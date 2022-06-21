@@ -1,6 +1,7 @@
 import 'package:firedart/firedart.dart';
 import 'package:flutter/material.dart';
 import 'package:icdc_desktop_app/check-inventory.dart';
+import 'package:icdc_desktop_app/patient-view.dart';
 import 'package:icdc_desktop_app/recent-patients.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
 import 'package:icdc_desktop_app/patient-entry.dart';
@@ -119,7 +120,7 @@ Widget homePageWidget(BuildContext context) {
                 navFunction: navigate,
                 function: placeholder,
                 context: context,
-                page: const RecentPatients(),
+                page: const RecentPatientsPage(),
                 start: 8,
                 top: 8,
                 end: 8,
@@ -177,7 +178,7 @@ Widget sidebarWidget(BuildContext context) {
               iconName: Icons.access_time,
               function: navigate,
               context: context,
-              page: const RecentPatients()),
+              page: const RecentPatientsPage()),
           sideBarButtonIcon(
               iconName: Icons.inbox_sharp,
               function: navigate,
@@ -199,5 +200,15 @@ void navigate(BuildContext context, Widget object) {
   if (object == const PatientEntryPage()) {
     isEditPatient = false;
   }
+
+  if (fromSearch && object == const SearchPatientPage()) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => object));
+    return;
+  } else if (!fromSearch && object == const SearchPatientPage()) {
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => const RecentPatientsPage()));
+    return;
+  }
+
   Navigator.of(context).push(MaterialPageRoute(builder: (context) => object));
 }
