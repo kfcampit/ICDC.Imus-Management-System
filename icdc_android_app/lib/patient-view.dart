@@ -4,6 +4,8 @@ import 'package:icdc_android_app/search-patients.dart';
 import 'package:icdc_android_app/resources/global_variables.dart';
 import 'package:icdc_android_app/resources/custom-widgets.dart';
 
+import 'main.dart';
+
 var dropdownValue;
 var viewPatientNum = 0;
 var viewPatient = PatientObject();
@@ -31,6 +33,16 @@ class PatientView extends State<PatientViewPage> {
       ),
       home: Scaffold(
         appBar: AppBar(
+          leading: GestureDetector(
+              onTap: () {
+                searchController.clear();
+                isSearching = false;
+                navigate(context, const SearchPatients());
+              },
+              child: const Icon(
+                Icons.arrow_back
+              ),
+            ),
           title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -51,12 +63,6 @@ class PatientView extends State<PatientViewPage> {
                           width: 40,
                           height: 40,
                         ),
-                        const Text("ICDC - IMUS",
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20,
-                          ),),
                       ],
                     ))
               ]

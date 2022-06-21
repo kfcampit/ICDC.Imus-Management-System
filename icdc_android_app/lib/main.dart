@@ -69,12 +69,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         width: 40,
                         height: 40,
                         ),
-                      const Text("ICDC - IMUS",
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 20,
-                        ),),
                     ],
                   ))
                 ]

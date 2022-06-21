@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icdc_android_app/resources/appointment_object.dart';
 import 'package:icdc_android_app/resources/global_variables.dart';
+import 'main.dart';
 
 class OpenAppointments extends StatefulWidget{
   const OpenAppointments({Key? key}) : super(key: key);
@@ -39,6 +40,14 @@ class OpenAppointmentsPage extends State<OpenAppointments>{
         ),
         home: Scaffold(
           appBar: AppBar(
+            leading: GestureDetector(
+              onTap: () {
+                navigate(context, const MyHomePage(title: 'Flutter Demo Home Page'));
+              },
+              child: const Icon(
+                Icons.arrow_back
+              ),
+            ),
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -59,12 +68,6 @@ class OpenAppointmentsPage extends State<OpenAppointments>{
                         width: 40,
                         height: 40,
                         ),
-                      const Text("ICDC - IMUS",
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 20,
-                        ),),
                     ],
                   ))
                 ]
