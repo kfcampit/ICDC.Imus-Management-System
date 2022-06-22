@@ -26,11 +26,11 @@ List<ItemObject> inventoryItems = [];
 
 TextEditingController itemController = TextEditingController();
 TextEditingController quantityController = TextEditingController();
+TextEditingController numRowsPerPage = TextEditingController();
 
 int editNumber = inventoryItems.length;
 bool editPressed = false;
 String addSaveButton = "Add Item";
-//check inventory
 
 int patientsPerPage = 5;
 

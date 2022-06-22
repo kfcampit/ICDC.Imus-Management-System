@@ -19,6 +19,7 @@ Future<void> main() async {
   Firestore.initialize(projectId);
   await loadPatients();
   await readInventoryData();
+  await readSettings();
   runApp(const ICDCDesktop());
 }
 
@@ -29,7 +30,7 @@ class ICDCDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Clinic Management System',
         theme: ThemeData(
           primaryColor: const Color(0xff4b39ef),
         ),

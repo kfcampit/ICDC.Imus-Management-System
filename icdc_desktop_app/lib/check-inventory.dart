@@ -456,9 +456,6 @@ void editItem(int itemNumber) {
 
   itemController.text = inventoryItems[itemNumber].name;
   quantityController.text = inventoryItems[itemNumber].quantity.toString();
-
-  print("Name: " + inventoryItems[itemNumber].name);
-  print("Quantity: " + inventoryItems[itemNumber].quantity.toString());
 }
 
 void addItem() {
@@ -475,13 +472,6 @@ void addItem() {
   }
 
   editPressed = false;
-
-  // Dito ipapasok yung list of item objects sa database
-  for (var object in inventoryItems) {
-    print("---------------------------------------------");
-    print("Item: " + object.name);
-    print("Quantity: " + object.quantity.toString());
-  }
 
   itemController.clear();
   quantityController.clear();

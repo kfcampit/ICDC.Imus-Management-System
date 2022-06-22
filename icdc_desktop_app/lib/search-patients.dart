@@ -32,7 +32,6 @@ class SearchPatient extends State<SearchPatientPage> {
 
     if (!isSearching && pageNum == 0) {
       searchedPatients = sortPatients();
-      print(searchedPatients.length);
     }
   }
 
@@ -303,8 +302,6 @@ Widget searchContents(BuildContext context) {
 }
 
 Future<void> searchPatientsButton() async {
-  print("test");
-  await saveToCSV();
   if (dropdownValue == '  Name') {
     searchedPatients = searchPatientsName(searchController.text);
   } else if (dropdownValue == '  Treatment') {
@@ -412,8 +409,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
 }
 
 void nextPage() {
-  if ((pageNum * patientsPerPage) <
-      searchedPatients.length - 1 / patientsPerPage) pageNum++;
+  if (((pageNum + 1) * patientsPerPage) < searchedPatients.length) pageNum++;
 }
 
 void prevPage() {

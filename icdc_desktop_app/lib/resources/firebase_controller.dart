@@ -11,7 +11,6 @@ Firestore db = Firestore.instance;
 
 Future<void> loadPatients() async {
   var fromDB = await db.collection('patients').get();
-  print(fromDB);
 
   for (int i = 0; i < fromDB.length; i++) {
     PatientObject patient = PatientObject();
@@ -130,13 +129,6 @@ Future<void> editPatient(String patientId, PatientObject patientObject) async {
 
   listPatients.removeWhere((element) => element.patientID == patientId);
   listPatients.add(patientObject);
-}
-
-void checkListPatients() {
-  print(listPatients.length);
-  for (var patient in listPatients) {
-    print(patient.name);
-  }
 }
 
 int getNumPatients() {

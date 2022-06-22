@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:icdc_desktop_app/main.dart';
 import 'package:icdc_desktop_app/patient-view.dart';
 import 'package:icdc_desktop_app/resources/algorithms.dart';
+import 'package:icdc_desktop_app/resources/csv_controller.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
 import 'package:icdc_desktop_app/resources/firebase_controller.dart';
 import 'package:icdc_desktop_app/resources/patient_object.dart';
@@ -677,10 +678,6 @@ Widget inputTreatment(BuildContext context) {
   );
 }
 
-void test() {
-  print("test button");
-}
-
 void addTreatmentButton() {
   DentalRecord dental = DentalRecord();
 
@@ -718,30 +715,8 @@ void enterPatientInfo() {
   if (!isEditPatient) {
     addPatient(patient);
   } else {
-    print(patient.dentalRecords);
     editPatient(patient.patientID, patient);
   }
-
-  /*
-  print("Name: " + patient.name);
-  print("Birthday: " + patient.bday);
-  print("Marital: " + patient.marital);
-  print("Sex: " + patient.sex);
-  print("Contact Number: " + patient.contact);
-  print("Address: " + patient.address);
-
-  for (int i = 1; i <= patient.dentalRecords.length; ++i) {
-    print("-------------------------------------------------------------");
-    print("Dental Record #$i:");
-    print("Tooth Num: " + patient.dentalRecords[i - 1].toothNum.toString());
-    print("Surface: " + patient.dentalRecords[i - 1].surface);
-    print("Service or Treatment: " + patient.dentalRecords[i - 1].description);
-    print("Transaction Date: " +
-        patient.dentalRecords[i - 1].transDate.toString());
-    print("Fee: " + patient.dentalRecords[i - 1].fee.toString());
-    print("-------------------------------------------------------------");
-  }
-  */
 
   nameController.clear();
   bdayController.clear();
@@ -754,6 +729,8 @@ void enterPatientInfo() {
   serviceController.clear();
   dateController.clear();
   feeController.clear();
+
+  saveToCSV();
 
   patient = PatientObject();
   isEditPatient = false;

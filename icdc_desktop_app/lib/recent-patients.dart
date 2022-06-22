@@ -290,8 +290,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
 }
 
 void nextPage() {
-  if ((pageNum * patientsPerPage) <
-      searchedPatients.length - 1 / patientsPerPage) pageNum++;
+  if (((pageNum + 1) * patientsPerPage) < searchedPatients.length) pageNum++;
 }
 
 void prevPage() {

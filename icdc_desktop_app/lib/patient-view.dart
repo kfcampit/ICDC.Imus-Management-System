@@ -376,27 +376,6 @@ Widget listTreatments(int n) {
   );
 }
 
-void addTreatmentButton() {
-  DentalRecord dental = DentalRecord();
-
-  dental.toothNum = toothNumController.text;
-  dental.surface = surfaceController.text;
-  dental.description = serviceController.text;
-  dental.transDate = int.parse(dateController.text);
-  dental.fee = int.parse(feeController.text);
-  patient.dentalRecords.add(dental);
-
-  toothNumController.clear();
-  surfaceController.clear();
-  serviceController.clear();
-  dateController.clear();
-  feeController.clear();
-}
-
-void removeTreatmentButton() {
-  print("REMOVE TREATMENT");
-}
-
 void enterPatientInfo() {
   isEditPatient = true;
   viewPatient = searchedPatients[viewPatientNum];
