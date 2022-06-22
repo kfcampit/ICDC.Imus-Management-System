@@ -60,8 +60,8 @@ Future<void> saveInventoryData() async {
 Future<void> readInventoryData() async {
   String saveDirectory = (await getApplicationDocumentsDirectory()).path;
   var path = "$saveDirectory/ICDC-Imus-CMS/inventory.csv";
-  final File file = new File(path);
 
+  final File file = File(path);
   file.create(recursive: true);
 
   final csvFile = file.openRead();
@@ -71,7 +71,7 @@ Future<void> readInventoryData() async {
       .transform(const CsvToListConverter())
       .toList();
 
-  dataTable.removeAt(0);
+  if (dataTable.isNotEmpty) dataTable.removeAt(0);
   for (List<dynamic> row in dataTable) {
     inventoryItems.add(ItemObject(row[0], row[1]));
   }
@@ -95,7 +95,7 @@ Future<void> saveSettings() async {
 Future<void> readSettings() async {
   String saveDirectory = (await getApplicationDocumentsDirectory()).path;
   var path = "$saveDirectory/ICDC-Imus-CMS/settings.csv";
-  final File file = new File(path);
+  final File file = File(path);
 
   file.create(recursive: true);
 
@@ -106,7 +106,7 @@ Future<void> readSettings() async {
       .transform(const CsvToListConverter())
       .toList();
 
-  dataTable.removeAt(0);
+  if (dataTable.isNotEmpty) dataTable.removeAt(0);
   for (List<dynamic> row in dataTable) {
     patientsPerPage = row[0];
   }
