@@ -10,13 +10,15 @@ import 'package:icdc_desktop_app/global_variables.dart';
 import 'package:icdc_desktop_app/search-patients.dart';
 import 'package:icdc_desktop_app/settings.dart';
 
+import 'resources/csv_controller.dart';
+
 const apiKey = "AIzaSyBHcnxX4cPlcl1vgivb8G7p4jvXn0U9fYc";
 const projectId = 'icdc-imus-cms';
 
 Future<void> main() async {
   Firestore.initialize(projectId);
   await loadPatients();
-  checkListPatients();
+  await readInventoryData();
   runApp(const ICDCDesktop());
 }
 
@@ -196,18 +198,9 @@ Widget sidebarWidget(BuildContext context) {
   );
 }
 
-void navigate(BuildContext context, Widget object) {
+Future<void> navigate(BuildContext context, Widget object) async {
   if (object == const PatientEntryPage()) {
     isEditPatient = false;
-  }
-
-  if (fromSearch && object == const SearchPatientPage()) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => object));
-    return;
-  } else if (!fromSearch && object == const SearchPatientPage()) {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => const RecentPatientsPage()));
-    return;
   }
 
   Navigator.of(context).push(MaterialPageRoute(builder: (context) => object));

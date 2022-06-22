@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icdc_desktop_app/main.dart';
 import 'package:icdc_desktop_app/patient-view.dart';
+import 'package:icdc_desktop_app/resources/algorithms.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
 import 'package:icdc_desktop_app/resources/firebase_controller.dart';
 import 'package:icdc_desktop_app/resources/patient_object.dart';
@@ -549,7 +550,7 @@ Widget listTreatments(int i, BuildContext context) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                patient.dentalRecords[i].transDate.toString(),
+                unixToString(patient.dentalRecords[i].transDate),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -686,7 +687,7 @@ void addTreatmentButton() {
   dental.toothNum = toothNumController.text;
   dental.surface = surfaceController.text;
   dental.description = serviceController.text;
-  dental.transDate = int.parse(dateController.text);
+  dental.transDate = stringToUnix(dateController.text);
   dental.fee = int.parse(feeController.text);
   patient.dentalRecords.add(dental);
 

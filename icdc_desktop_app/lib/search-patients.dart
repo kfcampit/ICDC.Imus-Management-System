@@ -5,6 +5,7 @@ import 'package:icdc_desktop_app/main.dart';
 import 'package:icdc_desktop_app/patient-entry.dart';
 import 'package:icdc_desktop_app/patient-view.dart';
 import 'package:icdc_desktop_app/resources/algorithms.dart';
+import 'package:icdc_desktop_app/resources/csv_controller.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
 import 'package:icdc_desktop_app/resources/firebase_controller.dart';
 import 'package:icdc_desktop_app/resources/patient_object.dart';
@@ -26,6 +27,7 @@ class SearchPatient extends State<SearchPatientPage> {
   @override
   void initState() {
     super.initState();
+
     dropdownValue = "  Name";
 
     if (!isSearching && pageNum == 0) {
@@ -300,8 +302,9 @@ Widget searchContents(BuildContext context) {
   );
 }
 
-void searchPatientsButton() {
+Future<void> searchPatientsButton() async {
   print("test");
+  await saveToCSV();
   if (dropdownValue == '  Name') {
     searchedPatients = searchPatientsName(searchController.text);
   } else if (dropdownValue == '  Treatment') {
@@ -374,7 +377,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                searchedPatients[i].dentalRecords.last.transDate.toString(),
+                unixToString(searchedPatients[i].dentalRecords.last.transDate),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,

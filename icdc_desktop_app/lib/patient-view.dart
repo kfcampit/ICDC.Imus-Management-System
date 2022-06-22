@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icdc_desktop_app/main.dart';
 import 'package:icdc_desktop_app/patient-entry.dart';
+import 'package:icdc_desktop_app/resources/algorithms.dart';
 import 'package:icdc_desktop_app/resources/custom-widgets.dart';
 import 'package:icdc_desktop_app/resources/firebase_controller.dart';
 import 'package:icdc_desktop_app/resources/patient_object.dart';
@@ -67,6 +68,14 @@ Widget patientEntryPageWidgets(BuildContext context) {
   );
 }
 
+TextStyle patientInfoStyle() {
+  return const TextStyle(
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w500,
+      fontSize: 18,
+      color: Colors.black);
+}
+
 Widget patientInfo(BuildContext context, int i) {
   return Column(
     mainAxisSize: MainAxisSize.max,
@@ -82,11 +91,7 @@ Widget patientInfo(BuildContext context, int i) {
                   child: Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 16, 0),
                     child: Text(viewPatient.name.toString(),
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                        )),
+                        textAlign: TextAlign.left, style: patientInfoStyle()),
                   )),
               Expanded(
                 flex: 2,
@@ -96,11 +101,7 @@ Widget patientInfo(BuildContext context, int i) {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(8, 0, 16, 0),
                       child: Text(viewPatient.bday.toString(),
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          )),
+                          textAlign: TextAlign.left, style: patientInfoStyle()),
                     )),
               ),
               Expanded(
@@ -111,11 +112,7 @@ Widget patientInfo(BuildContext context, int i) {
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(8, 0, 16, 0),
                       child: Text(viewPatient.marital.toString(),
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          )),
+                          textAlign: TextAlign.left, style: patientInfoStyle()),
                     )),
               ),
               Expanded(
@@ -123,11 +120,7 @@ Widget patientInfo(BuildContext context, int i) {
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
                   child: Text(viewPatient.sex.toString(),
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                      )),
+                      textAlign: TextAlign.left, style: patientInfoStyle()),
                 ),
               ),
               Expanded(
@@ -135,11 +128,7 @@ Widget patientInfo(BuildContext context, int i) {
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                   child: Text(viewPatient.contact.toString(),
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                      )),
+                      textAlign: TextAlign.left, style: patientInfoStyle()),
                 ),
               ),
             ]),
@@ -157,11 +146,7 @@ Widget patientInfo(BuildContext context, int i) {
           children: [
             Expanded(
               child: Text(viewPatient.address.toString(),
-                  textAlign: TextAlign.left,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                  )),
+                  textAlign: TextAlign.left, style: patientInfoStyle()),
             ),
           ],
         ),
@@ -365,7 +350,7 @@ Widget listTreatments(int n) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                viewPatient.dentalRecords[n].transDate.toString(),
+                unixToString(viewPatient.dentalRecords[n].transDate),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,

@@ -4,6 +4,7 @@ import 'package:icdc_desktop_app/resources/custom-widgets.dart';
 import 'package:icdc_desktop_app/resources/item_object.dart';
 import 'dart:core';
 import 'global_variables.dart';
+import 'resources/csv_controller.dart';
 
 class CheckInventory extends StatefulWidget {
   const CheckInventory({Key? key}) : super(key: key);
@@ -127,7 +128,6 @@ Widget categories(BuildContext context) {
 Widget itemRows(BuildContext context) {
   List<Widget> widgetList = [];
   int n = inventoryItems.length;
-
   if (editPressed) {
     addSaveButton = "Save Item";
     for (int i = 0; i < n; i++) {
@@ -485,4 +485,5 @@ void addItem() {
 
   itemController.clear();
   quantityController.clear();
+  saveInventoryData();
 }

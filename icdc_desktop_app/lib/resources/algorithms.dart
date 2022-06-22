@@ -221,9 +221,6 @@ List<PatientObject> searchPatientsName(String searchTerm) {
   int endIndex = records.lastIndexWhere((element) =>
       element.name.toLowerCase().contains(searchTerm.toLowerCase()));
 
-  print(startIndex);
-  print(endIndex);
-
   if (startIndex == endIndex) {
     List<PatientObject> searched = [];
     searched.add(records[startIndex]);
@@ -248,9 +245,6 @@ List<PatientObject> searchPatientsDate(int searchTerm) {
       element.dentalRecords
           .indexWhere((element) => element.transDate == searchTerm) !=
       -1);
-
-  print(startIndex);
-  print(endIndex);
 
   if (startIndex == endIndex) {
     List<PatientObject> searched = [];
@@ -279,13 +273,26 @@ List<PatientObject> searchPatientsTreatment(String searchTerm) {
           .contains(searchTerm.toLowerCase())) !=
       -1);
 
-  print(startIndex);
-  print(endIndex);
-
   if (startIndex == endIndex) {
     List<PatientObject> searched = [];
     searched.add(records[startIndex]);
     return searched;
   }
   return records.getRange(startIndex, endIndex + 1).toList();
+}
+
+int stringToUnix(String date) {
+  List<String> dateList = date.split('-');
+  return DateTime.utc(int.parse(dateList[2]), int.parse(dateList[0]),
+          int.parse(dateList[1]))
+      .microsecondsSinceEpoch;
+}
+
+String unixToString(int unix) {
+  DateTime date = DateTime.fromMicrosecondsSinceEpoch(unix);
+  return (date.month.toString() +
+      '-' +
+      date.day.toString() +
+      '-' +
+      date.year.toString());
 }
