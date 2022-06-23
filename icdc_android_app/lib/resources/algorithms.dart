@@ -283,3 +283,19 @@ List<PatientObject> searchPatientsTreatment(String searchTerm) {
   }
   return records.getRange(startIndex, endIndex + 1).toList();
 }
+
+int stringToUnix(String date) {
+  List<String> dateList = date.split('-');
+  return DateTime.utc(int.parse(dateList[2]), int.parse(dateList[0]),
+          int.parse(dateList[1]))
+      .microsecondsSinceEpoch;
+}
+
+String unixToString(int unix) {
+  DateTime date = DateTime.fromMicrosecondsSinceEpoch(unix);
+  return (date.month.toString() +
+      '-' +
+      date.day.toString() +
+      '-' +
+      date.year.toString());
+}

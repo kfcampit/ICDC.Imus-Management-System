@@ -3,6 +3,7 @@ import 'package:icdc_android_app/resources/patient_object.dart';
 import 'package:icdc_android_app/search-patients.dart';
 import 'package:icdc_android_app/resources/global_variables.dart';
 import 'package:icdc_android_app/resources/custom-widgets.dart';
+import 'package:icdc_android_app/resources/algorithms.dart';
 
 import 'main.dart';
 
@@ -472,7 +473,7 @@ class PatientView extends State<PatientViewPage> {
               child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
                 child: Text(
-                  viewPatient.dentalRecords[n].transDate.toString(),
+                  unixToString(viewPatient.dentalRecords[n].transDate),
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontWeight: FontWeight.w500,
