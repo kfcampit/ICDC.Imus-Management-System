@@ -308,6 +308,8 @@ void prevPage() {
 
 void viewPatient(int i) {
   viewPatientNum = i;
+  patient.name = "Test Name".toString();
+
 }
 
 Widget listPatientsSearch(int i, BuildContext context) {
@@ -371,7 +373,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
                   iconSize: 18,
                   onPressed: () {
                     viewPatient(i);
-                    Navigator.push(context, MaterialPageRoute(builder: ((context) => PatientViewPage())));
+                    Navigator.push(context, MaterialPageRoute(builder: ((context) => const PatientViewPage())));
                   },            
                 ),
               ),

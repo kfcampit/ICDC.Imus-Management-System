@@ -1,7 +1,12 @@
+import 'dart:convert';
+
+import 'package:firedart/auth/user_gateway.dart';
 import 'package:flutter/material.dart';
 import 'package:icdc_android_app/resources/appointment_object.dart';
 import 'package:icdc_android_app/resources/global_variables.dart';
+import 'package:icdc_android_app/resources/google_sheets_api.dart';
 import 'main.dart';
+import 'package:gsheets/gsheets.dart';
 
 class OpenAppointments extends StatefulWidget{
   const OpenAppointments({Key? key}) : super(key: key);
@@ -9,6 +14,7 @@ class OpenAppointments extends StatefulWidget{
   @override
   OpenAppointmentsPage createState() => OpenAppointmentsPage();
 }
+
 
 class OpenAppointmentsPage extends State<OpenAppointments>{
   @override
@@ -27,8 +33,14 @@ class OpenAppointmentsPage extends State<OpenAppointments>{
     ];
     collectAppointments(sampleList);
     }
-    
+
     super.initState();
+    getInfo(2);
+
+  }
+  Future getInfo(int i) async{
+    final info = await AppointmentSheetsApi.getByID(i);
+    print(info!.toJson());
   }
   
   @override
