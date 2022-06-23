@@ -308,6 +308,8 @@ void prevPage() {
 
 void viewPatient(int i) {
   viewPatientNum = i;
+  patient.name = "Test Name".toString();
+
 }
 
 Widget listPatientsSearch(int i, BuildContext context) {
@@ -347,7 +349,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                searchedPatients[i].dentalRecords.last.transDate.toString(),
+                unixToString(searchedPatients[i].dentalRecords.last.transDate),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
@@ -371,7 +373,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
                   iconSize: 18,
                   onPressed: () {
                     viewPatient(i);
-                    Navigator.push(context, MaterialPageRoute(builder: ((context) => PatientViewPage())));
+                    Navigator.push(context, MaterialPageRoute(builder: ((context) => const PatientViewPage())));
                   },            
                 ),
               ),
