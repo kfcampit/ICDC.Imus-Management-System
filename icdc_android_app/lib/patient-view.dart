@@ -84,234 +84,239 @@ class PatientView extends State<PatientViewPage> {
   }
 
   Widget patientInfo(BuildContext context, int i) {
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 0),
-          child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Expanded(
-                  flex: 0,
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                    child: Text('Name: ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xff4b39ef),
-                          fontSize: 25,
-
-                        )),
-                  ),
-                ),
-                Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                      child: Text(viewPatient.name.toString(),
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 25,
-                          )),
-                    )),
-              ]),
-        ),
-        Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-          child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Expanded(
-                  flex: 0,
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                    child: Text('Birthday: ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xff4b39ef),
-                          fontSize: 16,
-
-                        )),
-                  ),
-                ),
-                Expanded(
-                  flex: 0,
-                  child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+    return Expanded(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 0),
+              child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Expanded(
+                      flex: 0,
                       child: Padding(
-                        padding:
-                        const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                        child: Text(viewPatient.bday.toString(),
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        child: Text('Name: ',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xff4b39ef),
+                              fontSize: 20,
+
+                            )),
+                      ),
+                    ),
+                    Expanded(
+                        flex: 0,
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                          child: Text(viewPatient.name.toString(),
+                              textAlign: TextAlign.left,
+                              style: const TextStyle(
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 20,
+                              )),
+                        )),
+                  ]),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+              child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Expanded(
+                      flex: 0,
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        child: Text('Birthday: ',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xff4b39ef),
+                              fontSize: 16,
+
+                            )),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 0,
+                      child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                          child: Padding(
+                            padding:
+                            const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                            child: Text(viewPatient.bday.toString(),
+                                textAlign: TextAlign.left,
+                                style: const TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                )),
+                          )),
+                    ),
+                  ]),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+              child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Expanded(
+                      flex: 0,
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        child: Text('Sex: ',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xff4b39ef),
+                              fontSize: 16,
+
+                            )),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 0,
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        child: Text(viewPatient.sex.toString(),
                             textAlign: TextAlign.left,
                             style: const TextStyle(
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w500,
                               fontSize: 16,
                             )),
-                      )),
-                ),
-              ]),
-        ),
-        Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-          child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Expanded(
-                  flex: 0,
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                    child: Text('Sex: ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xff4b39ef),
-                          fontSize: 16,
+                      ),
+                    ),
+                  ]),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+              child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Expanded(
+                      flex: 0,
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        child: Text('Contact No.: ',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xff4b39ef),
+                              fontSize: 16,
 
-                        )),
-                  ),
-                ),
-                Expanded(
-                  flex: 0,
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                    child: Text(viewPatient.sex.toString(),
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                        )),
-                  ),
-                ),
-              ]),
-        ),
-        Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-          child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Expanded(
-                  flex: 0,
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                    child: Text('Contact No.: ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xff4b39ef),
-                          fontSize: 16,
+                            )),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 0,
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        child: Text(
+                            viewPatient.contact.toString(),
+                            textAlign: TextAlign.left,
+                            style: const TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            )),
+                      ),
+                    ),
+                  ]),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+              child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Expanded(
+                      flex: 0,
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        child: Text('Marital Status: ',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xff4b39ef),
+                              fontSize: 16,
 
-                        )),
-                  ),
-                ),
-                Expanded(
-                  flex: 0,
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                    child: Text(
-                        viewPatient.contact.toString(),
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                        )),
-                  ),
-                ),
-              ]),
-        ),
-        Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-          child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Expanded(
-                  flex: 0,
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                    child: Text('Marital Status: ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xff4b39ef),
-                          fontSize: 16,
+                            )),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 0,
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        child: Text(
+                            viewPatient.marital.toString(),
+                            textAlign: TextAlign.left,
+                            style: const TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            )),
+                      ),
+                    ),
+                  ]),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+              child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    const Expanded(
+                      flex: 0,
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        child: Text('Address: ',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xff4b39ef),
+                              fontSize: 16,
 
-                        )),
-                  ),
-                ),
-                Expanded(
-                  flex: 0,
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                    child: Text(
-                        viewPatient.marital.toString(),
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                        )),
-                  ),
-                ),
-              ]),
-        ),
-        Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-          child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Expanded(
-                  flex: 0,
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                    child: Text('Address: ',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xff4b39ef),
-                          fontSize: 16,
+                            )),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 0,
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        child: Text(
+                            viewPatient.address.toString(),
+                            textAlign: TextAlign.left,
+                            style: const TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            )),
+                      ),
+                    ),
+                  ]),
+            ),
 
-                        )),
-                  ),
-                ),
-                Expanded(
-                  flex: 0,
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                    child: Text(
-                        viewPatient.address.toString(),
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                        )),
-                  ),
-                ),
-              ]),
-        ),
-
-        treatmentsWidget(context),
-      ],
+            treatmentsWidget(context),
+          ],
+        )
+      ),
     );
+    
   }
 
   Widget treatmentsWidget(BuildContext context) {
