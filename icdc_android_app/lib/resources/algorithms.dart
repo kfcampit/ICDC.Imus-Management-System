@@ -1,7 +1,6 @@
 // ignore_for_file: unrelated_type_equality_checks
 
-import 'package:icdc_android_app/resources/global_variables.dart';
-import 'package:icdc_android_app/main.dart';
+import 'global_variables.dart';
 import 'patient_object.dart';
 
 void swap(List<int> l, int i, int j) {
@@ -117,16 +116,14 @@ PatientObject sortTreatment(PatientObject patientObject) {
     mainList.add(dentalRecord.transDate);
   }
 
-  // print("Before: $mainList");
   sort(mainList, 0, mainList.length - 1);
-  // print("After: $mainList");
 
   for (int time in mainList) {
     sortedRecords
         .add(records.firstWhere((element) => element.transDate == time));
   }
 
-  patientObject.dentalRecords = sortedRecords;
+  patientObject.dentalRecords = sortedRecords.reversed.toList();
 
   return patientObject;
 }
@@ -141,16 +138,14 @@ List<PatientObject> sortPatients() {
     mainList.add(patient.name);
   }
 
-  // print("Before: $mainList");
   sortString(mainList, 0, mainList.length - 1);
-  // print("After: $mainList");
+  print(mainList);
 
   for (String name in mainList) {
     sortedRecords.add(records.firstWhere((element) => element.name == name));
   }
 
-  // print(sortedRecords[0].name);
-
+  print(sortedRecords);
   return sortedRecords;
 }
 
@@ -162,21 +157,21 @@ List<PatientObject> sortPatientsDate() {
   List<String> patientIdsList = [];
 
   for (PatientObject patient in records) {
-    mainList.add(patient.dentalRecords[0].transDate);
+    mainList.add(patient.dentalRecords.last.transDate);
     patientIdsList.add(patient.patientID);
   }
 
-  // print("Before: $mainList");
   sort(mainList, 0, mainList.length - 1);
-  // print("After: $mainList");
 
-  for (int time in mainList) {
-    sortedPatients.add(records.firstWhere((element) =>
-        element.dentalRecords[0].transDate == time &&
-        !patientIdsList.contains(element.patientID)));
+  for (int time in mainList.toSet().toList()) {
+    var temp = records
+        .where((element) => element.dentalRecords.last.transDate == time)
+        .toList();
+
+    sortedPatients.addAll(temp);
   }
 
-  return sortedPatients;
+  return sortedPatients.reversed.toList();
 }
 
 //SORT PATIENTS BY TREATMENT
@@ -191,13 +186,11 @@ List<PatientObject> sortPatientsTreatment() {
     patientIdsList.add(patient.patientID);
   }
 
-  // print("Before: $mainList");
   sortString(mainList, 0, mainList.length - 1);
-  // print("After: $mainList");
 
   for (String time in mainList) {
     sortedPatients.add(records.firstWhere((element) =>
-        element.dentalRecords[0].transDate == time &&
+    element.dentalRecords[0].transDate == time &&
         !patientIdsList.contains(element.patientID)));
   }
 
@@ -206,34 +199,19 @@ List<PatientObject> sortPatientsTreatment() {
 
 List<PatientObject> searchPatientsName(String searchTerm) {
   List<PatientObject> records = sortPatients();
-
-  int startIndex =
-      records.indexWhere((element) => element.name.contains(searchTerm));
-
-  if (startIndex == -1) {
-    return records;
+  List<PatientObject> searched = [];
+  for (PatientObject patient in records) {
+    if (patient.name.contains(searchTerm)) searched.add(patient);
   }
-
-  int endIndex =
-      records.lastIndexWhere((element) => element.name.contains(searchTerm));
-
-  // print(startIndex);
-  // print(endIndex);
-
-  if (startIndex == endIndex) {
-    List<PatientObject> searched = [];
-    searched.add(records[startIndex]);
-    return searched;
-  }
-  return records.getRange(startIndex, endIndex + 1).toList();
+  return searched;
 }
 
 List<PatientObject> searchPatientsDate(int searchTerm) {
   List<PatientObject> records = sortPatients();
 
   int startIndex = records.indexWhere((element) =>
-      element.dentalRecords
-          .indexWhere((element) => element.transDate == searchTerm) !=
+  element.dentalRecords
+      .indexWhere((element) => element.transDate == searchTerm) !=
       -1);
 
   if (startIndex == -1) {
@@ -241,12 +219,9 @@ List<PatientObject> searchPatientsDate(int searchTerm) {
   }
 
   int endIndex = records.lastIndexWhere((element) =>
-      element.dentalRecords
-          .indexWhere((element) => element.transDate == searchTerm) !=
+  element.dentalRecords
+      .indexWhere((element) => element.transDate == searchTerm) !=
       -1);
-
-  // print(startIndex);
-  // print(endIndex);
 
   if (startIndex == endIndex) {
     List<PatientObject> searched = [];
@@ -260,8 +235,9 @@ List<PatientObject> searchPatientsTreatment(String searchTerm) {
   List<PatientObject> records = sortPatients();
 
   int startIndex = records.indexWhere((element) =>
-      element.dentalRecords
-          .indexWhere((element) => element.description.contains(searchTerm)) !=
+  element.dentalRecords.indexWhere((element) => element.description
+      .toLowerCase()
+      .contains(searchTerm.toLowerCase())) !=
       -1);
 
   if (startIndex == -1) {
@@ -269,12 +245,10 @@ List<PatientObject> searchPatientsTreatment(String searchTerm) {
   }
 
   int endIndex = records.lastIndexWhere((element) =>
-      element.dentalRecords
-          .indexWhere((element) => element.description.contains(searchTerm)) !=
+  element.dentalRecords.indexWhere((element) => element.description
+      .toLowerCase()
+      .contains(searchTerm.toLowerCase())) !=
       -1);
-
-  // print(startIndex);
-  // print(endIndex);
 
   if (startIndex == endIndex) {
     List<PatientObject> searched = [];
@@ -287,7 +261,7 @@ List<PatientObject> searchPatientsTreatment(String searchTerm) {
 int stringToUnix(String date) {
   List<String> dateList = date.split('-');
   return DateTime.utc(int.parse(dateList[2]), int.parse(dateList[0]),
-          int.parse(dateList[1]))
+      int.parse(dateList[1]))
       .microsecondsSinceEpoch;
 }
 
