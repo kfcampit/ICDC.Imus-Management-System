@@ -259,8 +259,12 @@ Widget displayAppointment(int i, BuildContext context) {
       ));
 }
 
-void removeItem(int index) {
+void removeItem(int index) async {
+  // int rowIndex = int.parse(allAppointmentRows[index][20]) + 1;
+  AppointmentObject apo = appointmentList[index];
+  int rowIndex = apo.rowIndex;
   appointmentList.removeAt(index);
+  await workSheet?.values.insertValue('true', column: 20, row: rowIndex);
 }
 
 void merge(arr, int l, int m, int r) {
@@ -269,8 +273,8 @@ void merge(arr, int l, int m, int r) {
   var n2 = r - m;
 
   /* Create temp arrays */
-  AppointmentObject filler =
-      AppointmentObject("John Doe", "2022-01-01", "00:00", "Cleaning", "false");
+  AppointmentObject filler = AppointmentObject(
+      "John Doe", "2022-01-01", "00:00", "Cleaning", "false", 2);
   List<AppointmentObject> leftList = List.filled(n1.toInt(), filler);
   List<AppointmentObject> rightList = List.filled(n2.toInt(), filler);
 

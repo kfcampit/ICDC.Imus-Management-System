@@ -53,26 +53,31 @@ Future<void> loadAppointments() async {
   // print(allAppointmentRows[1][2]); // Prints name
 
   for (int i = 0; i < allAppointmentRows.length; i++) {
-    // if (allAppointmentRows[i][19].toString()) {
-    String name = allAppointmentRows[i][1];
-    String date = allAppointmentRows[i][18];
+    if (allAppointmentRows[i][19].toString() == 'false') {
+      String name = allAppointmentRows[i][1];
+      String date = allAppointmentRows[i][18];
 
-    var epoch = new DateTime(1899,12,30);
-    var currentDate = epoch.add(new Duration(days: int.parse(date)));
-    date = currentDate.toString().substring(0,10);
+      var epoch = new DateTime(1899, 12, 30);
+      var currentDate = epoch.add(new Duration(days: int.parse(date)));
+      date = currentDate.toString().substring(0, 10);
 
-    String time = allAppointmentRows[i][0];
-    String service = allAppointmentRows[i][17];
-    String status = allAppointmentRows[i][19];
-    // AppointmentObject tempObj = new AppointmentObject(name, date, time, service, status);
-    print(i.toString() + " name: " + name);
-    print(i.toString() + " date: " + date);
-    print(i.toString() + " time: " + time);
-    print(i.toString() + " service: " + service);
-    print(i.toString() + " status: " + status);
-    // }
+      String time = allAppointmentRows[i][0];
+      String service = allAppointmentRows[i][17];
+      String status = allAppointmentRows[i][19];
+      int rowIndex = int.parse(allAppointmentRows[i][20]);
+      int listIndex = i;
+      // String rowIndex = allAppointmentRows[i][20];
+      print(i.toString() + " name: " + name);
+      print(i.toString() + " date: " + date);
+      print(i.toString() + " time: " + time);
+      print(i.toString() + " service: " + service);
+      print(i.toString() + " status: " + status);
+      print(i.toString() + " row: " + rowIndex.toString());
+      appointmentObjList
+          .add(AppointmentObject(name, date, time, service, status, rowIndex));
+    }
     // print("Empty: " + appointmentObjList.isEmpty.toString());
-    appointmentObjList.add(AppointmentObject(name, date, time, service, status));
+
   }
   // var r = await workSheet?.values.row(2);
 }

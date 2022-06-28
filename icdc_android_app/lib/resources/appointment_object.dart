@@ -5,9 +5,10 @@ class AppointmentObject {
   String time = "";
   String service = "";
   String status = "";
+  int rowIndex = 0;
 
-  AppointmentObject(
-      this.name, this.date, this.time, this.service, this.status) {
+  AppointmentObject(this.name, this.date, this.time, this.service, this.status,
+      this.rowIndex) {
     // Convert date format MM-DD-YYYY to YYYY-MM-DD
     // convertDate(date);
     // Convert date to unix

@@ -1,35 +1,46 @@
 import 'package:icdc_android_app/resources/appointment_object.dart';
 
-void main(){
+void main() {
   List appointmentList = [
-    new AppointmentObject("Kobi Rasing", "7-26-2022", "3:00 PM", "Cleaning", "true"),
-    new AppointmentObject("Kyle Campit", "1-24-2022", "9:00 AM", "Cleaning", "true"),
-    new AppointmentObject("Jian Mendoza", "7-14-2022", "9:00 PM", "Cleaning", "true"),
-    new AppointmentObject("Toni Illahi", "9-12-2022", "4:00 PM", "Cleaning", "true"),
-    new AppointmentObject("Jian Mendoza", "7-26-2022", "12:30 PM", "Cleaning", "true"),
-    new AppointmentObject("Steven Obico", "1-24-2022", "1:00 PM", "Cleaning", "true"),
-    new AppointmentObject("Melvin Cabatuan", "6-24-2022", "9:00 AM", "Cleaning", "true"),
-    new AppointmentObject("Edwin Concepcion", "6-24-2022", "6:00 AM", "Cleaning", "true")
-    ];
+    new AppointmentObject(
+        "Kobi Rasing", "7-26-2022", "3:00 PM", "Cleaning", "true", 2),
+    // new AppointmentObject("Kyle Campit", "1-24-2022", "9:00 AM", "Cleaning", "true"),
+    // new AppointmentObject("Jian Mendoza", "7-14-2022", "9:00 PM", "Cleaning", "true"),
+    // new AppointmentObject("Toni Illahi", "9-12-2022", "4:00 PM", "Cleaning", "true"),
+    // new AppointmentObject("Jian Mendoza", "7-26-2022", "12:30 PM", "Cleaning", "true"),
+    // new AppointmentObject("Steven Obico", "1-24-2022", "1:00 PM", "Cleaning", "true"),
+    // new AppointmentObject("Melvin Cabatuan", "6-24-2022", "9:00 AM", "Cleaning", "true"),
+    // new AppointmentObject("Edwin Concepcion", "6-24-2022", "6:00 AM", "Cleaning", "true")
+  ];
 
   print("Before:");
   for (var patient in appointmentList) {
     patient.convertToOriginalDate(patient.date);
     patient.timeTo12Hour(patient.time);
-    print("Patient: " + patient.name + ", Date: " + patient.date + ", Time: " + patient.time);
+    print("Patient: " +
+        patient.name +
+        ", Date: " +
+        patient.date +
+        ", Time: " +
+        patient.time);
     patient.convertDate(patient.date);
     patient.timeTo24Hour(patient.time);
   }
   print("");
 
-  sort(appointmentList, 0, appointmentList.length-1);
+  sort(appointmentList, 0, appointmentList.length - 1);
 
   print("--------------------------------------------------------");
   print("\nAfter:");
   for (var patient in appointmentList) {
     patient.convertToOriginalDate(patient.date);
     patient.timeTo12Hour(patient.time);
-    print("Patient: " + patient.name + ", Date: " + patient.date + ", Time: " + patient.time);
+    print("Patient: " +
+        patient.name +
+        ", Date: " +
+        patient.date +
+        ", Time: " +
+        patient.time);
   }
   print("");
 }
@@ -38,9 +49,10 @@ void merge(arr, int l, int m, int r) {
   // Find sizes of two subarrays to be merged
   var n1 = m - l + 1;
   var n2 = r - m;
-  
+
   /* Create temp arrays */
-  AppointmentObject filler = AppointmentObject("John Doe", "01-01-2022", "00:00", "Cleaning", "true");
+  AppointmentObject filler = AppointmentObject(
+      "John Doe", "01-01-2022", "00:00", "Cleaning", "true", 2);
   List<AppointmentObject> leftList = List.filled(n1.toInt(), filler);
   List<AppointmentObject> rightList = List.filled(n2.toInt(), filler);
 
@@ -64,28 +76,23 @@ void merge(arr, int l, int m, int r) {
     if (leftList[i].date.compareTo(rightList[j].date) < 0) {
       arr[k] = leftList[i];
       i++;
-    } 
-    else if (leftList[i].date.compareTo(rightList[j].date) == 0) {
+    } else if (leftList[i].date.compareTo(rightList[j].date) == 0) {
       if (leftList[i].time.compareTo(rightList[j].time) < 0) {
         arr[k] = leftList[i];
         i++;
-      } 
-      else if (leftList[i].time.compareTo(rightList[j].time) == 0) {
+      } else if (leftList[i].time.compareTo(rightList[j].time) == 0) {
         if (leftList[i].name.compareTo(rightList[j].name) <= 0) {
           arr[k] = leftList[i];
           i++;
-        } 
-        else {
+        } else {
           arr[k] = rightList[j];
           j++;
         }
-      }
-      else {
+      } else {
         arr[k] = rightList[j];
         j++;
       }
-    }
-    else {
+    } else {
       arr[k] = rightList[j];
       j++;
     }
