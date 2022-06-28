@@ -6,12 +6,10 @@ import 'package:icdc_android_app/resources/patient_object.dart';
 
 // open appointments
 List appointmentList = [];
-List<AppointmentObject> temporaryList = [];
 bool firstTimeRun = true;
 var allAppointmentRows = [];
 AppointmentObject filler = AppointmentObject(
     "John Doe", "2022-01-01", "00:00", "Cleaning", "false", 2);
-// List<AppointmentObject> appointmentObjList = List.filled(3, filler);
 var appointmentObjList = [];
 // open appointments
 

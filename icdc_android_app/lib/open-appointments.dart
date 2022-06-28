@@ -22,14 +22,8 @@ class OpenAppointmentsPage extends State<OpenAppointments> {
     if (firstTimeRun) {
       collectAppointments(appointmentObjList);
     }
-
     super.initState();
-    // getInfo(2);
   }
-  // Future getInfo(int i) async{
-  //   final info = await AppointmentSheetsApi.getByID(i);
-  //   print(info!.toJson());
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -198,7 +192,7 @@ Widget displayAppointment(int i, BuildContext context) {
                         ),
                         iconSize: 16,
                         onPressed: () {
-                          removeItem(i);
+                          removeAppointment(i);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -259,10 +253,9 @@ Widget displayAppointment(int i, BuildContext context) {
       ));
 }
 
-void removeItem(int index) async {
-  // int rowIndex = int.parse(allAppointmentRows[index][20]) + 1;
-  AppointmentObject apo = appointmentList[index];
-  int rowIndex = apo.rowIndex;
+void removeAppointment(int index) async {
+  AppointmentObject appointmentObject = appointmentList[index];
+  int rowIndex = appointmentObject.rowIndex;
   appointmentList.removeAt(index);
   await workSheet?.values.insertValue('true', column: 20, row: rowIndex);
 }

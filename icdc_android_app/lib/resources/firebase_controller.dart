@@ -8,11 +8,9 @@ import 'package:icdc_android_app/main.dart';
 // ignore: prefer_typing_uninitialized_variables
 Firestore db = Firestore.instance;
 
-
-
 Future<void> loadPatients() async {
   var fromDB = await db.collection('patients').get();
-  print(fromDB);
+  // print(fromDB);
 
   for (int i = 0; i < fromDB.length; i++) {
     PatientObject patient = PatientObject();
@@ -48,6 +46,7 @@ Future<void> loadPatients() async {
 
     listPatients.add(sortTreatment(patient));
   }
+  print("Successfully loaded all the patients");
 }
 
 void addPatient(PatientObject patientObject) {
@@ -87,9 +86,9 @@ void addPatient(PatientObject patientObject) {
 }
 
 void checkListPatients() {
-  print(listPatients.length);
+  // print(listPatients.length);
   for (var patient in listPatients) {
-    print(patient.name);
+    // print(patient.name);
   }
 }
 
