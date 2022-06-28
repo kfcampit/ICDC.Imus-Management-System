@@ -255,7 +255,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                searchedPatients[i].dentalRecords.last.transDate.toString(),
+                unixToString(searchedPatients[i].dentalRecords.last.transDate),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
