@@ -5,14 +5,17 @@ import 'package:icdc_android_app/resources/firebase_controller.dart';
 import 'package:icdc_android_app/resources/google_sheets_api.dart';
 import 'package:icdc_android_app/search-patients.dart';
 import 'resources/custom-widgets.dart';
+
 const apiKey = "AIzaSyBHcnxX4cPlcl1vgivb8G7p4jvXn0U9fYc";
 const projectId = 'icdc-imus-cms';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Firestore.initialize(projectId);
+  AppointmentSheetsApi.init();
   await loadPatients();
-  checkListPatients();
-  await AppointmentSheetsApi.init();
+  await loadAppointments();
+  // checkListPatients();
+
   runApp(const ICDCAndroid());
 }
 
@@ -52,29 +55,30 @@ class _MyHomePageState extends State<MyHomePage> {
         home: Scaffold(
           appBar: AppBar(
             title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text("Home",
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 26,
-                  ),),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                  child: 
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Image.asset('assets/logo_1.png',
-                        width: 40,
-                        height: 40,
-                        ),
-                    ],
-                  ))
-                ]
-            ),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Home",
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 26,
+                    ),
+                  ),
+                  Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Image.asset(
+                            'assets/logo_1.png',
+                            width: 40,
+                            height: 40,
+                          ),
+                        ],
+                      ))
+                ]),
             foregroundColor: Colors.white,
             backgroundColor: const Color(0xff4b39ef),
             toolbarHeight: 80.0,
@@ -100,18 +104,17 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
-                child: 
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Patient Record and Inventory Management System',
-                      style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                          color: Color(0xff4b39ef)),
-                    ),
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Patient Record and Inventory Management System',
+                    style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
+                        color: Color(0xff4b39ef)),
                   ),
+                ),
               ),
               const Divider(
                 thickness: 2,
@@ -122,33 +125,32 @@ class _MyHomePageState extends State<MyHomePage> {
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 20),
                 child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    roundedButtons(
-                      height: 80, 
-                      width: 200,
-                      bottom: 10,
-                      color: const Color(0xff4b39ef), 
-                      text: "Search Records", 
-                      function: placeholder, 
-                      navFunction: navigate,
-                      context: context,
-                      page: const SearchPatients(),
-                    ),
-                    roundedButtons(
-                      height: 80, 
-                      width: 200, 
-                      bottom: 10,
-                      color: const Color(0xff4b39ef), 
-                      text: "Appointments", 
-                      function: placeholder, 
-                      navFunction: navigate,
-                      context: context,
-                      page: const OpenAppointments(),
-                    ),
-                  ]
-                ),
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      roundedButtons(
+                        height: 80,
+                        width: 200,
+                        bottom: 10,
+                        color: const Color(0xff4b39ef),
+                        text: "Search Records",
+                        function: placeholder,
+                        navFunction: navigate,
+                        context: context,
+                        page: const SearchPatients(),
+                      ),
+                      roundedButtons(
+                        height: 80,
+                        width: 200,
+                        bottom: 10,
+                        color: const Color(0xff4b39ef),
+                        text: "Appointments",
+                        function: placeholder,
+                        navFunction: navigate,
+                        context: context,
+                        page: const OpenAppointments(),
+                      ),
+                    ]),
               ),
             ],
           ),

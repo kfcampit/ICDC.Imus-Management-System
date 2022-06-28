@@ -8,41 +8,45 @@ import 'package:icdc_android_app/resources/google_sheets_api.dart';
 import 'main.dart';
 import 'package:gsheets/gsheets.dart';
 
-class OpenAppointments extends StatefulWidget{
+class OpenAppointments extends StatefulWidget {
   const OpenAppointments({Key? key}) : super(key: key);
 
   @override
   OpenAppointmentsPage createState() => OpenAppointmentsPage();
 }
 
-
-class OpenAppointmentsPage extends State<OpenAppointments>{
+class OpenAppointmentsPage extends State<OpenAppointments> {
   @override
-  void initState(){
+  void initState() {
     /* Sample lang for appointmentList */
-    if(firstTimeRun){
-    List sampleList = [
-      new AppointmentObject("Kobi Rasing", "7-26-2022", "3:00 PM", "Cleaning"),
-      new AppointmentObject("Kyle Campit", "1-24-2022", "9:00 AM", "Pasta"),
-      new AppointmentObject("Jian Mendoza", "7-14-2022", "9:00 PM", "Tooth Extraction"),
-      new AppointmentObject("Toni Illahi", "9-12-2022", "4:00 PM", "Checkup"),
-      new AppointmentObject("Jian Mendoza", "7-26-2022", "12:30 PM", "X-Ray"),
-      new AppointmentObject("Steven Obico", "1-24-2022", "1:00 PM", "Consultation"),
-      new AppointmentObject("Melvin Cabatuan", "6-24-2022", "9:00 AM", "Braces"),
-      new AppointmentObject("Edwin Concepcion", "6-24-2022", "6:00 AM", "Cleaning")
-    ];
-    collectAppointments(sampleList);
+    if (firstTimeRun) {
+      List sampleList = [
+        new AppointmentObject(allAppointmentRows[0][1], "7-26-2022", "3:00 PM",
+            "Cleaning", "false"),
+        new AppointmentObject(
+            "Kyle Campit", "1-24-2022", "9:00 AM", "Extraction", "false"),
+        // new AppointmentObject(
+        //     "Jian Mendoza", "7-14-2022", "9:00 PM", "Tooth Extraction"),
+        // new AppointmentObject("Toni Illahi", "9-12-2022", "4:00 PM", "Checkup"),
+        // new AppointmentObject("Jian Mendoza", "7-26-2022", "12:30 PM", "X-Ray"),
+        // new AppointmentObject(
+        //     "Steven Obico", "1-24-2022", "1:00 PM", "Consultation"),
+        // new AppointmentObject(
+        //     "Melvin Cabatuan", "6-24-2022", "9:00 AM", "Braces"),
+        // new AppointmentObject(
+        //     "Edwin Concepcion", "6-24-2022", "6:00 AM", "Cleaning")
+      ];
+      collectAppointments(sampleList);
     }
 
     super.initState();
-    getInfo(2);
+    // getInfo(2);
+  }
+  // Future getInfo(int i) async{
+  //   final info = await AppointmentSheetsApi.getByID(i);
+  //   print(info!.toJson());
+  // }
 
-  }
-  Future getInfo(int i) async{
-    final info = await AppointmentSheetsApi.getByID(i);
-    print(info!.toJson());
-  }
-  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -54,36 +58,36 @@ class OpenAppointmentsPage extends State<OpenAppointments>{
           appBar: AppBar(
             leading: GestureDetector(
               onTap: () {
-                navigate(context, const MyHomePage(title: 'Flutter Demo Home Page'));
+                navigate(
+                    context, const MyHomePage(title: 'Flutter Demo Home Page'));
               },
-              child: const Icon(
-                Icons.arrow_back
-              ),
+              child: const Icon(Icons.arrow_back),
             ),
             title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text("Appointments",
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 26,
-                  ),),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                  child: 
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Image.asset('assets/logo_1.png',
-                        width: 40,
-                        height: 40,
-                        ),
-                    ],
-                  ))
-                ]
-            ),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Appointments",
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 26,
+                    ),
+                  ),
+                  Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Image.asset(
+                            'assets/logo_1.png',
+                            width: 40,
+                            height: 40,
+                          ),
+                        ],
+                      ))
+                ]),
             foregroundColor: Colors.white,
             backgroundColor: const Color(0xff4b39ef),
             toolbarHeight: 80.0,
@@ -91,9 +95,7 @@ class OpenAppointmentsPage extends State<OpenAppointments>{
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              myAppointments(context)
-            ],
+            children: [myAppointments(context)],
           ),
         ));
   }
@@ -111,8 +113,7 @@ Widget myAppointments(BuildContext context) {
       child: SingleChildScrollView(
           child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 16),
-              child: 
-              Column(
+              child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -162,131 +163,119 @@ Widget eachAppointment(BuildContext context) {
       children: widgetList);
 }
 
-Widget displayAppointment(int i, BuildContext context){
-  if(firstTimeRun){
+Widget displayAppointment(int i, BuildContext context) {
+  if (firstTimeRun) {
     appointmentList[i].convertToOriginalDate(appointmentList[i].date);
   }
   return Padding(
-    padding: const EdgeInsetsDirectional.fromSTEB(10, 8, 10, 8),
-    child: Container(
-      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-      decoration: const BoxDecoration(
+      padding: const EdgeInsetsDirectional.fromSTEB(10, 8, 10, 8),
+      child: Container(
+        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+        decoration: const BoxDecoration(
           color: Colors.black,
           borderRadius: BorderRadius.all(
             Radius.circular(15.0),
           ),
         ),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(10, 11, 0, 23),
-                  child: Text(appointmentList[i].service,
-                  textAlign: TextAlign.left,
-                  style: const TextStyle(
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 25,
-                    color: Colors.white)
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(10, 11, 0, 23),
+                    child: Text(appointmentList[i].service,
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w500,
+                            fontSize: 25,
+                            color: Colors.white)),
                   ),
                 ),
-              ),
-              Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
-                child: CircleAvatar(
-                  radius: 20,
-                  backgroundColor: Color.fromARGB(255, 252, 0, 0),
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.delete,
-                      color: Colors.white,
-                      size: 20,
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+                    child: CircleAvatar(
+                      radius: 20,
+                      backgroundColor: Color.fromARGB(255, 252, 0, 0),
+                      child: IconButton(
+                        icon: const Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                        iconSize: 20,
+                        onPressed: () {
+                          removeItem(i);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: ((context) => OpenAppointments())));
+                        },
+                      ),
                     ),
-                    iconSize: 20,
-                    onPressed: () {
-                      removeItem(i);
-                      Navigator.push(context, MaterialPageRoute(builder: ((context) => OpenAppointments())));
-                    },            
                   ),
                 ),
-              ),
-              ),
-            ],
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
-                child: 
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Text("Date: ",
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          color: Colors.white
-                        )
-                      ),
-                      Text(appointmentList[i].date,
-                        style: const TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          color: Color.fromARGB(255, 239, 196, 57)
-                        )
-                      ),
-                    ]
-                  )
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(40, 0, 0, 10),
-                child:
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Text("Name: ",
-                        style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
-                          color: Colors.white
-                        )
-                      ),
-                      Text(appointmentList[i].name,
-                        style: const TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
-                          color: Color.fromARGB(255, 239, 196, 57)
-                        )
-                      ),
-                    ]
-                  )
-              ),
-            ],
-          )
-        ],
-      ),
-    )
-  );
+              ],
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
+                    child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Text("Date: ",
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                  color: Colors.white)),
+                          Text(appointmentList[i].date,
+                              style: const TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                  color: Color.fromARGB(255, 239, 196, 57))),
+                        ])),
+                Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(40, 0, 0, 10),
+                    child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Text("Name: ",
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: Colors.white)),
+                          Text(appointmentList[i].name,
+                              style: const TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: Color.fromARGB(255, 239, 196, 57))),
+                        ])),
+              ],
+            )
+          ],
+        ),
+      ));
 }
 
-void removeItem(int index){
+void removeItem(int index) {
   appointmentList.removeAt(index);
 }
 
@@ -294,9 +283,10 @@ void merge(arr, int l, int m, int r) {
   // Find sizes of two subarrays to be merged
   var n1 = m - l + 1;
   var n2 = r - m;
-  
+
   /* Create temp arrays */
-  AppointmentObject filler = AppointmentObject("John Doe", "01-01-2022", "00:00", "Cleaning");
+  AppointmentObject filler =
+      AppointmentObject("John Doe", "01-01-2022", "00:00", "Cleaning", "false");
   List<AppointmentObject> leftList = List.filled(n1.toInt(), filler);
   List<AppointmentObject> rightList = List.filled(n2.toInt(), filler);
 
@@ -320,28 +310,23 @@ void merge(arr, int l, int m, int r) {
     if (leftList[i].date.compareTo(rightList[j].date) < 0) {
       arr[k] = leftList[i];
       i++;
-    } 
-    else if (leftList[i].date.compareTo(rightList[j].date) == 0) {
+    } else if (leftList[i].date.compareTo(rightList[j].date) == 0) {
       if (leftList[i].time.compareTo(rightList[j].time) < 0) {
         arr[k] = leftList[i];
         i++;
-      } 
-      else if (leftList[i].time.compareTo(rightList[j].time) == 0) {
+      } else if (leftList[i].time.compareTo(rightList[j].time) == 0) {
         if (leftList[i].name.compareTo(rightList[j].name) <= 0) {
           arr[k] = leftList[i];
           i++;
-        } 
-        else {
+        } else {
           arr[k] = rightList[j];
           j++;
         }
-      }
-      else {
+      } else {
         arr[k] = rightList[j];
         j++;
       }
-    }
-    else {
+    } else {
       arr[k] = rightList[j];
       j++;
     }
@@ -380,7 +365,7 @@ void sort(arr, int l, int r) {
   }
 }
 
-void collectAppointments(List inputList){
-  sort(inputList, 0, inputList.length-1);
+void collectAppointments(List inputList) {
+  sort(inputList, 0, inputList.length - 1);
   appointmentList.addAll(inputList);
 }

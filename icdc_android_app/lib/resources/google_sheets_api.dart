@@ -1,7 +1,16 @@
+import 'dart:math';
+
+import 'package:icdc_android_app/open-appointments.dart';
 import 'package:icdc_android_app/resources/appointment_info.dart';
 import 'package:gsheets/gsheets.dart';
-class AppointmentSheetsApi {
-  static const _credentials = r'''
+import 'package:icdc_android_app/resources/appointment_object.dart';
+import 'package:icdc_android_app/resources/global_variables.dart';
+
+String sheetName = 'Form Responses 1';
+final spreadsheetId = '1oejV9o1JcK0t-PG0n5cUzjnvmKri74Z1I2nkunQ4oyc';
+
+// List<AppointmentObject> appointments = [];
+const _credentials = r'''
   {
   "type": "service_account",
   "project_id": "icdc-appointments",
@@ -15,24 +24,20 @@ class AppointmentSheetsApi {
   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/icdc-imus%40icdc-appointments.iam.gserviceaccount.com"
 }
   ''';
+final gsheets = GSheets(_credentials);
+Worksheet? workSheet;
 
-  static final _spreadsheetId = '1acEPGQ9gi3HHbBZE2SOu1nFCT2Uvc2REhcuKeGkaBd8';
-  static final _gsheets = GSheets(_credentials);
-  static Worksheet? _userSheet;
-
+class AppointmentSheetsApi {
   static Future init() async {
-    final spreadsheet = await _gsheets.spreadsheet(_spreadsheetId);
-    _userSheet = await _getWorkSheet(spreadsheet, title: 'Sheet1');
-    final firstRow = AppointmentInfo.getInfo();
-    _userSheet!.values.insertRow(1,firstRow);
-  }
-  static Future<Info?> getByID(int id) async{
-    if(_userSheet == null) return null;
-    final json = await _userSheet!.values.map.rowByKey(id, fromColumn: 1);
-    return json == null ? null : Info.fromJson(json);
+    final spreadsheet = await gsheets.spreadsheet(spreadsheetId);
+    workSheet = await getWorkSheet(spreadsheet, title: sheetName);
+    allAppointmentRows.addAll(await workSheet!.values.allRows(fromRow: 2));
+    loadAppointments();
+    // print(await workSheet!.values.value(column: 2, row: 2));
   }
 
-  static Future<Worksheet> _getWorkSheet(Spreadsheet spreadsheet, {
+  static Future<Worksheet> getWorkSheet(
+    Spreadsheet spreadsheet, {
     required String title,
   }) async {
     try {
@@ -41,6 +46,31 @@ class AppointmentSheetsApi {
       return spreadsheet.worksheetByTitle(title)!;
     }
   }
+}
+
+Future<void> loadAppointments() async {
+  // final allRows = await workSheet?.values.allRows(fromRow: 2);
+  // print(allAppointmentRows[1][2]); // Prints name
+  ;
+
+  for (int i = 0; i < allAppointmentRows.length; i++) {
+    // if (allAppointmentRows[i][19].toString()) {
+    String name = allAppointmentRows[i][1];
+    String date = allAppointmentRows[i][18];
+    String time = allAppointmentRows[i][0];
+    String service = allAppointmentRows[i][17];
+    String status = allAppointmentRows[i][19];
+    print(i.toString() + " name: " + name);
+    print(i.toString() + " date: " + date);
+    print(i.toString() + " time: " + time);
+    print(i.toString() + " service: " + service);
+    print(i.toString() + " status: " + status);
+    // }
+    // list.add(AppointmentObject(name, date, time, service, status));
+    List list = [new AppointmentObject(name, date, time, service, status)];
+    collectAppointments(list);
+  }
+  // var r = await workSheet?.values.row(2);
 }
 
   // static User fromJson(Map<String, dynamic> json) => User(

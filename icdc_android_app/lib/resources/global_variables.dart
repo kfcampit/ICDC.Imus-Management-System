@@ -6,7 +6,9 @@ import 'package:icdc_android_app/resources/patient_object.dart';
 
 // open appointments
 List appointmentList = [];
+List<AppointmentObject> temporaryList = [];
 bool firstTimeRun = true;
+var allAppointmentRows = [];
 // open appointments
 
 // serach patients
