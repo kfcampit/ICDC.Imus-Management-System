@@ -20,23 +20,24 @@ class OpenAppointmentsPage extends State<OpenAppointments> {
   void initState() {
     /* Sample lang for appointmentList */
     if (firstTimeRun) {
-      List sampleList = [
-        new AppointmentObject(allAppointmentRows[0][1], "7-26-2022", "3:00 PM",
-            "Cleaning", "false"),
-        new AppointmentObject(
-            "Kyle Campit", "1-24-2022", "9:00 AM", "Extraction", "false"),
-        // new AppointmentObject(
-        //     "Jian Mendoza", "7-14-2022", "9:00 PM", "Tooth Extraction"),
-        // new AppointmentObject("Toni Illahi", "9-12-2022", "4:00 PM", "Checkup"),
-        // new AppointmentObject("Jian Mendoza", "7-26-2022", "12:30 PM", "X-Ray"),
-        // new AppointmentObject(
-        //     "Steven Obico", "1-24-2022", "1:00 PM", "Consultation"),
-        // new AppointmentObject(
-        //     "Melvin Cabatuan", "6-24-2022", "9:00 AM", "Braces"),
-        // new AppointmentObject(
-        //     "Edwin Concepcion", "6-24-2022", "6:00 AM", "Cleaning")
-      ];
-      collectAppointments(sampleList);
+      // loadAppointments();
+      // List sampleList = [
+      //   new AppointmentObject(allAppointmentRows[0][1], "7-26-2022", "3:00 PM",
+      //       "Cleaning", "false"),
+      //   new AppointmentObject(
+      //       "Kyle Campit", "1-24-2022", "9:00 AM", "Extraction", "false"),
+      //   // new AppointmentObject(
+      //   //     "Jian Mendoza", "7-14-2022", "9:00 PM", "Tooth Extraction"),
+      //   // new AppointmentObject("Toni Illahi", "9-12-2022", "4:00 PM", "Checkup"),
+      //   // new AppointmentObject("Jian Mendoza", "7-26-2022", "12:30 PM", "X-Ray"),
+      //   // new AppointmentObject(
+      //   //     "Steven Obico", "1-24-2022", "1:00 PM", "Consultation"),
+      //   // new AppointmentObject(
+      //   //     "Melvin Cabatuan", "6-24-2022", "9:00 AM", "Braces"),
+      //   // new AppointmentObject(
+      //   //     "Edwin Concepcion", "6-24-2022", "6:00 AM", "Cleaning")
+      // ];
+      collectAppointments(appointmentObjList);
     }
 
     super.initState();

@@ -9,7 +9,7 @@ class AppointmentObject {
   AppointmentObject(
       this.name, this.date, this.time, this.service, this.status) {
     // Convert date format MM-DD-YYYY to YYYY-MM-DD
-    convertDate(date);
+    // convertDate(date);
     // Convert date to unix
     dateInUnix = dateToUnix(date);
     // Convert time format 11:59 PM to 23:59
@@ -18,6 +18,7 @@ class AppointmentObject {
 
   int dateToUnix(String sdatetime) {
     /* Input Format: YYYY-MM-DD" */
+    print("New Date: " + sdatetime);
     DateTime sdate = DateTime.parse(sdatetime);
     int stimestamp = sdate.millisecondsSinceEpoch;
     return stimestamp;

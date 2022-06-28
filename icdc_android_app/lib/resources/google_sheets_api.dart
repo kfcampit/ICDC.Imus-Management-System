@@ -6,7 +6,6 @@ import 'package:gsheets/gsheets.dart';
 import 'package:icdc_android_app/resources/appointment_object.dart';
 import 'package:icdc_android_app/resources/global_variables.dart';
 
-var appointmentObjList = [];
 String sheetName = 'Form Responses 1';
 final spreadsheetId = '1oejV9o1JcK0t-PG0n5cUzjnvmKri74Z1I2nkunQ4oyc';
 
@@ -57,20 +56,25 @@ Future<void> loadAppointments() async {
     // if (allAppointmentRows[i][19].toString()) {
     String name = allAppointmentRows[i][1];
     String date = allAppointmentRows[i][18];
+
+    var epoch = new DateTime(1899,12,30);
+    var currentDate = epoch.add(new Duration(days: int.parse(date)));
+    date = currentDate.toString().substring(0,10);
+
     String time = allAppointmentRows[i][0];
     String service = allAppointmentRows[i][17];
     String status = allAppointmentRows[i][19];
+    // AppointmentObject tempObj = new AppointmentObject(name, date, time, service, status);
     print(i.toString() + " name: " + name);
     print(i.toString() + " date: " + date);
     print(i.toString() + " time: " + time);
     print(i.toString() + " service: " + service);
     print(i.toString() + " status: " + status);
     // }
-    // list.add(AppointmentObject(name, date, time, service, status));
-    // List list = [new AppointmentObject(name, date, time, service, status)];
-    appointmentObjList.add(new AppointmentObject(name, date, time, service, status));
-    collectAppointments(appointmentObjList);
+    // print("Empty: " + appointmentObjList.isEmpty.toString());
+    appointmentObjList.add(AppointmentObject(name, date, time, service, status));
   }
+  collectAppointments(appointmentObjList);
   // var r = await workSheet?.values.row(2);
 }
 

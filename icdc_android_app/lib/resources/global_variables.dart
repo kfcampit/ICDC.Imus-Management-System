@@ -9,6 +9,9 @@ List appointmentList = [];
 List<AppointmentObject> temporaryList = [];
 bool firstTimeRun = true;
 var allAppointmentRows = [];
+AppointmentObject filler =
+      AppointmentObject("John Doe", "01-01-2022", "00:00", "Cleaning", "false");
+List<AppointmentObject> appointmentObjList = List.filled(3, filler);
 // open appointments
 
 // serach patients
