@@ -700,11 +700,6 @@ void removeTreatmentButton(int i) {
 }
 
 void enterPatientInfo() {
-  if (!isEditPatient) {
-    patient.patientID =
-        'P-' + (listPatients.length + 1).toString().padLeft(6, '0');
-  }
-
   patient.name = nameController.text;
   patient.bday = bdayController.text;
   patient.contact = contactController.text;
