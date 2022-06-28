@@ -18,7 +18,6 @@ class AppointmentObject {
 
   int dateToUnix(String sdatetime) {
     /* Input Format: YYYY-MM-DD" */
-    print("New Date: " + sdatetime);
     DateTime sdate = DateTime.parse(sdatetime);
     int stimestamp = sdate.millisecondsSinceEpoch;
     return stimestamp;

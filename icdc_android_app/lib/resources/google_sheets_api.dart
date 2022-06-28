@@ -74,7 +74,6 @@ Future<void> loadAppointments() async {
     // print("Empty: " + appointmentObjList.isEmpty.toString());
     appointmentObjList.add(AppointmentObject(name, date, time, service, status));
   }
-  collectAppointments(appointmentObjList);
   // var r = await workSheet?.values.row(2);
 }
 

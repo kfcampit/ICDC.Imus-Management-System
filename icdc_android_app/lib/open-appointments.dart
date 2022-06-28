@@ -20,23 +20,6 @@ class OpenAppointmentsPage extends State<OpenAppointments> {
   void initState() {
     /* Sample lang for appointmentList */
     if (firstTimeRun) {
-      // loadAppointments();
-      // List sampleList = [
-      //   new AppointmentObject(allAppointmentRows[0][1], "7-26-2022", "3:00 PM",
-      //       "Cleaning", "false"),
-      //   new AppointmentObject(
-      //       "Kyle Campit", "1-24-2022", "9:00 AM", "Extraction", "false"),
-      //   // new AppointmentObject(
-      //   //     "Jian Mendoza", "7-14-2022", "9:00 PM", "Tooth Extraction"),
-      //   // new AppointmentObject("Toni Illahi", "9-12-2022", "4:00 PM", "Checkup"),
-      //   // new AppointmentObject("Jian Mendoza", "7-26-2022", "12:30 PM", "X-Ray"),
-      //   // new AppointmentObject(
-      //   //     "Steven Obico", "1-24-2022", "1:00 PM", "Consultation"),
-      //   // new AppointmentObject(
-      //   //     "Melvin Cabatuan", "6-24-2022", "9:00 AM", "Braces"),
-      //   // new AppointmentObject(
-      //   //     "Edwin Concepcion", "6-24-2022", "6:00 AM", "Cleaning")
-      // ];
       collectAppointments(appointmentObjList);
     }
 
@@ -165,9 +148,9 @@ Widget eachAppointment(BuildContext context) {
 }
 
 Widget displayAppointment(int i, BuildContext context) {
-  if (firstTimeRun) {
-    appointmentList[i].convertToOriginalDate(appointmentList[i].date);
-  }
+  // if (firstTimeRun) {
+  //   appointmentList[i].convertToOriginalDate(appointmentList[i].date);
+  // }
   return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(10, 8, 10, 8),
       child: Container(
@@ -196,7 +179,7 @@ Widget displayAppointment(int i, BuildContext context) {
                         style: const TextStyle(
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
-                            fontSize: 25,
+                            fontSize: 16,
                             color: Colors.white)),
                   ),
                 ),
@@ -205,15 +188,15 @@ Widget displayAppointment(int i, BuildContext context) {
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                     child: CircleAvatar(
-                      radius: 20,
+                      radius: 16,
                       backgroundColor: Color.fromARGB(255, 252, 0, 0),
                       child: IconButton(
                         icon: const Icon(
                           Icons.delete,
                           color: Colors.white,
-                          size: 20,
+                          size: 16,
                         ),
-                        iconSize: 20,
+                        iconSize: 16,
                         onPressed: () {
                           removeItem(i);
                           Navigator.push(
@@ -229,7 +212,7 @@ Widget displayAppointment(int i, BuildContext context) {
             ),
             Row(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
@@ -241,17 +224,17 @@ Widget displayAppointment(int i, BuildContext context) {
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 16,
+                                  fontSize: 14,
                                   color: Colors.white)),
                           Text(appointmentList[i].date,
                               style: const TextStyle(
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 16,
+                                  fontSize: 14,
                                   color: Color.fromARGB(255, 239, 196, 57))),
                         ])),
                 Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(40, 0, 0, 10),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 5, 10),
                     child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -287,7 +270,7 @@ void merge(arr, int l, int m, int r) {
 
   /* Create temp arrays */
   AppointmentObject filler =
-      AppointmentObject("John Doe", "01-01-2022", "00:00", "Cleaning", "false");
+      AppointmentObject("John Doe", "2022-01-01", "00:00", "Cleaning", "false");
   List<AppointmentObject> leftList = List.filled(n1.toInt(), filler);
   List<AppointmentObject> rightList = List.filled(n2.toInt(), filler);
 
