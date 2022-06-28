@@ -24,12 +24,12 @@ class ICDCAndroid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'ICDC - Imus PRIMS',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
         // primaryColor: const Color(0xff4b39ef)
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'ICDC Home Page'),
     );
   }
 }
@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'ICDC - Imus PRIMS',
         theme: ThemeData(
           primaryColor: const Color(0xff4b39ef),
         ),
@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 10),
-                child: Text('Immaculate Concepcion Dental Clinic - Imus',
+                child: Text('Immaculate Conception Dental Clinic - Imus',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: 'Poppins',
