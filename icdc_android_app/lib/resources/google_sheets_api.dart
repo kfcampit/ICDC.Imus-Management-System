@@ -6,6 +6,7 @@ import 'package:gsheets/gsheets.dart';
 import 'package:icdc_android_app/resources/appointment_object.dart';
 import 'package:icdc_android_app/resources/global_variables.dart';
 
+var appointmentObjList = [];
 String sheetName = 'Form Responses 1';
 final spreadsheetId = '1oejV9o1JcK0t-PG0n5cUzjnvmKri74Z1I2nkunQ4oyc';
 
@@ -51,7 +52,6 @@ class AppointmentSheetsApi {
 Future<void> loadAppointments() async {
   // final allRows = await workSheet?.values.allRows(fromRow: 2);
   // print(allAppointmentRows[1][2]); // Prints name
-  ;
 
   for (int i = 0; i < allAppointmentRows.length; i++) {
     // if (allAppointmentRows[i][19].toString()) {
@@ -67,8 +67,9 @@ Future<void> loadAppointments() async {
     print(i.toString() + " status: " + status);
     // }
     // list.add(AppointmentObject(name, date, time, service, status));
-    List list = [new AppointmentObject(name, date, time, service, status)];
-    collectAppointments(list);
+    // List list = [new AppointmentObject(name, date, time, service, status)];
+    appointmentObjList.add(new AppointmentObject(name, date, time, service, status));
+    collectAppointments(appointmentObjList);
   }
   // var r = await workSheet?.values.row(2);
 }
