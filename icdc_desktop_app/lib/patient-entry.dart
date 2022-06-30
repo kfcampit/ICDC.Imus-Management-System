@@ -694,7 +694,8 @@ void addTreatmentButton() {
   if (dateController.text.isNotEmpty) {
     dental.transDate = stringToUnix(dateController.text);
   }
-  if (feeController.text.isNotEmpty) dental.fee = int.parse(feeController.text);
+  if (feeController.text.isNotEmpty)
+    dental.fee = double.parse(feeController.text);
 
   patient.dentalRecords.add(dental);
 
