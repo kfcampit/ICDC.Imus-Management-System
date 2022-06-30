@@ -30,7 +30,7 @@ class OpenAppointmentsPage extends State<OpenAppointments> {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primaryColor: mainColor,
+          primaryColor: const Color(0xff4b39ef),
         ),
         home: Scaffold(
           appBar: AppBar(
@@ -67,7 +67,7 @@ class OpenAppointmentsPage extends State<OpenAppointments> {
                       ))
                 ]),
             foregroundColor: Colors.white,
-            backgroundColor: mainColor,
+            backgroundColor: const Color(0xff4b39ef),
             toolbarHeight: 80.0,
           ),
           body: Column(
@@ -99,7 +99,7 @@ Widget myAppointments(BuildContext context) {
                       padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
-                        children: [
+                        children: const [
                           Expanded(
                             flex: 6,
                             child: Text('My Appointments',
@@ -108,7 +108,7 @@ Widget myAppointments(BuildContext context) {
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 24,
-                                    color: mainColor)),
+                                    color: Color(0xff4b39ef))),
                           ),
                         ],
                       ),
@@ -149,8 +149,8 @@ Widget displayAppointment(int i, BuildContext context) {
       padding: const EdgeInsetsDirectional.fromSTEB(10, 8, 10, 8),
       child: Container(
         padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-        decoration: BoxDecoration(
-          color: mainColor,
+        decoration: const BoxDecoration(
+          color: Colors.black,
           borderRadius: BorderRadius.all(
             Radius.circular(15.0),
           ),
@@ -225,7 +225,7 @@ Widget displayAppointment(int i, BuildContext context) {
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
-                                  color: Colors.white)),
+                                  color: Color.fromARGB(255, 239, 196, 57))),
                         ])),
                 Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 5, 10),

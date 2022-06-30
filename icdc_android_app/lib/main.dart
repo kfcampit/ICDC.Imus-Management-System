@@ -2,7 +2,6 @@ import 'package:firedart/firestore/firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:icdc_android_app/open-appointments.dart';
 import 'package:icdc_android_app/resources/firebase_controller.dart';
-import 'package:icdc_android_app/resources/global_variables.dart';
 import 'package:icdc_android_app/resources/google_sheets_api.dart';
 import 'package:icdc_android_app/search-patients.dart';
 import 'resources/custom-widgets.dart';
@@ -48,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return MaterialApp(
         title: 'ICDC - Imus PRIMS',
         theme: ThemeData(
-          primaryColor: mainColor,
+          primaryColor: const Color(0xff4b39ef),
         ),
         home: Scaffold(
           appBar: AppBar(
@@ -78,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ))
                 ]),
             foregroundColor: Colors.white,
-            backgroundColor: mainColor,
+            backgroundColor: const Color(0xff4b39ef),
             toolbarHeight: 80.0,
           ),
           body: Column(
@@ -90,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: 150,
                 height: 150,
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 10),
                 child: Text('Immaculate Conception Dental Clinic - Imus',
                     textAlign: TextAlign.center,
@@ -98,9 +97,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w700,
                         fontSize: 32,
-                        color: mainColor)),
+                        color: Color(0xff4b39ef))),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
                 child: Align(
                   alignment: Alignment.center,
@@ -110,15 +109,15 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w400,
                         fontSize: 14,
-                        color: mainColor),
+                        color: Color(0xff4b39ef)),
                   ),
                 ),
               ),
-              Divider(
+              const Divider(
                 thickness: 2,
                 indent: 10,
                 endIndent: 10,
-                color: mainColor,
+                color: Color(0xff4b39ef),
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 20),
@@ -130,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         height: 80,
                         width: 200,
                         bottom: 10,
-                        color: mainColor,
+                        color: const Color(0xff4b39ef),
                         text: "Search Records",
                         function: placeholder,
                         navFunction: navigate,
@@ -141,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         height: 80,
                         width: 200,
                         bottom: 10,
-                        color: mainColor,
+                        color: const Color(0xff4b39ef),
                         text: "Appointments",
                         function: placeholder,
                         navFunction: navigate,
