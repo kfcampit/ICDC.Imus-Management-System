@@ -635,7 +635,7 @@ class AppointmentView extends State<AppointmentViewPage> {
                           style: const TextStyle(
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
-                            fontSize: 16,
+                            fontSize: 14,
                           )),
                     ),
                   ),
