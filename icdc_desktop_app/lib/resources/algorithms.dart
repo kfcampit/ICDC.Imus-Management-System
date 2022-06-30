@@ -120,9 +120,8 @@ PatientObject sortTreatment(PatientObject patientObject) {
 
   sort(mainList, 0, mainList.length - 1);
 
-  for (int time in mainList) {
-    sortedRecords
-        .add(records.firstWhere((element) => element.transDate == time));
+  for (int time in mainList.toSet().toList()) {
+    sortedRecords.addAll(records.where((element) => element.transDate == time));
   }
 
   patientObject.dentalRecords = sortedRecords.reversed.toList();
@@ -154,18 +153,16 @@ List<PatientObject> sortPatientsDate() {
   List<int> mainList = [];
   List<PatientObject> records = listPatients;
   List<PatientObject> sortedPatients = [];
-  List<String> patientIdsList = [];
 
   for (PatientObject patient in records) {
-    mainList.add(patient.dentalRecords.last.transDate);
-    patientIdsList.add(patient.patientID);
+    mainList.add(patient.dentalRecords.first.transDate);
   }
 
   sort(mainList, 0, mainList.length - 1);
 
-  for (int time in mainList) {
+  for (int time in mainList.toSet().toList()) {
     var temp = records
-        .where((element) => element.dentalRecords.last.transDate == time)
+        .where((element) => element.dentalRecords.first.transDate == time)
         .toList();
 
     sortedPatients.addAll(temp);
@@ -188,10 +185,9 @@ List<PatientObject> sortPatientsTreatment() {
 
   sortString(mainList, 0, mainList.length - 1);
 
-  for (String time in mainList) {
-    sortedPatients.add(records.firstWhere((element) =>
-        element.dentalRecords[0].transDate == time &&
-        !patientIdsList.contains(element.patientID)));
+  for (String time in mainList.toSet().toList()) {
+    sortedPatients.addAll(
+        records.where((element) => element.dentalRecords[0].transDate == time));
   }
 
   return sortedPatients;
@@ -199,75 +195,32 @@ List<PatientObject> sortPatientsTreatment() {
 
 List<PatientObject> searchPatientsName(String searchTerm) {
   List<PatientObject> records = sortPatients();
-
-  int startIndex = records.indexWhere((element) =>
-      element.name.toLowerCase().contains(searchTerm.toLowerCase()));
-
-  if (startIndex == -1) {
-    return records;
-  }
-
-  int endIndex = records.lastIndexWhere((element) =>
-      element.name.toLowerCase().contains(searchTerm.toLowerCase()));
-
-  if (startIndex == endIndex) {
-    List<PatientObject> searched = [];
-    searched.add(records[startIndex]);
-    return searched;
-  }
-  return records.getRange(startIndex, endIndex + 1).toList();
+  return records
+      .where((element) =>
+          element.name.toLowerCase().contains(searchTerm.toLowerCase()))
+      .toList();
 }
 
 List<PatientObject> searchPatientsDate(int searchTerm) {
-  List<PatientObject> records = sortPatients();
+  List<PatientObject> records = sortPatientsDate();
 
-  int startIndex = records.indexWhere((element) =>
-      element.dentalRecords
-          .indexWhere((element) => element.transDate == searchTerm) !=
-      -1);
-
-  if (startIndex == -1) {
-    return records;
-  }
-
-  int endIndex = records.lastIndexWhere((element) =>
-      element.dentalRecords
-          .indexWhere((element) => element.transDate == searchTerm) !=
-      -1);
-
-  if (startIndex == endIndex) {
-    List<PatientObject> searched = [];
-    searched.add(records[startIndex]);
-    return searched;
-  }
-  return records.getRange(startIndex, endIndex + 1).toList();
+  return records
+      .where((elementA) => elementA.dentalRecords
+          .where((elementB) => elementB.transDate == searchTerm)
+          .isNotEmpty)
+      .toList();
 }
 
 List<PatientObject> searchPatientsTreatment(String searchTerm) {
   List<PatientObject> records = sortPatients();
 
-  int startIndex = records.indexWhere((element) =>
-      element.dentalRecords.indexWhere((element) => element.description
-          .toLowerCase()
-          .contains(searchTerm.toLowerCase())) !=
-      -1);
-
-  if (startIndex == -1) {
-    return records;
-  }
-
-  int endIndex = records.lastIndexWhere((element) =>
-      element.dentalRecords.indexWhere((element) => element.description
-          .toLowerCase()
-          .contains(searchTerm.toLowerCase())) !=
-      -1);
-
-  if (startIndex == endIndex) {
-    List<PatientObject> searched = [];
-    searched.add(records[startIndex]);
-    return searched;
-  }
-  return records.getRange(startIndex, endIndex + 1).toList();
+  return records
+      .where((elementA) => elementA.dentalRecords
+          .where((elementB) => elementB.description
+              .toLowerCase()
+              .contains(searchTerm.toLowerCase()))
+          .isNotEmpty)
+      .toList();
 }
 
 int stringToUnix(String date) {

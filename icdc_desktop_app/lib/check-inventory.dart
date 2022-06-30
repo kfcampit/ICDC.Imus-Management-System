@@ -24,7 +24,7 @@ class CheckInventoryPage extends State<CheckInventory> {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primaryColor: const Color(0xff4b39ef),
+          primaryColor: mainColor,
         ),
         home: Scaffold(
           body: Row(
@@ -45,15 +45,15 @@ Widget checkInventoryPageWidgets(BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
         children: [
-          const Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 20),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 32, 0, 20),
             child: Text('Clinic Inventory',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w700,
                     fontSize: 32,
-                    color: Color(0xff4b39ef))),
+                    color: mainColor)),
           ),
           categories(context)
         ]),
@@ -67,7 +67,7 @@ Widget categories(BuildContext context) {
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.8,
       decoration: const BoxDecoration(
-        color: const Color(0xFFEEEEEE),
+        color: Color(0xFFEEEEEE),
       ),
       child: SingleChildScrollView(
           child: Padding(
@@ -80,7 +80,7 @@ Widget categories(BuildContext context) {
                       padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
-                        children: const [
+                        children: [
                           Expanded(
                             flex: 6,
                             child: Text('Item Name',
@@ -89,7 +89,7 @@ Widget categories(BuildContext context) {
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
-                                    color: Color(0xff4b39ef))),
+                                    color: mainColor)),
                           ),
                           Expanded(
                             flex: 3,
@@ -99,7 +99,7 @@ Widget categories(BuildContext context) {
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
-                                    color: Color(0xff4b39ef))),
+                                    color: mainColor)),
                           ),
                           Expanded(
                             flex: 2,
@@ -109,16 +109,16 @@ Widget categories(BuildContext context) {
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
-                                    color: Color(0xff4b39ef))),
+                                    color: mainColor)),
                           ),
                         ],
                       ),
                     ),
-                    const Divider(
+                    Divider(
                         thickness: 1,
                         indent: 8,
                         endIndent: 8,
-                        color: Color(0xff4b39ef)),
+                        color: mainColor),
                     itemRows(context),
                   ]))),
     ),
@@ -131,10 +131,11 @@ Widget itemRows(BuildContext context) {
   if (editPressed) {
     addSaveButton = "Save Item";
     for (int i = 0; i < n; i++) {
-      if (i == editNumber)
+      if (i == editNumber) {
         widgetList.add(editItems(context));
-      else
+      } else {
         widgetList.add(listItems(i, context));
+      }
     }
   } else {
     addSaveButton = "Add Item";
@@ -183,7 +184,7 @@ Widget listItems(int i, BuildContext context) {
               ),
             )),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 50, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 50, 0),
           child: roundedButtons(
             textStyle: const TextStyle(
                 fontFamily: 'Poppins',
@@ -192,7 +193,7 @@ Widget listItems(int i, BuildContext context) {
                 color: Colors.white),
             height: 36,
             width: 110,
-            color: const Color(0xff4b39ef),
+            color: mainColor,
             text: "Edit",
             function: () {
               editItem(i);
@@ -214,10 +215,10 @@ Widget editItems(BuildContext context) {
       mainAxisSize: MainAxisSize.max,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(30, 0, 0, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(30, 0, 0, 0),
           child: CircleAvatar(
             radius: 20,
-            backgroundColor: Color.fromARGB(255, 252, 0, 0),
+            backgroundColor: const Color.fromARGB(255, 252, 0, 0),
             child: IconButton(
               icon: const Icon(
                 Icons.delete,
@@ -251,10 +252,10 @@ Widget editItems(BuildContext context) {
               ),
             )),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(200, 0, 0, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(200, 0, 0, 0),
           child: CircleAvatar(
             radius: 15,
-            backgroundColor: const Color(0xff4b39ef),
+            backgroundColor: mainColor,
             child: IconButton(
               icon: const Icon(
                 Icons.remove,
@@ -287,10 +288,10 @@ Widget editItems(BuildContext context) {
               ),
             )),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 140, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 140, 0),
           child: CircleAvatar(
             radius: 15,
-            backgroundColor: const Color(0xff4b39ef),
+            backgroundColor: mainColor,
             child: IconButton(
               icon: const Icon(
                 Icons.add,
@@ -305,7 +306,7 @@ Widget editItems(BuildContext context) {
           ),
         ),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 50, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 50, 0),
           child: roundedButtons(
             textStyle: const TextStyle(
                 fontFamily: 'Poppins',
@@ -314,7 +315,7 @@ Widget editItems(BuildContext context) {
                 color: Colors.white),
             height: 36,
             width: 110,
-            color: const Color(0xff4b39ef),
+            color: mainColor,
             text: addSaveButton,
             function: addItem,
             navFunction: navigate,
@@ -352,10 +353,10 @@ Widget inputItems(BuildContext context) {
               ),
             )),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(180, 0, 0, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(180, 0, 0, 0),
           child: CircleAvatar(
             radius: 15,
-            backgroundColor: const Color(0xff4b39ef),
+            backgroundColor: mainColor,
             child: IconButton(
               icon: const Icon(
                 Icons.remove,
@@ -388,10 +389,10 @@ Widget inputItems(BuildContext context) {
               ),
             )),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 135, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 135, 0),
           child: CircleAvatar(
             radius: 15,
-            backgroundColor: const Color(0xff4b39ef),
+            backgroundColor: mainColor,
             child: IconButton(
               icon: const Icon(
                 Icons.add,
@@ -406,7 +407,7 @@ Widget inputItems(BuildContext context) {
           ),
         ),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 50, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 50, 0),
           child: roundedButtons(
             textStyle: const TextStyle(
                 fontFamily: 'Poppins',
@@ -415,7 +416,7 @@ Widget inputItems(BuildContext context) {
                 color: Colors.white),
             height: 36,
             width: 110,
-            color: const Color(0xff4b39ef),
+            color: mainColor,
             text: addSaveButton,
             function: addItem,
             navFunction: navigate,
