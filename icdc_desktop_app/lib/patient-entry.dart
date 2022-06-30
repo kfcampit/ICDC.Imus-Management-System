@@ -682,11 +682,20 @@ Widget inputTreatment(BuildContext context) {
 void addTreatmentButton() {
   DentalRecord dental = DentalRecord();
 
-  dental.toothNum = toothNumController.text;
-  dental.surface = surfaceController.text;
-  dental.description = serviceController.text;
-  dental.transDate = stringToUnix(dateController.text);
-  dental.fee = int.parse(feeController.text);
+  if (toothNumController.text.isNotEmpty) {
+    dental.toothNum = toothNumController.text;
+  }
+  if (surfaceController.text.isNotEmpty) {
+    dental.surface = surfaceController.text;
+  }
+  if (serviceController.text.isNotEmpty) {
+    dental.description = serviceController.text;
+  }
+  if (dateController.text.isNotEmpty) {
+    dental.transDate = stringToUnix(dateController.text);
+  }
+  if (feeController.text.isNotEmpty) dental.fee = int.parse(feeController.text);
+
   patient.dentalRecords.add(dental);
 
   toothNumController.clear();
@@ -701,12 +710,18 @@ void removeTreatmentButton(int i) {
 }
 
 void enterPatientInfo() {
-  patient.name = nameController.text;
-  patient.bday = bdayController.text;
-  patient.contact = contactController.text;
-  patient.sex = sexController.text;
-  patient.marital = maritalController.text;
-  patient.address = addressController.text;
+  if (nameController.text.isNotEmpty) patient.name = nameController.text;
+  if (bdayController.text.isNotEmpty) patient.bday = bdayController.text;
+  if (contactController.text.isNotEmpty) {
+    patient.contact = contactController.text;
+  }
+  if (sexController.text.isNotEmpty) patient.sex = sexController.text;
+  if (maritalController.text.isNotEmpty) {
+    patient.marital = maritalController.text;
+  }
+  if (addressController.text.isNotEmpty) {
+    patient.address = addressController.text;
+  }
 
   try {
     addTreatmentButton();

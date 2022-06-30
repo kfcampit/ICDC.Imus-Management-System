@@ -307,7 +307,7 @@ Future<void> searchPatientsButton() async {
   } else if (dropdownValue == '  Treatment') {
     searchedPatients = searchPatientsTreatment(searchController.text);
   } else if (dropdownValue == '  Date') {
-    searchedPatients = searchPatientsDate(int.parse(searchController.text));
+    searchedPatients = searchPatientsDate(stringToUnix(searchController.text));
   }
   isSearching = true;
   pageNum = 0;
@@ -374,7 +374,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
               child: Text(
-                unixToString(searchedPatients[i].dentalRecords.last.transDate),
+                unixToString(searchedPatients[i].dentalRecords.first.transDate),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
