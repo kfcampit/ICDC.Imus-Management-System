@@ -15,5 +15,5 @@ class DentalRecord {
   String surface = "";
   String description = "";
   int transDate = 0;
-  double fee = 0;
+  int fee = 0;
 }
