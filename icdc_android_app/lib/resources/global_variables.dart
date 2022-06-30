@@ -43,3 +43,6 @@ PatientObject patient = PatientObject();
 List<PatientObject> listPatients = [];
 List<PatientObject> sortedPatients = [];
 List<PatientObject> searchedPatients = [];
+
+//Color of User Interface
+Color mainColor = const Color(0xff534192);

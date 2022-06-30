@@ -30,7 +30,7 @@ class PatientView extends State<PatientViewPage> {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primaryColor: const Color(0xff4b39ef),
+          primaryColor: mainColor,
         ),
         home: Scaffold(
           appBar: AppBar(
@@ -68,7 +68,7 @@ class PatientView extends State<PatientViewPage> {
                       ))
                 ]),
             foregroundColor: Colors.white,
-            backgroundColor: const Color(0xff4b39ef),
+            backgroundColor: mainColor,
             toolbarHeight: 80.0,
           ),
           body: Column(
@@ -95,7 +95,7 @@ class PatientView extends State<PatientViewPage> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Expanded(
+                  Expanded(
                     flex: 0,
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
@@ -104,7 +104,7 @@ class PatientView extends State<PatientViewPage> {
                           style: TextStyle(
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
-                            color: Color(0xff4b39ef),
+                            color: mainColor,
                             fontSize: 20,
                           )),
                     ),
@@ -130,7 +130,7 @@ class PatientView extends State<PatientViewPage> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Expanded(
+                  Expanded(
                     flex: 0,
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
@@ -139,7 +139,7 @@ class PatientView extends State<PatientViewPage> {
                           style: TextStyle(
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
-                            color: Color(0xff4b39ef),
+                            color: mainColor,
                             fontSize: 16,
                           )),
                     ),
@@ -169,7 +169,7 @@ class PatientView extends State<PatientViewPage> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Expanded(
+                  Expanded(
                     flex: 0,
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
@@ -178,7 +178,7 @@ class PatientView extends State<PatientViewPage> {
                           style: TextStyle(
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
-                            color: Color(0xff4b39ef),
+                            color: mainColor,
                             fontSize: 16,
                           )),
                     ),
@@ -204,7 +204,7 @@ class PatientView extends State<PatientViewPage> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Expanded(
+                  Expanded(
                     flex: 0,
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
@@ -213,7 +213,7 @@ class PatientView extends State<PatientViewPage> {
                           style: TextStyle(
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
-                            color: Color(0xff4b39ef),
+                            color: mainColor,
                             fontSize: 16,
                           )),
                     ),
@@ -239,7 +239,7 @@ class PatientView extends State<PatientViewPage> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Expanded(
+                  Expanded(
                     flex: 0,
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
@@ -248,7 +248,7 @@ class PatientView extends State<PatientViewPage> {
                           style: TextStyle(
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
-                            color: Color(0xff4b39ef),
+                            color: mainColor,
                             fontSize: 16,
                           )),
                     ),
@@ -274,7 +274,7 @@ class PatientView extends State<PatientViewPage> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Expanded(
+                  Expanded(
                     flex: 0,
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
@@ -283,7 +283,7 @@ class PatientView extends State<PatientViewPage> {
                           style: TextStyle(
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w500,
-                            color: Color(0xff4b39ef),
+                            color: mainColor,
                             fontSize: 16,
                           )),
                     ),
@@ -326,11 +326,10 @@ class PatientView extends State<PatientViewPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
-                          children: const [
+                          children: [
                             Expanded(
                               flex: 1,
                               child: Text('Tooth #',
@@ -339,7 +338,7 @@ class PatientView extends State<PatientViewPage> {
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.w500,
                                       fontSize: 14,
-                                      color: Color(0xff4b39ef))),
+                                      color: mainColor)),
                             ),
                             Expanded(
                               flex: 1,
@@ -349,7 +348,7 @@ class PatientView extends State<PatientViewPage> {
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.w500,
                                       fontSize: 14,
-                                      color: Color(0xff4b39ef))),
+                                      color: mainColor)),
                             ),
                             Expanded(
                               flex: 1,
@@ -359,7 +358,7 @@ class PatientView extends State<PatientViewPage> {
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.w500,
                                       fontSize: 13,
-                                      color: Color(0xff4b39ef))),
+                                      color: mainColor)),
                             ),
                             Expanded(
                               flex: 1,
@@ -369,7 +368,7 @@ class PatientView extends State<PatientViewPage> {
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.w500,
                                       fontSize: 14,
-                                      color: Color(0xff4b39ef))),
+                                      color: mainColor)),
                             ),
                             Expanded(
                               flex: 1,
@@ -379,16 +378,16 @@ class PatientView extends State<PatientViewPage> {
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.w500,
                                       fontSize: 14,
-                                      color: Color(0xff4b39ef))),
+                                      color: mainColor)),
                             ),
                           ],
                         ),
                       ),
-                      const Divider(
+                      Divider(
                           thickness: 1,
                           indent: 8,
                           endIndent: 8,
-                          color: Color(0xff4b39ef)),
+                          color: mainColor),
                       treatmentRows(context),
                     ]))),
       ),
