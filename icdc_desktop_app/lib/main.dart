@@ -32,7 +32,7 @@ class ICDCDesktop extends StatelessWidget {
     return MaterialApp(
         title: 'Clinic Management System',
         theme: ThemeData(
-          primaryColor: const Color(0xff4b39ef),
+          primaryColor: mainColor,
         ),
         home: Builder(
             builder: (context) => Scaffold(
@@ -56,35 +56,35 @@ Widget homePageWidget(BuildContext context) {
         width: 320,
         height: 320,
       ),
-      const Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+      Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
         child: Text('Immaculate Conception Dental Clinic - Imus',
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w700,
                 fontSize: 32,
-                color: Color(0xff4b39ef))),
+                color: mainColor)),
       ),
-      const Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+      Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
         child: Text(
           'Patient Record and Inventory Management System',
           style: TextStyle(
               fontFamily: 'Poppins',
               fontWeight: FontWeight.w400,
               fontSize: 16,
-              color: Color(0xff4b39ef)),
+              color: mainColor),
         ),
       ),
-      const Divider(
+      Divider(
         thickness: 2,
         indent: 200,
         endIndent: 200,
-        color: Color(0xff4b39ef),
+        color: mainColor,
       ),
       Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -92,7 +92,7 @@ Widget homePageWidget(BuildContext context) {
             roundedButtons(
                 height: 48,
                 width: 200,
-                color: const Color(0xff4b39ef),
+                color: mainColor,
                 text: "Add Patient",
                 start: 8,
                 top: 8,
@@ -105,7 +105,7 @@ Widget homePageWidget(BuildContext context) {
             roundedButtons(
                 height: 48,
                 width: 200,
-                color: const Color(0xff4b39ef),
+                color: mainColor,
                 text: "Search Records",
                 navFunction: navigate,
                 function: placeholder,
@@ -118,7 +118,7 @@ Widget homePageWidget(BuildContext context) {
             roundedButtons(
                 height: 48,
                 width: 200,
-                color: const Color(0xff4b39ef),
+                color: mainColor,
                 text: "Recent Patients",
                 navFunction: navigate,
                 function: placeholder,
@@ -131,7 +131,7 @@ Widget homePageWidget(BuildContext context) {
             roundedButtons(
                 height: 48,
                 width: 200,
-                color: const Color(0xff4b39ef),
+                color: mainColor,
                 text: "Check Inventory",
                 navFunction: navigate,
                 function: placeholder,
@@ -195,7 +195,7 @@ Widget sidebarWidget(BuildContext context) {
         ],
       ),
     ),
-    decoration: const BoxDecoration(color: Color(0xff4b39ef)),
+    decoration: BoxDecoration(color: mainColor),
   );
 }
 

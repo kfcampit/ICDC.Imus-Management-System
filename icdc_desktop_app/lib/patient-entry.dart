@@ -39,7 +39,7 @@ class PatientEntry extends State<PatientEntryPage> {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primaryColor: const Color(0xff4b39ef),
+          primaryColor: mainColor,
         ),
         home: Scaffold(
           body: Row(
@@ -60,15 +60,15 @@ Widget patientEntryPageWidgets(BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
         children: [
-          const Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 16),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 32, 0, 16),
             child: Text('Patient Information Entry',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w700,
                     fontSize: 32,
-                    color: Color(0xff4b39ef))),
+                    color: mainColor)),
           ),
           textInputs(context),
         ]),
@@ -94,25 +94,25 @@ Widget textInputs(BuildContext context) {
                           controller: nameController,
                           autofocus: true,
                           obscureText: false,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             labelText: 'Name',
                             hintText: 'Dela Cruz, Juan',
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0xff4b39ef),
+                                color: mainColor,
                                 width: 1,
                               ),
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(4.0),
                                 topRight: Radius.circular(4.0),
                               ),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0xff4b39ef),
+                                color: mainColor,
                                 width: 1,
                               ),
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(4.0),
                                 topRight: Radius.circular(4.0),
                               ),
@@ -128,25 +128,25 @@ Widget textInputs(BuildContext context) {
                       controller: bdayController,
                       autofocus: true,
                       obscureText: false,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         labelText: 'Date of Birth',
                         hintText: "12-31-2022",
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Color(0xff4b39ef),
+                            color: mainColor,
                             width: 1,
                           ),
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(4.0),
                             topRight: Radius.circular(4.0),
                           ),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Color(0xff4b39ef),
+                            color: mainColor,
                             width: 1,
                           ),
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(4.0),
                             topRight: Radius.circular(4.0),
                           ),
@@ -167,24 +167,24 @@ Widget textInputs(BuildContext context) {
                     controller: maritalController,
                     autofocus: true,
                     obscureText: false,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Marital Status',
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color(0xff4b39ef),
+                          color: mainColor,
                           width: 1,
                         ),
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(4.0),
                           topRight: Radius.circular(4.0),
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color(0xff4b39ef),
+                          color: mainColor,
                           width: 1,
                         ),
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(4.0),
                           topRight: Radius.circular(4.0),
                         ),
@@ -205,25 +205,25 @@ Widget textInputs(BuildContext context) {
                     controller: sexController,
                     autofocus: true,
                     obscureText: false,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Sex',
                       hintText: "M/F",
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color(0xff4b39ef),
+                          color: mainColor,
                           width: 1,
                         ),
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(4.0),
                           topRight: Radius.circular(4.0),
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color(0xff4b39ef),
+                          color: mainColor,
                           width: 1,
                         ),
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(4.0),
                           topRight: Radius.circular(4.0),
                         ),
@@ -244,25 +244,25 @@ Widget textInputs(BuildContext context) {
                     controller: contactController,
                     autofocus: true,
                     obscureText: false,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       labelText: 'Contact Number',
                       hintText: "09#########",
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color(0xff4b39ef),
+                          color: mainColor,
                           width: 1,
                         ),
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(4.0),
                           topRight: Radius.circular(4.0),
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Color(0xff4b39ef),
+                          color: mainColor,
                           width: 1,
                         ),
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(4.0),
                           topRight: Radius.circular(4.0),
                         ),
@@ -283,24 +283,24 @@ Widget textInputs(BuildContext context) {
           controller: addressController,
           autofocus: true,
           obscureText: false,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             labelText: 'Address',
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                color: Color(0xff4b39ef),
+                color: mainColor,
                 width: 1,
               ),
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(4.0),
                 topRight: Radius.circular(4.0),
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                color: Color(0xff4b39ef),
+                color: mainColor,
                 width: 1,
               ),
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(4.0),
                 topRight: Radius.circular(4.0),
               ),
@@ -314,14 +314,14 @@ Widget textInputs(BuildContext context) {
       ),
       treatmentsWidget(context),
       Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
               child: roundedButtons(
                 textStyle: const TextStyle(
                     fontFamily: 'Poppins',
@@ -330,7 +330,7 @@ Widget textInputs(BuildContext context) {
                     color: Colors.white),
                 height: 40,
                 width: 130,
-                color: const Color(0xff4b39ef),
+                color: mainColor,
                 text: "Cancel",
                 navFunction: navigate,
                 context: context,
@@ -339,7 +339,7 @@ Widget textInputs(BuildContext context) {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
               child: roundedButtons(
                   textStyle: const TextStyle(
                       fontFamily: 'Poppins',
@@ -348,7 +348,7 @@ Widget textInputs(BuildContext context) {
                       color: Colors.white),
                   height: 40,
                   width: 130,
-                  color: const Color(0xff4b39ef),
+                  color: mainColor,
                   text: "Save",
                   function: enterPatientInfo,
                   context: context,
@@ -369,7 +369,7 @@ Widget treatmentsWidget(BuildContext context) {
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.5,
       decoration: const BoxDecoration(
-        color: const Color(0xFFEEEEEE),
+        color: Color(0xFFEEEEEE),
       ),
       child: SingleChildScrollView(
           child: Padding(
@@ -383,7 +383,7 @@ Widget treatmentsWidget(BuildContext context) {
                           const EdgeInsetsDirectional.fromSTEB(60, 0, 0, 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
-                        children: const [
+                        children: [
                           Expanded(
                             flex: 1,
                             child: Text('Tooth Number',
@@ -392,7 +392,7 @@ Widget treatmentsWidget(BuildContext context) {
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
-                                    color: Color(0xff4b39ef))),
+                                    color: mainColor)),
                           ),
                           Expanded(
                             flex: 1,
@@ -402,7 +402,7 @@ Widget treatmentsWidget(BuildContext context) {
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
-                                    color: Color(0xff4b39ef))),
+                                    color: mainColor)),
                           ),
                           Expanded(
                             flex: 3,
@@ -412,7 +412,7 @@ Widget treatmentsWidget(BuildContext context) {
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
-                                    color: Color(0xff4b39ef))),
+                                    color: mainColor)),
                           ),
                           Expanded(
                             flex: 1,
@@ -422,7 +422,7 @@ Widget treatmentsWidget(BuildContext context) {
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
-                                    color: Color(0xff4b39ef))),
+                                    color: mainColor)),
                           ),
                           Expanded(
                             flex: 1,
@@ -432,19 +432,20 @@ Widget treatmentsWidget(BuildContext context) {
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
-                                    color: Color(0xff4b39ef))),
+                                    color: mainColor)),
                           ),
                         ],
                       ),
                     ),
-                    const Divider(
+                    Divider(
                         thickness: 1,
                         indent: 8,
                         endIndent: 8,
-                        color: Color(0xff4b39ef)),
+                        color: mainColor),
                     treatmentRows(context),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                       child: roundedButtons(
                         textStyle: const TextStyle(
                             fontFamily: 'Poppins',
@@ -453,7 +454,7 @@ Widget treatmentsWidget(BuildContext context) {
                             color: Colors.white),
                         height: 40,
                         width: 160,
-                        color: const Color(0xff4b39ef),
+                        color: mainColor,
                         text: "Add Treatment",
                         function: addTreatmentButton,
                         navFunction: navigate,
@@ -489,10 +490,10 @@ Widget listTreatments(int i, BuildContext context) {
       mainAxisSize: MainAxisSize.max,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
           child: CircleAvatar(
             radius: 20,
-            backgroundColor: Color.fromARGB(255, 252, 0, 0),
+            backgroundColor: const Color.fromARGB(255, 252, 0, 0),
             child: IconButton(
               icon: const Icon(
                 Icons.delete,

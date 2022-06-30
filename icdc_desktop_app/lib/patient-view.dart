@@ -32,7 +32,7 @@ class PatientView extends State<PatientViewPage> {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primaryColor: const Color(0xff4b39ef),
+          primaryColor: mainColor,
         ),
         home: Scaffold(
           body: Row(
@@ -53,15 +53,15 @@ Widget patientEntryPageWidgets(BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
         children: [
-          const Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 16),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 32, 0, 16),
             child: Text('View Patient Information',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w700,
                     fontSize: 32,
-                    color: Color(0xff4b39ef))),
+                    color: mainColor)),
           ),
           patientInfo(context, viewPatientNum),
         ]),
@@ -153,14 +153,14 @@ Widget patientInfo(BuildContext context, int i) {
       ),
       treatmentsWidget(context),
       Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
               child: roundedButtons(
                 textStyle: const TextStyle(
                     fontFamily: 'Poppins',
@@ -169,7 +169,7 @@ Widget patientInfo(BuildContext context, int i) {
                     color: Colors.white),
                 height: 40,
                 width: 130,
-                color: Color(0xFF4B39EF),
+                color: mainColor,
                 text: "Back",
                 navFunction: navigate,
                 context: context,
@@ -178,7 +178,7 @@ Widget patientInfo(BuildContext context, int i) {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
               child: roundedButtons(
                   textStyle: const TextStyle(
                       fontFamily: 'Poppins',
@@ -187,7 +187,7 @@ Widget patientInfo(BuildContext context, int i) {
                       color: Colors.white),
                   height: 40,
                   width: 130,
-                  color: const Color(0xff4b39ef),
+                  color: mainColor,
                   text: "Edit",
                   function: enterPatientInfo,
                   context: context,
@@ -208,7 +208,7 @@ Widget treatmentsWidget(BuildContext context) {
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.5,
       decoration: const BoxDecoration(
-        color: const Color(0xFFEEEEEE),
+        color: Color(0xFFEEEEEE),
       ),
       child: SingleChildScrollView(
           child: Padding(
@@ -221,7 +221,7 @@ Widget treatmentsWidget(BuildContext context) {
                       padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
-                        children: const [
+                        children: [
                           Expanded(
                             flex: 1,
                             child: Text('Tooth Number',
@@ -230,7 +230,7 @@ Widget treatmentsWidget(BuildContext context) {
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
-                                    color: Color(0xff4b39ef))),
+                                    color: mainColor)),
                           ),
                           Expanded(
                             flex: 1,
@@ -240,7 +240,7 @@ Widget treatmentsWidget(BuildContext context) {
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
-                                    color: Color(0xff4b39ef))),
+                                    color: mainColor)),
                           ),
                           Expanded(
                             flex: 3,
@@ -250,7 +250,7 @@ Widget treatmentsWidget(BuildContext context) {
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
-                                    color: Color(0xff4b39ef))),
+                                    color: mainColor)),
                           ),
                           Expanded(
                             flex: 1,
@@ -260,7 +260,7 @@ Widget treatmentsWidget(BuildContext context) {
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
-                                    color: Color(0xff4b39ef))),
+                                    color: mainColor)),
                           ),
                           Expanded(
                             flex: 1,
@@ -270,16 +270,16 @@ Widget treatmentsWidget(BuildContext context) {
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w600,
                                     fontSize: 16,
-                                    color: Color(0xff4b39ef))),
+                                    color: mainColor)),
                           ),
                         ],
                       ),
                     ),
-                    const Divider(
+                    Divider(
                         thickness: 1,
                         indent: 8,
                         endIndent: 8,
-                        color: Color(0xff4b39ef)),
+                        color: mainColor),
                     treatmentRows(context),
                   ]))),
     ),

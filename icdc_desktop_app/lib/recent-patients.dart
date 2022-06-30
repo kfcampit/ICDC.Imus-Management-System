@@ -33,7 +33,7 @@ class RecentPatients extends State<RecentPatientsPage> {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primaryColor: const Color(0xff4b39ef),
+          primaryColor: mainColor,
         ),
         home: Scaffold(
           body: Row(
@@ -54,15 +54,15 @@ Widget searchPatientPageWidgets(BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
         children: [
-          const Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 16),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 32, 0, 16),
             child: Text('Recent Patients',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w700,
                     fontSize: 32,
-                    color: Color(0xff4b39ef))),
+                    color: mainColor)),
           ),
           Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
@@ -77,22 +77,22 @@ Widget searchPatientPageWidgets(BuildContext context) {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         searchContents(context),
-                        const Divider(
+                        Divider(
                             thickness: 1,
                             indent: 8,
                             endIndent: 8,
-                            color: Color(0xff4b39ef)),
+                            color: mainColor),
                         patientRows(context),
                       ]))),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
                   child: roundedButtons(
                     textStyle: const TextStyle(
                         fontFamily: 'Poppins',
@@ -101,7 +101,7 @@ Widget searchPatientPageWidgets(BuildContext context) {
                         color: Colors.white),
                     height: 40,
                     width: 130,
-                    color: const Color(0xff4b39ef),
+                    color: mainColor,
                     text: "Back",
                     navFunction: navigate,
                     context: context,
@@ -110,7 +110,7 @@ Widget searchPatientPageWidgets(BuildContext context) {
                   ),
                 ),
                 Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 8, 16),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 8, 16),
                     child: Text(
                       "Page " +
                           (pageNum + 1).toString() +
@@ -120,7 +120,7 @@ Widget searchPatientPageWidgets(BuildContext context) {
                               .toString(),
                     )),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
                   child: roundedButtons(
                       textStyle: const TextStyle(
                           fontFamily: 'Poppins',
@@ -129,7 +129,7 @@ Widget searchPatientPageWidgets(BuildContext context) {
                           color: Colors.white),
                       height: 40,
                       width: 130,
-                      color: const Color(0xff4b39ef),
+                      color: mainColor,
                       text: "Next",
                       function: nextPage,
                       context: context,
@@ -148,7 +148,7 @@ Widget searchContents(BuildContext context) {
     padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 8),
     child: Row(
       mainAxisSize: MainAxisSize.max,
-      children: const [
+      children: [
         Expanded(
           flex: 2,
           child: Text('Patient Name',
@@ -157,7 +157,7 @@ Widget searchContents(BuildContext context) {
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
-                  color: Color(0xff4b39ef))),
+                  color: mainColor)),
         ),
         Expanded(
           flex: 3,
@@ -167,7 +167,7 @@ Widget searchContents(BuildContext context) {
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
-                  color: Color(0xff4b39ef))),
+                  color: mainColor)),
         ),
         Expanded(
           flex: 1,
@@ -177,7 +177,7 @@ Widget searchContents(BuildContext context) {
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
-                  color: Color(0xff4b39ef))),
+                  color: mainColor)),
         ),
         Expanded(
           flex: 1,
@@ -187,7 +187,7 @@ Widget searchContents(BuildContext context) {
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
-                  color: Color(0xff4b39ef))),
+                  color: mainColor)),
         ),
       ],
     ),
@@ -275,7 +275,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
                       color: Colors.white),
                   height: 30,
                   width: 110,
-                  color: const Color(0xff4b39ef),
+                  color: mainColor,
                   text: "View",
                   function: () {
                     viewPatient(i);

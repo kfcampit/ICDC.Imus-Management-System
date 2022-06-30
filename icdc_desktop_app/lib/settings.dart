@@ -32,7 +32,7 @@ class Settings extends State<SettingsPage> {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primaryColor: const Color(0xff4b39ef),
+          primaryColor: mainColor,
         ),
         home: Scaffold(
           body: Row(
@@ -50,7 +50,7 @@ Widget settingsPageWidgets(BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 16),
             child: Text('Settings',
                 textAlign: TextAlign.center,
@@ -58,7 +58,7 @@ Widget settingsPageWidgets(BuildContext context) {
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w700,
                     fontSize: 32,
-                    color: Color(0xff4b39ef))),
+                    color: mainColor)),
           ),
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(32, 16, 16, 8),
@@ -90,7 +90,7 @@ Widget settingsPageWidgets(BuildContext context) {
                 roundedButtons(
                     height: 40,
                     width: 100,
-                    color: const Color(0xff4b39ef),
+                    color: mainColor,
                     text: "Save",
                     function: setPatientsPerRow,
                     navFunction: navigate,
@@ -109,11 +109,11 @@ Widget settingsPageWidgets(BuildContext context) {
 }
 
 TextStyle settingsTextStyle() {
-  return const TextStyle(
+  return TextStyle(
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w500,
       fontSize: 24,
-      color: Color(0xff4b39ef));
+      color: mainColor);
 }
 
 void setPatientsPerRow() {

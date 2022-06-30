@@ -40,7 +40,7 @@ class SearchPatient extends State<SearchPatientPage> {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primaryColor: const Color(0xff4b39ef),
+          primaryColor: mainColor,
         ),
         home: Scaffold(
           body: Row(
@@ -69,24 +69,24 @@ class SearchPatient extends State<SearchPatientPage> {
                           controller: searchController,
                           autofocus: true,
                           obscureText: false,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             labelText: 'Search',
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0xff4b39ef),
+                                color: mainColor,
                                 width: 1,
                               ),
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: const Radius.circular(4.0),
+                                topRight: const Radius.circular(4.0),
                               ),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                color: Color(0xff4b39ef),
+                                color: mainColor,
                                 width: 1,
                               ),
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(4.0),
                                 topRight: Radius.circular(4.0),
                               ),
@@ -99,7 +99,7 @@ class SearchPatient extends State<SearchPatientPage> {
                 child: Container(
                     width: 120,
                     decoration: BoxDecoration(
-                      border: Border.all(color: const Color(0xff4b39ef)),
+                      border: Border.all(color: mainColor),
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(4.0),
                         topRight: Radius.circular(4.0),
@@ -107,9 +107,9 @@ class SearchPatient extends State<SearchPatientPage> {
                     ),
                     child: DropdownButton<String>(
                       value: dropdownValue,
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.arrow_drop_down,
-                        color: const Color(0xff4b39ef),
+                        color: mainColor,
                       ),
                       elevation: 16,
                       style: const TextStyle(color: Colors.deepPurple),
@@ -142,7 +142,7 @@ class SearchPatient extends State<SearchPatientPage> {
                       color: Colors.white),
                   height: 50,
                   width: 130,
-                  color: const Color(0xff4b39ef),
+                  color: mainColor,
                   text: "Search",
                   navFunction: navigate,
                   context: context,
@@ -160,15 +160,15 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
         mainAxisAlignment: MainAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
         children: [
-          const Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 32, 0, 32),
             child: Text('Search Patients',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w700,
                     fontSize: 32,
-                    color: Color(0xff4b39ef))),
+                    color: mainColor)),
           ),
           function(),
           Padding(
@@ -184,22 +184,22 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         searchContents(context),
-                        const Divider(
+                        Divider(
                             thickness: 1,
                             indent: 8,
                             endIndent: 8,
-                            color: Color(0xff4b39ef)),
+                            color: mainColor),
                         patientRows(context),
                       ]))),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
                   child: roundedButtons(
                     textStyle: const TextStyle(
                         fontFamily: 'Poppins',
@@ -208,7 +208,7 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
                         color: Colors.white),
                     height: 40,
                     width: 130,
-                    color: const Color(0xff4b39ef),
+                    color: mainColor,
                     text: "Back",
                     navFunction: navigate,
                     context: context,
@@ -217,7 +217,7 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
                   ),
                 ),
                 Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 8, 16),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 8, 16),
                     child: Text(
                       "Page " +
                           (pageNum + 1).toString() +
@@ -227,7 +227,7 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
                               .toString(),
                     )),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
                   child: roundedButtons(
                       textStyle: const TextStyle(
                           fontFamily: 'Poppins',
@@ -236,7 +236,7 @@ Widget searchPatientPageWidgets(BuildContext context, Function function) {
                           color: Colors.white),
                       height: 40,
                       width: 130,
-                      color: const Color(0xff4b39ef),
+                      color: mainColor,
                       text: "Next",
                       function: nextPage,
                       context: context,
@@ -255,7 +255,7 @@ Widget searchContents(BuildContext context) {
     padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 8),
     child: Row(
       mainAxisSize: MainAxisSize.max,
-      children: const [
+      children: [
         Expanded(
           flex: 2,
           child: Text('Patient Name',
@@ -264,7 +264,7 @@ Widget searchContents(BuildContext context) {
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
-                  color: Color(0xff4b39ef))),
+                  color: mainColor)),
         ),
         Expanded(
           flex: 3,
@@ -274,7 +274,7 @@ Widget searchContents(BuildContext context) {
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
-                  color: Color(0xff4b39ef))),
+                  color: mainColor)),
         ),
         Expanded(
           flex: 1,
@@ -284,7 +284,7 @@ Widget searchContents(BuildContext context) {
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
-                  color: Color(0xff4b39ef))),
+                  color: mainColor)),
         ),
         Expanded(
           flex: 1,
@@ -294,7 +294,7 @@ Widget searchContents(BuildContext context) {
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
-                  color: Color(0xff4b39ef))),
+                  color: mainColor)),
         ),
       ],
     ),
@@ -394,7 +394,7 @@ Widget listPatientsSearch(int i, BuildContext context) {
                       color: Colors.white),
                   height: 30,
                   width: 110,
-                  color: const Color(0xff4b39ef),
+                  color: mainColor,
                   text: "View",
                   function: () {
                     viewPatientNum = i;
