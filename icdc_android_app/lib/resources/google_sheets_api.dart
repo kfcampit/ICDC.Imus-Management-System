@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:icdc_android_app/open-appointments.dart';
 import 'package:gsheets/gsheets.dart';
+import 'package:icdc_android_app/resources/algorithms.dart';
 import 'package:icdc_android_app/resources/appointment_object.dart';
 import 'package:icdc_android_app/resources/global_variables.dart';
 
@@ -68,10 +69,35 @@ Future<void> loadAppointments() async {
       String time = allAppointmentRows[i][0];
       String service = allAppointmentRows[i][17];
       String status = allAppointmentRows[i][19];
+
       int rowIndex = i + 2;
-      appointmentObjList
-          .add(AppointmentObject(name, date, time, service, status, rowIndex));
+      AppointmentObject temp =
+          AppointmentObject(name, date, time, service, status, rowIndex);
+
+      temp.fbName = allAppointmentRows[i][2];
+      temp.address = allAppointmentRows[i][3];
+      temp.bday = allAppointmentRows[i][4];
+      temp.sex = allAppointmentRows[i][5];
+      temp.contact = allAppointmentRows[i][6];
+      temp.occupation = allAppointmentRows[i][7];
+      temp.existingRecord = allAppointmentRows[i][8];
+      temp.methodOfContact = allAppointmentRows[i][9];
+      temp.vaxxStatus = allAppointmentRows[i][10];
+      temp.recentSymptoms = allAppointmentRows[i][12];
+      temp.medHistory = allAppointmentRows[i][13];
+      temp.maintenanceMeds = allAppointmentRows[i][14];
+      temp.allergicMeds = allAppointmentRows[i][15];
+      temp.detailsMeds = allAppointmentRows[i][16];
+
+      appointmentObjList.add(temp);
     }
   }
   print("Successfully loaded all the appointments");
+}
+
+int dateToUnix(String sdatetime) {
+  /* Input Format: YYYY-MM-DD" */
+  DateTime sdate = DateTime.parse(sdatetime);
+  int stimestamp = sdate.millisecondsSinceEpoch;
+  return stimestamp;
 }

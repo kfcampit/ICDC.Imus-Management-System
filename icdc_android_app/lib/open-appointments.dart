@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:firedart/auth/user_gateway.dart';
 import 'package:flutter/material.dart';
+import 'package:icdc_android_app/appointment-view.dart';
 import 'package:icdc_android_app/resources/appointment_object.dart';
 import 'package:icdc_android_app/resources/global_variables.dart';
 import 'package:icdc_android_app/resources/google_sheets_api.dart';
@@ -27,6 +28,7 @@ class OpenAppointmentsPage extends State<OpenAppointments> {
 
   @override
   Widget build(BuildContext context) {
+    print(appointmentList.length);
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -147,110 +149,119 @@ Widget displayAppointment(int i, BuildContext context) {
   // }
   return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(10, 8, 10, 8),
-      child: Container(
-        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-        decoration: BoxDecoration(
-          color: mainColor,
-          borderRadius: BorderRadius.all(
-            Radius.circular(15.0),
-          ),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Row(
+      child: GestureDetector(
+          onTap: () {
+            viewAppointmentNum = i;
+            navigate(context, const AppointmentViewPage());
+          },
+          child: Container(
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+            decoration: BoxDecoration(
+              color: mainColor,
+              borderRadius: const BorderRadius.all(
+                Radius.circular(15.0),
+              ),
+            ),
+            child: Column(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(10, 11, 0, 23),
-                    child: Text(appointmentList[i].service,
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.white)),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
-                    child: CircleAvatar(
-                      radius: 16,
-                      backgroundColor: Color.fromARGB(255, 252, 0, 0),
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.delete,
-                          color: Colors.white,
-                          size: 16,
-                        ),
-                        iconSize: 16,
-                        onPressed: () {
-                          removeAppointment(i);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) => OpenAppointments())));
-                        },
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(10, 11, 0, 23),
+                        child: Text(appointmentList[i].service,
+                            textAlign: TextAlign.left,
+                            style: const TextStyle(
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                color: Colors.white)),
                       ),
                     ),
-                  ),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+                        child: CircleAvatar(
+                          radius: 16,
+                          backgroundColor: Color.fromARGB(255, 252, 0, 0),
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                              size: 16,
+                            ),
+                            iconSize: 16,
+                            onPressed: () {
+                              removeAppointment(i);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) =>
+                                          OpenAppointments())));
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
+                        child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Text("Date: ",
+                                  style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14,
+                                      color: Colors.white)),
+                              Text(appointmentList[i].date,
+                                  style: const TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14,
+                                      color: Colors.white)),
+                            ])),
+                    Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 5, 10),
+                        child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Text("Name: ",
+                                  style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14,
+                                      color: Colors.white)),
+                              Text(appointmentList[i].name,
+                                  style: const TextStyle(
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14,
+                                      color:
+                                          Color.fromARGB(255, 239, 196, 57))),
+                            ])),
+                  ],
+                )
               ],
             ),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
-                    child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Text("Date: ",
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
-                                  color: Colors.white)),
-                          Text(appointmentList[i].date,
-                              style: const TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
-                                  color: Colors.white)),
-                        ])),
-                Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 5, 10),
-                    child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Text("Name: ",
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
-                                  color: Colors.white)),
-                          Text(appointmentList[i].name,
-                              style: const TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 14,
-                                  color: Color.fromARGB(255, 239, 196, 57))),
-                        ])),
-              ],
-            )
-          ],
-        ),
-      ));
+          )));
 }
 
 void removeAppointment(int index) async {

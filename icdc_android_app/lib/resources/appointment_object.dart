@@ -6,6 +6,21 @@ class AppointmentObject {
   String service = "";
   String status = "";
   int rowIndex = 0;
+  String fbName = "";
+  String address = "";
+  String bday = "";
+  String sex = "";
+  String contact = "";
+  String occupation = "";
+  String existingRecord = "";
+  String methodOfContact = "";
+  String vaxxStatus = "";
+  String vaxxDate = "";
+  String recentSymptoms = "";
+  String medHistory = "";
+  String maintenanceMeds = "";
+  String allergicMeds = "";
+  String detailsMeds = "";
 
   AppointmentObject(this.name, this.date, this.time, this.service, this.status,
       this.rowIndex) {
