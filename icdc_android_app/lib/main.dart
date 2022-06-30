@@ -13,8 +13,6 @@ Future<void> main() async {
   Firestore.initialize(projectId);
   AppointmentSheetsApi.init();
   await loadPatients();
-  // checkListPatients();
-
   runApp(const ICDCAndroid());
 }
 

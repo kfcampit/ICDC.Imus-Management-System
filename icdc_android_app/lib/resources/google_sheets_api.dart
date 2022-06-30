@@ -29,9 +29,18 @@ class AppointmentSheetsApi {
     final spreadsheet = await gsheets.spreadsheet(spreadsheetId);
     workSheet = await getWorkSheet(spreadsheet, title: sheetName);
     print("Established Connection to Google Sheets with id: " + spreadsheetId);
+    int rows =
+        (await workSheet!.values.allRows(fromRow: 2)).length; // Number of rows
+    for (int i = 2; i < rows + 2; i++) {
+      // Setting the new appointments view status to false by default
+      var currentStatus = await workSheet!.values.value(column: 20, row: i);
+      if (currentStatus.toString() == '') {
+        workSheet?.values.insertValue('false', column: 20, row: i);
+      }
+    }
     allAppointmentRows.addAll(await workSheet!.values.allRows(fromRow: 2));
     loadAppointments();
-    print("Successfully loaded all the appointments");
+    print("System Ready");
   }
 
   static Future<Worksheet> getWorkSheet(
@@ -59,10 +68,10 @@ Future<void> loadAppointments() async {
       String time = allAppointmentRows[i][0];
       String service = allAppointmentRows[i][17];
       String status = allAppointmentRows[i][19];
-      int rowIndex = int.parse(allAppointmentRows[i][20]);
-      int listIndex = i;
+      int rowIndex = i + 2;
       appointmentObjList
           .add(AppointmentObject(name, date, time, service, status, rowIndex));
     }
   }
+  print("Successfully loaded all the appointments");
 }
