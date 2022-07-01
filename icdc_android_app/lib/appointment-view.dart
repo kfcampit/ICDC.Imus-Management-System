@@ -27,6 +27,14 @@ class AppointmentView extends State<AppointmentViewPage> {
     viewAppointment = appointmentList[viewAppointmentNum];
   }
 
+  TextStyle body1(Color color) {
+    return TextStyle(
+        fontFamily: 'Poppins',
+        fontWeight: FontWeight.w600,
+        fontSize: 14,
+        color: color);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -82,567 +90,413 @@ class AppointmentView extends State<AppointmentViewPage> {
   Widget appointmentInfo(BuildContext context, int i) {
     return Expanded(
       child: SingleChildScrollView(
-          child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 0),
-            child: Row(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: mainColor,
+                boxShadow: const [
+                  BoxShadow(
+                    blurRadius: 4,
+                    color: Color(0x230F1113),
+                    offset: Offset(0, 2),
+                  )
+                ],
+              ),
+              child: Column(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Expanded(
-                    flex: 0,
-                    child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                        child: Expanded(
-                          child: Text('Name: ',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w500,
-                                color: mainColor,
-                                fontSize: 20,
-                              )),
-                        )),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Text('Name', style: body1(Colors.white)),
+                        ),
+                      ],
+                    ),
                   ),
-                  Expanded(
-                      flex: 0,
-                      child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                        child: Text(viewAppointment.name.toString(),
-                            textAlign: TextAlign.left,
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 20),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            viewAppointment.name,
                             style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20,
-                            )),
-                      )),
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text('FB Name: ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            color: mainColor,
-                            fontSize: 16,
-                          )),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 0,
-                    child: Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                        child: Padding(
-                          padding:
-                              const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                          child: Text(viewAppointment.fbName.toString(),
-                              textAlign: TextAlign.left,
-                              style: const TextStyle(
                                 fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16,
-                              )),
-                        )),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 28,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Row(
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
+              child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text('Sex: ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            color: mainColor,
-                            fontSize: 16,
-                          )),
+                    child: Text(
+                      'Dental Concerns',
+                      style: body1(Colors.black),
                     ),
                   ),
-                  Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text(viewAppointment.sex.toString(),
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          )),
-                    ),
-                  ),
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Row(
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
+              child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text('Contact No.: ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            color: mainColor,
-                            fontSize: 16,
-                          )),
+                    child: Text(
+                      viewAppointment.service,
+                      style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w600,
+                          fontSize: 22,
+                          color: Color.fromARGB(255, 87, 87, 87)),
                     ),
                   ),
-                  Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text(viewAppointment.contact.toString(),
-                          textAlign: TextAlign.left,
-                          overflow: TextOverflow.visible,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          )),
-                    ),
-                  ),
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Row(
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 16, 20, 0),
+              child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text('Occupation: ',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            color: mainColor,
-                            fontSize: 16,
-                          )),
+                    child: Text(
+                      'Preferred Date',
+                      style: body1(Colors.black),
                     ),
                   ),
-                  Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text(viewAppointment.occupation.toString(),
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          )),
-                    ),
-                  ),
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Row(
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
+              child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    viewAppointment.date,
+                    style: body1(const Color.fromARGB(255, 87, 87, 87)),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
                 children: [
                   Expanded(
-                    flex: 0,
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text('Prior Record',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                      child: Text(
+                        'Additional Details',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
                             fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            color: mainColor,
-                            fontSize: 16,
-                          )),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                            color: mainColor),
+                      ),
                     ),
                   ),
-                  Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text(viewAppointment.existingRecord.toString(),
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          )),
-                    ),
-                  ),
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Row(
+                ],
+              ),
+            ),
+            Divider(
+              thickness: 2,
+              indent: 32,
+              endIndent: 32,
+              color: mainColor,
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
+              child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 0,
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text('Method of Contact',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            color: mainColor,
-                            fontSize: 16,
-                          )),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                      child: Text(
+                        'FB Name',
+                        style: body1(Colors.black),
+                      ),
                     ),
                   ),
-                  Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text(viewAppointment.methodOfContact.toString(),
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          )),
-                    ),
-                  ),
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Row(
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
+              child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text('Vaccination Status',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            color: mainColor,
-                            fontSize: 16,
-                          )),
+                    child: Text(
+                      viewAppointment.fbName,
+                      style: body1(const Color.fromARGB(255, 87, 87, 87)),
                     ),
                   ),
-                  Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text(viewAppointment.vaxxStatus.toString(),
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          )),
-                    ),
-                  ),
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Row(
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
+              child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text('Recent COVID-19 Symptoms',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            color: mainColor,
-                            fontSize: 16,
-                          )),
+                    flex: 2,
+                    child: Text(
+                      'Sex',
+                      style: body1(Colors.black),
                     ),
                   ),
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Row(
+                  Expanded(
+                    flex: 4,
+                    child: Text(
+                      viewAppointment.sex,
+                      style: body1(const Color.fromARGB(255, 87, 87, 87)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
+              child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child:
-                          Text(viewAppointment.recentSymptoms.toString() + "\n",
-                              textAlign: TextAlign.left,
-                              style: const TextStyle(
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16,
-                              )),
+                    flex: 2,
+                    child: Text(
+                      'Occupation',
+                      style: body1(Colors.black),
                     ),
                   ),
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Row(
+                  Expanded(
+                    flex: 4,
+                    child: Text(
+                      viewAppointment.occupation,
+                      style: body1(const Color.fromARGB(255, 87, 87, 87)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
+              child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text('Medical History',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            color: mainColor,
-                            fontSize: 16,
-                          )),
+                    flex: 2,
+                    child: Text(
+                      'Prior Record',
+                      style: body1(Colors.black),
                     ),
                   ),
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Row(
+                  Expanded(
+                    flex: 4,
+                    child: Text(
+                      viewAppointment.existingRecord,
+                      style: body1(const Color.fromARGB(255, 87, 87, 87)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
+              child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text(viewAppointment.medHistory.toString() + "\n",
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          )),
+                    flex: 2,
+                    child: Text(
+                      'Method of Contact',
+                      style: body1(Colors.black),
                     ),
                   ),
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Row(
+                  Expanded(
+                    flex: 4,
+                    child: Text(
+                      viewAppointment.methodOfContact,
+                      style: body1(const Color.fromARGB(255, 87, 87, 87)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
+              child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text('Maintenance Medication',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            color: mainColor,
-                            fontSize: 16,
-                          )),
+                    flex: 2,
+                    child: Text(
+                      'Vaccination Status',
+                      style: body1(Colors.black),
                     ),
                   ),
                   Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text(viewAppointment.maintenanceMeds.toString(),
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          )),
+                    flex: 4,
+                    child: Text(
+                      viewAppointment.vaxxStatus,
+                      style: body1(const Color.fromARGB(255, 87, 87, 87)),
                     ),
                   ),
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Row(
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
+              child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text('Medicine Allergies',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            color: mainColor,
-                            fontSize: 16,
-                          )),
+                    flex: 2,
+                    child: Text(
+                      'COVID-19 Symptoms',
+                      style: body1(Colors.black),
                     ),
                   ),
-                  Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text(viewAppointment.allergicMeds.toString(),
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          )),
-                    ),
-                  ),
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Row(
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
+              child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text('Maintenance/Allergies',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            color: mainColor,
-                            fontSize: 16,
-                          )),
+                    flex: 4,
+                    child: Text(
+                      viewAppointment.recentSymptoms,
+                      style: body1(const Color.fromARGB(255, 87, 87, 87)),
                     ),
                   ),
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Row(
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
+              child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text(viewAppointment.detailsMeds.toString() + "\n",
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          )),
+                    flex: 2,
+                    child: Text(
+                      'Medical History',
+                      style: body1(Colors.black),
                     ),
                   ),
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Row(
+                  Expanded(
+                    flex: 4,
+                    child: Text(
+                      viewAppointment.medHistory,
+                      style: body1(const Color.fromARGB(255, 87, 87, 87)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
+              child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text('Dental Concerns',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            color: mainColor,
-                            fontSize: 16,
-                          )),
+                    flex: 2,
+                    child: Text(
+                      'Maintenance Medication',
+                      style: body1(Colors.black),
                     ),
                   ),
                   Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text(viewAppointment.service.toString(),
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                          )),
+                    flex: 4,
+                    child: Text(
+                      viewAppointment.maintenanceMeds,
+                      style: body1(const Color.fromARGB(255, 87, 87, 87)),
                     ),
                   ),
-                ]),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-            child: Row(
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
+              child: Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text('Preferred Appointment Schedule',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            color: mainColor,
-                            fontSize: 16,
-                          )),
+                    flex: 2,
+                    child: Text(
+                      'Alergies to Medication',
+                      style: body1(Colors.black),
                     ),
                   ),
                   Expanded(
-                    flex: 0,
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      child: Text(viewAppointment.date.toString(),
-                          textAlign: TextAlign.left,
-                          style: const TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                          )),
+                    flex: 4,
+                    child: Text(
+                      viewAppointment.allergicMeds,
+                      style: body1(const Color.fromARGB(255, 87, 87, 87)),
                     ),
                   ),
-                ]),
-          ),
-        ],
-      )),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      'Maintenance Medication / Medication Allergic to',
+                      style: body1(Colors.black),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 4, 20, 0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: Text(
+                      viewAppointment.detailsMeds,
+                      style: body1(const Color.fromARGB(255, 87, 87, 87)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
