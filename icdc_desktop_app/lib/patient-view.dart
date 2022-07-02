@@ -291,7 +291,9 @@ Widget treatmentRows(BuildContext context) {
   int n = viewPatient.dentalRecords.length;
 
   for (int i = 0; i < n; i++) {
-    widgetList.add(listTreatments(i));
+    if (viewPatient.dentalRecords[i].transDate != 0) {
+      widgetList.add(listTreatments(i));
+    }
   }
 
   return Column(

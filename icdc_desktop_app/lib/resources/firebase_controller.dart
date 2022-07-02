@@ -48,7 +48,7 @@ Future<void> loadPatients() async {
   }
 }
 
-void addPatient(PatientObject patientObject) {
+Future<void> addPatient(PatientObject patientObject) async {
   String patientId =
       'P-' + (listPatients.length + 1).toString().padLeft(6, '0');
 
@@ -73,7 +73,7 @@ void addPatient(PatientObject patientObject) {
     dentRecs['toothNum'] = patientObject.dentalRecords[i].toothNum;
     dentRecs['transDate'] = patientObject.dentalRecords[i].transDate;
 
-    db
+    await db
         .collection('patients')
         .document(patientId)
         .collection('dentalRecords')
@@ -119,7 +119,7 @@ Future<void> editPatient(String patientId, PatientObject patientObject) async {
     dentRecs['transDate'] = patientObject.dentalRecords[i].transDate;
     dentRecs['isVisible'] = true;
 
-    db
+    await db
         .collection('patients')
         .document(patientId)
         .collection('dentalRecords')

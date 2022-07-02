@@ -332,12 +332,6 @@ Widget patientRows(BuildContext context) {
 }
 
 Widget listPatientsSearch(int i, BuildContext context) {
-  if (searchedPatients[i].dentalRecords.isEmpty) {
-    DentalRecord ph = DentalRecord();
-    ph.transDate = 0;
-    searchedPatients[i].dentalRecords.add(ph);
-  }
-
   return Padding(
     padding: const EdgeInsetsDirectional.fromSTEB(0, 6, 0, 6),
     child: Row(

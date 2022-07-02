@@ -140,8 +140,8 @@ List<PatientObject> sortPatients() {
 
   sortString(mainList, 0, mainList.length - 1);
 
-  for (String name in mainList) {
-    sortedRecords.add(records.firstWhere((element) => element.name == name));
+  for (String name in mainList.toSet().toList()) {
+    sortedRecords.addAll(records.where((element) => element.name == name));
   }
 
   return sortedRecords;
