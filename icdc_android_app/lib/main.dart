@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 10),
-                child: Text('Immaculate Conception Dental Clinic - Imus',
+                child: Text('Immaculate Concepcion Dental Clinic - Imus',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontFamily: 'Poppins',

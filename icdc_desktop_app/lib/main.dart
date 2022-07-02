@@ -58,7 +58,7 @@ Widget homePageWidget(BuildContext context) {
       ),
       Padding(
         padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-        child: Text('Immaculate Conception Dental Clinic - Imus',
+        child: Text('Immaculate Concepcion Dental Clinic - Imus',
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontFamily: 'Poppins',

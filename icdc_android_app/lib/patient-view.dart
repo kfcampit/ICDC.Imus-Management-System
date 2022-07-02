@@ -152,7 +152,7 @@ class PatientView extends State<PatientViewPage> {
                 children: [
                   Expanded(
                     child: Text(
-                      'Birthday: ',
+                      'Birthday',
                       style: body1(Colors.black),
                     ),
                   ),
